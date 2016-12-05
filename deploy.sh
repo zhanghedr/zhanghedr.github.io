@@ -5,6 +5,7 @@ echo "hexo push done"
 
 hexo generate
 cp -R public/* .deploy/
+cp CNAME .deploy/
 cd .deploy
 git add -A
 git commit -m “update”
