@@ -1,2 +1,2 @@
 # My blog
-My personal [blog](https://zhanghedr.github.io/) about tech and life.
+My personal [blog](http://www.zhanghedr.com/) about tech and life.
