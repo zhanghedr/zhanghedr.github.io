@@ -25,6 +25,3 @@ tags:
 <center>*Horseshoe Bend*</center>![](/img/2016_thanksgiving/horseshoe_bend.JPG)
 <center>*Zion National Park*</center>![](/img/2016_thanksgiving/zion.JPG)
 <center>*Bryce Canyon National Park*</center>![](/img/2016_thanksgiving/bryce.JPG)
-
-最后附上一张我的杰作：)
-![](/img/2016_thanksgiving/baobao.JPG)
