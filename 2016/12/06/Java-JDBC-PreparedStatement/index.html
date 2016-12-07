@@ -84,24 +84,16 @@
 
 
 
-<meta name="description" content="今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大">
+<meta name="description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2016 Thanksgiving">
-<meta property="og:url" content="http://yoursite.com/2016/12/04/2016-Thanksgiving/index.html">
+<meta property="og:title" content="Java JDBC PreparedStatement 用法">
+<meta property="og:url" content="http://yoursite.com/2016/12/06/Java-JDBC-PreparedStatement/index.html">
 <meta property="og:site_name" content="去月球">
-<meta property="og:description" content="今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/map.png">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/death_valley.JPG">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/grand_canyon.JPG">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/antelope_canyon.jpg">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/horseshoe_bend.JPG">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/zion.JPG">
-<meta property="og:image" content="http://yoursite.com/img/2016_thanksgiving/bryce.JPG">
-<meta property="og:updated_time" content="2016-12-06T06:56:35.528Z">
+<meta property="og:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta property="og:updated_time" content="2016-12-07T07:13:58.060Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016 Thanksgiving">
-<meta name="twitter:description" content="今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大">
-<meta name="twitter:image" content="http://yoursite.com/img/2016_thanksgiving/map.png">
+<meta name="twitter:title" content="Java JDBC PreparedStatement 用法">
+<meta name="twitter:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
 
 
 
@@ -129,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/04/2016-Thanksgiving/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/12/06/Java-JDBC-PreparedStatement/"/>
 
 
 
 
 
-  <title> 2016 Thanksgiving | 去月球 </title>
+  <title> Java JDBC PreparedStatement 用法 | 去月球 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -265,7 +257,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/04/2016-Thanksgiving/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/06/Java-JDBC-PreparedStatement/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Howard">
@@ -289,7 +281,7 @@
             
             
               
-                2016 Thanksgiving
+                Java JDBC PreparedStatement 用法
               
             
           </h1>
@@ -302,8 +294,8 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-04T02:09:30-05:00">
-                2016-12-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-06T23:15:33-05:00">
+                2016-12-06
               </time>
             
 
@@ -318,8 +310,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/04/2016-Thanksgiving/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/04/2016-Thanksgiving/" itemprop="commentCount"></span>
+                <a href="/2016/12/06/Java-JDBC-PreparedStatement/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/Java-JDBC-PreparedStatement/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -350,24 +342,18 @@
       
 
       
-        <p>今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大雪的Bryce Canyon。<br><img src="/img/2016_thanksgiving/map.png" alt=""></p>
+        <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
 <a id="more"></a>
-<h2 id="路线"><a href="#路线" class="headerlink" title="路线"></a>路线</h2><ol>
-<li>Arrive Vegas</li>
-<li>Dead Valley</li>
-<li>Zion</li>
-<li>Brcye</li>
-<li>Upper/Lower Antelope Canyon, Horseshoe Bend</li>
-<li>Grand Canyon South Rim</li>
-<li>Back Vegas</li>
-</ol>
-<h2 id="照片"><a href="#照片" class="headerlink" title="照片"></a>照片</h2><p>这里挑出每个公园的代表照片</p>
-<p><center><em>Death Valley National Park</em></center><img src="/img/2016_thanksgiving/death_valley.JPG" alt=""></p>
-<p><center><em>Grand Canyon National Park</em></center><img src="/img/2016_thanksgiving/grand_canyon.JPG" alt=""></p>
-<p><center><em>Antelope Canyon</em></center><img src="/img/2016_thanksgiving/antelope_canyon.jpg" alt=""></p>
-<p><center><em>Horseshoe Bend</em></center><img src="/img/2016_thanksgiving/horseshoe_bend.JPG" alt=""></p>
-<p><center><em>Zion National Park</em></center><img src="/img/2016_thanksgiving/zion.JPG" alt=""></p>
-<p><center><em>Bryce Canyon National Park</em></center><img src="/img/2016_thanksgiving/bryce.JPG" alt=""></p>
+<h2 id="General"><a href="#General" class="headerlink" title="General"></a>General</h2><p>这里列出几点通常要注意的地方</p>
+<ul>
+<li>在循环执行PreparedStatement时，注意将只建一个instance在循环外，重复设置SQL中的变量，避免OutOfMemoryError错误</li>
+<li>合理commit transactions，在需要的情况下使用conn.setAutoCommit(false)来手动commit，它的default是true，避免在每次execute时候就自动commit</li>
+<li>在setAutoCommit(false)的情况下，如果抓到SQLException使用conn.rollback()来撤销当前的transaction</li>
+<li>用close()关闭相关的resource，分别有ResultSet, PreparedStatement和Connection。Java 7+版本可以使用try-with-resources方式自动close</li>
+</ul>
+<p>简单的代码example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String sql = <span class="string">"..."</span>;</div><div class="line"><span class="keyword">try</span> (Connection conn = getDbConnection()) &#123;</div><div class="line">    conn.setAutoCommit(<span class="keyword">false</span>);</div><div class="line">    <span class="keyword">try</span> (PreparedStatement ps = conn.prepareStatement(sql)) &#123;</div><div class="line">        <span class="comment">// ps.setString();</span></div><div class="line">        <span class="comment">// ps.execute();</span></div><div class="line">        conn.commit();</div><div class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">        conn.rollback();</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">    &#125;</div><div class="line">&#125; <span class="keyword">catch</span>(SQLException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Batch-Update"><a href="#Batch-Update" class="headerlink" title="Batch Update"></a>Batch Update</h2><p>在执行大量数据的写入时，比如上百万条记录，这时简单的用executeUpdate()进行逐条update会变得非常慢。这里需要用PreparedStatement.executeBatch()来进行批量写入，从而减少数据库的访问次数，极大的增加速度。注意对于大量数据要批量执行batch，否则会导致OutOfMemoryError，代码如下。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="keyword">int</span> batchSize = <span class="number">1000</span>;</div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> (String s : names) &#123;</div><div class="line">    ps.setString(<span class="number">1</span>, s);</div><div class="line">    ps.addBatch();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (++count % batchSize == <span class="number">0</span>) &#123;</div><div class="line">        ps.executeBatch();</div><div class="line">        ps.clearBatch();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">ps.executeBatch();</div></pre></td></tr></table></figure></p>
+<p>注意executeBatch只能对于insert/update/delete使用，select不能使用。</p>
 
       
     </div>
@@ -394,15 +380,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/12/04/2016-Thanksgiving/" rel="next" title="2016 Thanksgiving">
+                <i class="fa fa-chevron-left"></i> 2016 Thanksgiving
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/06/Java-JDBC-PreparedStatement/" rel="prev" title="Java JDBC PreparedStatement 用法">
-                Java JDBC PreparedStatement 用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -428,8 +414,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/12/04/2016-Thanksgiving/"
-           data-title="2016 Thanksgiving" data-url="http://yoursite.com/2016/12/04/2016-Thanksgiving/">
+      <div class="ds-thread" data-thread-key="2016/12/06/Java-JDBC-PreparedStatement/"
+           data-title="Java JDBC PreparedStatement 用法" data-url="http://yoursite.com/2016/12/06/Java-JDBC-PreparedStatement/">
       </div>
     
   </div>
@@ -532,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#路线"><span class="nav-number">1.</span> <span class="nav-text">路线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#照片"><span class="nav-number">2.</span> <span class="nav-text">照片</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#General"><span class="nav-number">1.</span> <span class="nav-text">General</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Update"><span class="nav-number">2.</span> <span class="nav-text">Batch Update</span></a></li></ol></div>
             
 
           </div>

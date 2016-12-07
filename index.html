@@ -258,7 +258,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/06/hello-world/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/06/Java-JDBC-PreparedStatement/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="Howard">
@@ -283,8 +283,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/12/06/hello-world/" itemprop="url">
-                  Hello World
+                <a class="post-title-link" href="/2016/12/06/Java-JDBC-PreparedStatement/" itemprop="url">
+                  Java JDBC PreparedStatement 用法
                 </a>
               
             
@@ -298,7 +298,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-06T01:26:46-05:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-06T23:15:33-05:00">
                 2016-12-06
               </time>
             
@@ -314,8 +314,8 @@
             
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
-                <a href="/2016/12/06/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/hello-world/" itemprop="commentCount"></span>
+                <a href="/2016/12/06/Java-JDBC-PreparedStatement/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/06/Java-JDBC-PreparedStatement/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -342,13 +342,10 @@
 
       
         
-          <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+          <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
           <!--noindex-->
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/12/06/hello-world/#more" rel="contents">
+            <a class="btn" href="/2016/12/06/Java-JDBC-PreparedStatement/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
