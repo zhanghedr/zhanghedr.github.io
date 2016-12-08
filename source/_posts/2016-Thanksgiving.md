@@ -1,7 +1,7 @@
 ---
 title: 2016 Thanksgiving
 date: 2016-12-04 02:09:30
-tags:
+categories: Life
 ---
 今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大雪的Bryce Canyon。
 ![](/img/2016_thanksgiving/map.png)

@@ -1,7 +1,7 @@
 ---
 title: Java JDBC PreparedStatement 用法
 date: 2016-12-06 23:15:33
-tags:
+categories: Tech
 ---
 在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。
 

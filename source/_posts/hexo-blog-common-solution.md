@@ -1,7 +1,7 @@
 ---
 title: 搭建hexo博客常见方案
 date: 2016-12-07 23:15:03
-tags:
+categories: Tech
 ---
 这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。
 
