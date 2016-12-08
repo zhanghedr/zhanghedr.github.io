@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta name="description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java JDBC PreparedStatement 用法">
 <meta property="og:url" content="http://yoursite.com/2016/12/06/Java-JDBC-PreparedStatement/index.html">
 <meta property="og:site_name" content="去月球">
-<meta property="og:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
-<meta property="og:updated_time" content="2016-12-07T07:13:58.060Z">
+<meta property="og:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta property="og:updated_time" content="2016-12-08T00:54:50.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java JDBC PreparedStatement 用法">
-<meta name="twitter:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta name="twitter:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
 
 
 
@@ -342,7 +342,7 @@
       
 
       
-        <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
+        <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
 <a id="more"></a>
 <h2 id="General"><a href="#General" class="headerlink" title="General"></a>General</h2><p>这里列出几点通常要注意的地方</p>
 <ul>
@@ -354,6 +354,7 @@
 <p>简单的代码example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String sql = <span class="string">"..."</span>;</div><div class="line"><span class="keyword">try</span> (Connection conn = getDbConnection()) &#123;</div><div class="line">    conn.setAutoCommit(<span class="keyword">false</span>);</div><div class="line">    <span class="keyword">try</span> (PreparedStatement ps = conn.prepareStatement(sql)) &#123;</div><div class="line">        <span class="comment">// ps.setString();</span></div><div class="line">        <span class="comment">// ps.execute();</span></div><div class="line">        conn.commit();</div><div class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">        conn.rollback();</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">    &#125;</div><div class="line">&#125; <span class="keyword">catch</span>(SQLException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="Batch-Update"><a href="#Batch-Update" class="headerlink" title="Batch Update"></a>Batch Update</h2><p>在执行大量数据的写入时，比如上百万条记录，这时简单的用executeUpdate()进行逐条update会变得非常慢。这里需要用PreparedStatement.executeBatch()来进行批量写入，从而减少数据库的访问次数，极大的增加速度。注意对于大量数据要批量执行batch，否则会导致OutOfMemoryError，代码如下。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="keyword">int</span> batchSize = <span class="number">1000</span>;</div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> (String s : names) &#123;</div><div class="line">    ps.setString(<span class="number">1</span>, s);</div><div class="line">    ps.addBatch();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (++count % batchSize == <span class="number">0</span>) &#123;</div><div class="line">        ps.executeBatch();</div><div class="line">        ps.clearBatch();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">ps.executeBatch();</div></pre></td></tr></table></figure></p>
 <p>注意executeBatch只能对于insert/update/delete使用，select不能使用。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文只是简单介绍了PreparedStatement用法，提高数据库速度还要看数据库本身的优化和SQL等。Java的PreparedStatement在设置变量时还是不怎么方便，还要注意?对应的顺序，但是有一些工具可以简化这个操作，大家可以搜一下。</p>
 
       
     </div>
@@ -389,6 +390,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/07/hexo-blog-common-solution/" rel="prev" title="搭建hexo博客常见方案">
+                搭建hexo博客常见方案 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -460,7 +465,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -518,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#General"><span class="nav-number">1.</span> <span class="nav-text">General</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Update"><span class="nav-number">2.</span> <span class="nav-text">Batch Update</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#General"><span class="nav-number">1.</span> <span class="nav-text">General</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Update"><span class="nav-number">2.</span> <span class="nav-text">Batch Update</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
 
           </div>
