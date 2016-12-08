@@ -3,7 +3,7 @@ title: Java JDBC PreparedStatement 用法
 date: 2016-12-06 23:15:33
 tags:
 ---
-在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中?变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。
+在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。
 
 <!-- more -->
 
@@ -50,3 +50,6 @@ ps.executeBatch();
 ```
 
 注意executeBatch只能对于insert/update/delete使用，select不能使用。
+
+## Conclusion
+本文只是简单介绍了PreparedStatement用法，提高数据库速度还要看数据库本身的优化和SQL等。Java的PreparedStatement在设置变量时还是不怎么方便，还要注意?对应的顺序，但是有一些工具可以简化这个操作，大家可以搜一下。
