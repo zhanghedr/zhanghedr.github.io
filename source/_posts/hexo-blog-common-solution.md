@@ -1,5 +1,5 @@
 ---
-title: 搭建hexo博客常见方案
+title: 搭建 Hexo 博客常见方案
 date: 2016-12-07 23:15:03
 categories: Tech
 ---
