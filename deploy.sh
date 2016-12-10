@@ -13,6 +13,7 @@ rm -rf !(README.md|.gitignore|.git)
 cd ..
 
 # copy public to .deploy
+hexo clean
 hexo generate
 cp -r public/* .deploy/
 cp CNAME .deploy/
