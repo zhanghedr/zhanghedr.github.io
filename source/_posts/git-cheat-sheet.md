@@ -1,5 +1,5 @@
 ---
-title: 常用 Git 命令清单与场景使用
+title: 常见 Git 命令清单与场景使用
 date: 2016-12-10 00:27:47
 categories: Tech
 ---
@@ -117,7 +117,7 @@ git stash list                   # 查看所有暂存
 git stash pop                    # 提取暂存到working dir，如有冲突需手动merge
 ```
 
-## 常用组合场景
+## 常见场景
 ### 保留本地改动同步远程master，pull完再merge冲突
 ``` sh
 git stash; 
