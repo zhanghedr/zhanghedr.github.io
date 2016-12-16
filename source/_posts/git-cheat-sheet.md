@@ -47,7 +47,6 @@ git rm --cached [file]                      # 删除index文件，但保留worki
 git commit -m [message]                     # 提交index到local repo
 git commit -am [message]                    # add + commit到local repo
 git commit --amend -m [message]             # 修改上次commit
-git reset; git commit --amend -m [message]  # 组合使用修改上次commit
 ```
 
 ### Push
@@ -77,7 +76,6 @@ git remote show origin              # 显示remote repo信息
 git remote add origin [URL]         # 为本地添加一个新的remote repo
 git fetch                           # 获取所有远程分支到local repo，不更新working dir
 git pull origin [branch]            # 获取远程分支并且merge到当前分支
-git stash; git pull --rebase origin master; git stash pop   # 组合使用同步
 ```
 
 ### 日志
@@ -92,30 +90,54 @@ git show HEAD                            # 显示HEAD commit日志
 
 ### 状态
 ``` sh
-git status                    # 显示所有变更文件
-git diff                      # 显示working dir和index差异
-git diff --cached             # 显示index和HEAD的差异
-git diff HEAD                 # 显示working dir和HEAD差异
+git status                       # 显示working dir所有修改过的文件
+git diff                         # 显示working dir和index差异
+git diff --cached                # 显示index和HEAD的差异
+git diff HEAD                    # 显示working dir和HEAD差异
 ```
 
 ### 撤销
 ``` sh
-git checkout [commit]         # 切换working dir到某个commit
-git checkout [commit] [file]  # 恢复working dir的文件到某个commit
-git checkout [file]           # 恢复index文件到working dir
-git checkout .                # 恢复所有index文件到working dir
-git reset [file]              # 重置index里的文件，working dir不变
-git reset                     # 重置所有index，working dir不变
-git reset [commit]            # 重置所有index到某个commit，working dir不变
-git reset --hard              # 重置所有index和working dir到HEAD，local changes会丢失
-git reset --hard [commit]     # 重置所有index和working dir到某个commit，local changes会丢失
+git checkout [commit]           # 切换working dir到某个commit
+git checkout [commit] [file]    # 恢复working dir的文件到某个commit
+git checkout [file]             # 恢复index文件到working dir
+git checkout .                  # 恢复所有index文件到working dir
+git reset [file]                # 重置index和local repo里的文件，working dir不变
+git reset HEAD~1                # 重置index和local repo到上一个commit，working dir不变
+git reset [commit]              # 重置index和local repo到某个commit，working dir不变
+git reset --hard HEAD~1         # 重置index, local repo和working dir到上一个commit，本地改变丢失
+git reset --hard [commit]       # 重置index, local repo和working dir到某个commit，本地改变丢失
+git reset --hard origin/master  # 重置index, local repo和working dir到master，本地改变丢失
 ```
 
 ### 其他
 ``` sh
-git stash                     # 暂存当前修改，将working dir至为HEAD状态
-git stash list                # 查看所有暂存
-git stash pop                 # 提取暂存到working dir，如有冲突需手动merge
+git stash                        # 暂存当前修改，将working dir至为HEAD状态
+git stash list                   # 查看所有暂存
+git stash pop                    # 提取暂存到working dir，如有冲突需手动merge
+```
+
+## 常用组合场景
+### 保留本地改动同步远程master，pull完再merge冲突
+``` sh
+git stash; 
+git pull --rebase origin master; 
+git stash pop
+```
+
+### 撤销上次commit
+``` sh
+git commit -m "Something wrong"
+git reset HEAD~1   # HEAD~1重置index和local repo到上一次commit，最新的commit取消
+git status         # undo以后再查看本地改动
+git add -A
+git commit -m "message" 
+```
+
+### 修改上次commit的message和add新改动
+``` sh
+git reset; 
+git commit --amend -m [message]  # 注意会把working dir最新改动也加进去
 ```
 
 ## Reference
