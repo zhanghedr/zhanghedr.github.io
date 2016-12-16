@@ -1,5 +1,5 @@
 ---
-title: 常用 Git 命令清单
+title: 常用 Git 命令清单与场景使用
 date: 2016-12-10 00:27:47
 categories: Tech
 ---
