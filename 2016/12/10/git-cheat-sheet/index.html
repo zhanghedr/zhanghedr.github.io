@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="去月球">
 <meta property="og:description" content="Git其实比想象的要复杂，每次都上stackoverflow搜答案，不如把常用的命令都记录下来。下图很好的解释了git的原理，结合本文的常用指令能在1小时内搞明白git的大致用法，当然这些还是要结合实际使用才会熟练。">
 <meta property="og:image" content="http://yoursite.com/img/git_cheat_sheet/git.png">
-<meta property="og:updated_time" content="2016-12-16T06:46:13.849Z">
+<meta property="og:updated_time" content="2016-12-19T23:01:19.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见 Git 命令清单与场景使用">
 <meta name="twitter:description" content="Git其实比想象的要复杂，每次都上stackoverflow搜答案，不如把常用的命令都记录下来。下图很好的解释了git的原理，结合本文的常用指令能在1小时内搞明白git的大致用法，当然这些还是要结合实际使用才会熟练。">
@@ -370,7 +370,7 @@
 <li>HEAD                  : 当前分支指针</li>
 </ul>
 <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="新建local-repository"><a href="#新建local-repository" class="headerlink" title="新建local repository"></a>新建local repository</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git init                                    <span class="comment"># 初始化local repo</span></div><div class="line">git <span class="built_in">clone</span> URL                               <span class="comment"># checkout remote repo</span></div><div class="line">git <span class="built_in">clone</span> username@host:URL                 <span class="comment"># 在remote server上checkout远程仓库</span></div></pre></td></tr></table></figure>
-<h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config [--global] user.name [name]      <span class="comment"># 配置名字</span></div><div class="line">git config [--global] user.email [email]    <span class="comment"># 配置email</span></div></pre></td></tr></table></figure>
+<h3 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git config --list                           <span class="comment"># 查看配置，包括当前name和email</span></div><div class="line">git config [--global] user.name [name]      <span class="comment"># 设置name</span></div><div class="line">git config [--global] user.email [email]    <span class="comment"># 设置email</span></div></pre></td></tr></table></figure>
 <h3 id="Add-Remove"><a href="#Add-Remove" class="headerlink" title="Add/Remove"></a>Add/Remove</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git add [file1] [file2] ...                 <span class="comment"># 添加文件至index</span></div><div class="line">git add [dir]                               <span class="comment"># 添加目录至index</span></div><div class="line">git add .                                   <span class="comment"># 添加所有除了删除以外的更改文件到index</span></div><div class="line">git add -A                                  <span class="comment"># 添加所有更改文件到index</span></div><div class="line">git rm [file1] [file2] ...                  <span class="comment"># 删除working dir和index文件</span></div><div class="line">git rm --cached [file]                      <span class="comment"># 删除index文件，但保留working dir</span></div></pre></td></tr></table></figure>
 <h3 id="Commit"><a href="#Commit" class="headerlink" title="Commit"></a>Commit</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git commit -m [message]                     <span class="comment"># 提交index到local repo</span></div><div class="line">git commit -am [message]                    <span class="comment"># add + commit到local repo</span></div><div class="line">git commit --amend -m [message]             <span class="comment"># 修改上次commit</span></div></pre></td></tr></table></figure>
 <h3 id="Push"><a href="#Push" class="headerlink" title="Push"></a>Push</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git push origin master                      <span class="comment"># 上传local repo到remote master</span></div><div class="line">git push [remote] [branch]                  <span class="comment"># 上传branch到remote repo</span></div><div class="line">git push [remote] --all                     <span class="comment"># 上传所有branch到remote repo</span></div></pre></td></tr></table></figure>
@@ -419,6 +419,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/12/20/java-design-patterns/" rel="prev" title="常见 Java 设计模式">
+                常见 Java 设计模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -490,7 +494,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
