@@ -28,8 +28,9 @@ git clone username@host:URL                 # 在remote server上checkout远程�
 
 ### Config
 ``` sh
-git config [--global] user.name [name]      # 配置名字
-git config [--global] user.email [email]    # 配置email
+git config --list                           # 查看配置，包括当前name和email
+git config [--global] user.name [name]      # 设置name
+git config [--global] user.email [email]    # 设置email
 ```
 
 ### Add/Remove
