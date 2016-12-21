@@ -91,7 +91,9 @@
 <meta property="og:site_name" content="去月球">
 <meta property="og:description" content="设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。本文介绍常用Java设计模式以及代码实例，持续更新中。">
 <meta property="og:image" content="http://yoursite.com/img/java_design_patterns/observer.png">
-<meta property="og:updated_time" content="2016-12-20T07:37:23.404Z">
+<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/iterator.png">
+<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/singleton.png">
+<meta property="og:updated_time" content="2016-12-21T07:26:24.764Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见 Java 设计模式">
 <meta name="twitter:description" content="设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。本文介绍常用Java设计模式以及代码实例，持续更新中。">
@@ -362,8 +364,13 @@
 <h1 id="Behavioral模式"><a href="#Behavioral模式" class="headerlink" title="Behavioral模式"></a>Behavioral模式</h1><h2 id="Observer"><a href="#Observer" class="headerlink" title="Observer"></a>Observer</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>设计对象一对多的依赖关系，当一个主对象改变状态时，它所有的观察者都会被通知并且更新。在使用时注意observer同为observable的链和thread safe。</p>
 <h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>常见的有RSS feed，多个subscribers订阅一个RSS feed，当publisher有更新时所有的订阅者都会自动收到更新。又或者是UI里的button触发它所有的listeners更新。还有Java SE里的java.util.Observer和java.util.Observable。</p>
 <h3 id="代码和结构图"><a href="#代码和结构图" class="headerlink" title="代码和结构图"></a>代码和结构图</h3><p>以publisher-&gt;subscribers为例子的<strong><a href="https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/observer" target="_blank" rel="external">代码</a></strong><br><img src="/img/java_design_patterns/observer.png" alt=""></p>
-<!-- ## Iterator
-![](/img/java_design_patterns/iterator.png) -->
+<h2 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><p>提供一种实现好的方式来迭代一个集合和访问其中的元素，可以自己定义基于不同条件的迭代方式。</p>
+<h3 id="使用场景-1"><a href="#使用场景-1" class="headerlink" title="使用场景"></a>使用场景</h3><p>当需要给一个集合提供一种标准化的迭代方式时，比如java.util.ArrayList和java.util.Scanner</p>
+<h3 id="代码和结构图-1"><a href="#代码和结构图-1" class="headerlink" title="代码和结构图"></a>代码和结构图</h3><p>实现了一个基本的iterator和一个基于group的iterator，<strong><a href="https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/iterator" target="_blank" rel="external">代码</a></strong><br><img src="/img/java_design_patterns/iterator.png" alt=""></p>
+<h1 id="Creational模式"><a href="#Creational模式" class="headerlink" title="Creational模式"></a>Creational模式</h1><h2 id="Singleton"><a href="#Singleton" class="headerlink" title="Singleton"></a>Singleton</h2><h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><p>限制一个类在系统中只能创建一个对象。</p>
+<h3 id="使用场景-2"><a href="#使用场景-2" class="headerlink" title="使用场景"></a>使用场景</h3><p>当只需要一个对象时，比如abstract factory、builder模式中，还有java.lang.Runtime里实现了。</p>
+<h3 id="代码和结构图-2"><a href="#代码和结构图-2" class="headerlink" title="代码和结构图"></a>代码和结构图</h3><p>包含各种基本和完善的singleton实现，<strong><a href="https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/singleton" target="_blank" rel="external">代码</a></strong><br><img src="/img/java_design_patterns/singleton.png" alt=""></p>
+
       
     </div>
 
@@ -534,7 +541,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Behavioral模式"><span class="nav-number">1.</span> <span class="nav-text">Behavioral模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Observer"><span class="nav-number">1.1.</span> <span class="nav-text">Observer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码和结构图"><span class="nav-number">1.1.3.</span> <span class="nav-text">代码和结构图</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Behavioral模式"><span class="nav-number">1.</span> <span class="nav-text">Behavioral模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Observer"><span class="nav-number">1.1.</span> <span class="nav-text">Observer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">1.1.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码和结构图"><span class="nav-number">1.1.3.</span> <span class="nav-text">代码和结构图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterator"><span class="nav-number">1.2.</span> <span class="nav-text">Iterator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码和结构图-1"><span class="nav-number">1.2.3.</span> <span class="nav-text">代码和结构图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Creational模式"><span class="nav-number">2.</span> <span class="nav-text">Creational模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Singleton"><span class="nav-number">2.1.</span> <span class="nav-text">Singleton</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍-2"><span class="nav-number">2.1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景-2"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码和结构图-2"><span class="nav-number">2.1.3.</span> <span class="nav-text">代码和结构图</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
