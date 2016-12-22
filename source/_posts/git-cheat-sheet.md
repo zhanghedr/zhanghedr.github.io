@@ -14,12 +14,16 @@ Git其实比想象的要复杂，每次都上stackoverflow搜答案，不如把�
 - index/stage           : 暂存区
 - local repository      : 本地仓库
 - remote repository     : 远程仓库
-- origin                : default的remote
 - HEAD                  : 当前分支指针
+- origin                : 默认远程
+- master                : 本地分支master
+- origin master         : 远程origin上的master
+- origin/master         : origin master的本地copy
+
 
 ## 常用命令
 
-### 新建local repository
+### 新建本地仓库
 ``` sh
 git init                                    # 初始化local repo
 git clone URL                               # checkout remote repo
@@ -73,20 +77,22 @@ git push origin --delete [branch]          # 删除remote branch
 
 ### 远程同步
 ``` sh
-git remote show origin              # 显示remote repo信息
-git remote add origin [URL]         # 为本地添加一个新的remote repo
-git fetch                           # 获取所有远程分支到local repo，不更新working dir
-git pull origin [branch]            # 获取远程分支并且merge到当前分支
+git remote show origin       # 显示remote repo信息
+git remote add origin [URL]  # 为本地添加一个新的remote repo
+git fetch                    # 获取所有origin分支到origin/master，working dir不变
+git merge                    # 合并origin/master到master，working dir改变
+git pull origin [branch]     # 获取远程分支且合并到当前分支. git pull = git fetch + git merge
 ```
 
 ### 日志
 ``` sh
-git log                                  # 显示提交日志
+git log                                  # 显示本地提交日志，git pull后更新远程日志
 git log --stat                           # 显示提交日志及相关变动文件
 git log --pretty=format:'%h %s' --graph  # 图示提交日志
 git log --follow [file]                  # 显示文件提交日志
 git show [commit]                        # 显示commit日志by commitid(缩写也可以)
 git show HEAD                            # 显示HEAD commit日志
+git show origin/master                   # 显示origin/master commit日志
 ```
 
 ### 状态
@@ -139,6 +145,18 @@ git commit -m "message"
 ``` sh
 git reset; 
 git commit --amend -m [message]  # 注意会把working dir最新改动也加进去
+```
+
+### 显示本地和远程origin的区别
+``` sh
+git fetch
+git diff ..origin
+```
+
+### 重置本地working dir、index、local repo到远程最新commit，抛弃本地改动
+``` sh
+git fetch
+git reset --hard origin/master
 ```
 
 ## Reference
