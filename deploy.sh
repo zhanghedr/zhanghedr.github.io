@@ -7,6 +7,7 @@ git push origin code
 echo "hexo push done"
 
 # clean .deploy
+mkdir -p .deploy
 cd .deploy
 shopt -s extglob
 rm -rf !(README.md|.gitignore|.git)
