@@ -3,7 +3,7 @@ title: 常见 Java 设计模式
 date: 2016-12-20 01:47:26
 categories: Tech
 ---
-设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。当然其中一些模式可能到了其他语言里就失效了，比如python基于语言的特性某些设计模式会有其他的解决方法，但是学习这些模式肯定还是有帮助的，在使用中最好做到不生搬硬套，而是根据需求自然而然的使用。本文介绍常用Java设计模式以及代码实例，持续更新中。
+设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。当然其中一些模式可能到了其他语言里就失效了，比如python基于语言的特性某些设计模式会有其他的解决方法，但是学习这些模式肯定还是有帮助的，在现实中没必要刻意去套用模式，最终还是简洁有效的code最好。本文介绍常用Java设计模式以及代码实例，持续更新中。
 
 <!-- more -->
 
@@ -32,6 +32,25 @@ categories: Tech
 实现了一个基本的iterator和一个基于group的iterator。
 ![](/img/java_design_patterns/iterator.png)
 
+## strategy
+### 介绍
+提供一个协议将算法封装起来，让client可以在runtime动态的选择执行某种算法。其封装思想和facade有点类似，但是strategy提供了选择哪个类执行的接口，而facade是将所有的类型都封装起来不在runtime改变。
+
+### 使用场景
+当有一个类下的多种算法需要动态选择去执行时，可以通过strategy模式将这个类封装起来，让client根据需求改变和执行其中一种算法。
+
+### [代码](https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/strategy)和结构图
+用StrategySelector将Strategy封装，用contrustor或者setter来在runtime选择用哪个类的execute()方法。
+
+## template
+### 介绍
+定义一个程序skeleton的算法，保证算法步骤结构不变，让子类继承重新定义其中的某些步骤来实现不同的算法。
+
+### 使用场景
+当有一个算法有固定的步骤时，某些步骤根据需求不同，可以让不同类继承这个类来重新定义其中某些步骤，从而重新定义了算法。
+
+### [代码](https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/template)和结构图
+有一个strategy的模板，有两种类型的策略继承它，重定义其中的init(), calculate()和finish()，从而实现了不同的子策略算法。
 
 # Creational模式
 
@@ -99,7 +118,35 @@ categories: Tech
 ### [代码](https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/adapter)和结构图
 因为最近出了2016 Macbook Pro是不带USB接口的，我们需要买一个TypeC/USB转换器来连接无线鼠标，蓝牙鼠标的请无视。这时我们只要借助PortAdapter来帮助WirelessMouse实现pluginUsb()，而在PortAdapter中我们用其typeC插口连接电脑的typeC端口。
 
+## facade
+### 介绍
+在复杂系统中将多个相关的类在一个facade类中包裹起来，提供一个high-level简单易用的接口给client，隐藏其中实现细节。
+
+### 使用场景
+当系统比较复杂时，有很多相关的类有不同的方法实现，这时可以用facade将它们涵盖进去提供统一简单的接口让client使用它们。
+
+### [代码](https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/facade)和结构图
+3个国家的user有各自的具体属性，通过一个facade类将3种user都包括进去并且提供统一接口给client进行访问。
+
+## proxy
+### 介绍
+对一种对象提供代理来控制它。
+
+### 使用场景
+当需要对一个类添加功能时，可以用proxy代理它的接口，让client使用proxy而不是真正的类。
+
+### [代码](https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/proxy)和结构图
+用ProxyUser代理RealUser来玩游戏，在proxy中限制一个user玩游戏的次数。
 
 
+# Architectural模式
 
+## MVC
+### 介绍
+用于设计GUI和web frameworks，将系统分为view, controller和model三个部分。
 
+### 使用场景
+MVC常用在web框架中，比如Spring MVC。
+
+### [代码](https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/mvc)和结构图
+假设从数据库拿到name和email形成user对象，然后经过controller控制让user属性在view中显示出来。
