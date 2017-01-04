@@ -1,0 +1,70 @@
+# ===========================================
+# Site Information Settings
+# ===========================================
+
+# Site creation time
+since: 2016
+
+# Custom your favicon.ico in `site/source`
+favicon: /favicon.ico
+
+# Set feed link (false | default | your feed link)
+# false: disable
+# default: use `atom.xml`, generator for `hexo-generator-feed`
+rss: false
+
+# ===========================================
+# Menu Settings
+# ===========================================
+menu:
+  Home: /
+  Archives: /archives/
+  # Tags: /tags
+  Categories: /categories
+  # About: /about
+
+# site search option
+search: false
+
+# Fancybox
+fancybox: true
+
+# ===========================================
+# Theme Settings
+# ===========================================
+# theme styling
+# color: Default | Mint Green | Cobalt Blue | Hot Pink | Dark Violet
+theme:
+  color: Default
+
+# ===========================================
+# Social links Settings
+# ===========================================
+social:
+  email: hezhang0929@gmail.com
+  stack-overflow:
+  twitter:
+  facebook:
+  github: https://github.com/zhanghedr
+  weibo: 
+  zhihu: https://www.zhihu.com/people/howard-72-93
+
+# ===========================================
+# Third Party Services Settings
+# ===========================================
+
+# Baidu Analytics
+baidu_analytics: cc84c29e36bdbfe47c46314bc1a28005
+# Google Analytics
+google_analytics: UA-88565115-1
+
+# Duoshuo
+duoshuo_shortname: zhanghedr
+# Disqus
+disqus_shortname: 
+
+
+# ===========================================
+# Version
+# ===========================================
+version: 2.1.0
