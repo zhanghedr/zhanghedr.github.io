@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="进程和线程的区别"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="To The Moon">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://yoursite.com/2017/01/04/difference-between-process-and-thread/"/>
+
+
+<meta name="description" content="进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和实战上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。
+
+单进程单线程：一个工人在一个流水线上工作
+单进程多线程：多个工人在一个流水线上工作
+多进程单线程：多个流水线，每个有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="进程和线程的区别">
+<meta property="og:url" content="http://yoursite.com/2017/01/04/difference-between-process-and-thread/index.html">
+<meta property="og:site_name" content="To The Moon">
+<meta property="og:description" content="进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和实战上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。
+
+单进程单线程：一个工人在一个流水线上工作
+单进程多线程：多个工人在一个流水线上工作
+多进程单线程：多个流水线，每个有">
+<meta property="og:updated_time" content="2017-01-04T06:33:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="进程和线程的区别">
+<meta name="twitter:description" content="进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和实战上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。
+
+单进程单线程：一个工人在一个流水线上工作
+单进程多线程：多个工人在一个流水线上工作
+多进程单线程：多个流水线，每个有">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cc84c29e36bdbfe47c46314bc1a28005";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88565115-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> 进程和线程的区别 · To The Moon </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">To The Moon</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">To The Moon</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          进程和线程的区别
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年1月4日
+        </span>
+      </div>
+    </header>
+
+    
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是进程"><span class="toc-text">什么是进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是线程"><span class="toc-text">什么是线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程和线程的区别"><span class="toc-text">进程和线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-text">Reference</span></a></li></ol>
+        </div>
+      </div>
+    
+
+    <div class="post-content">
+      
+        <p>进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和实战上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。</p>
+<ul>
+<li>单进程单线程：一个工人在一个流水线上工作</li>
+<li>单进程多线程：多个工人在一个流水线上工作</li>
+<li>多进程单线程：多个流水线，每个有一个工人工作</li>
+<li>多进程多线程：多个流水线，每个有多个工人工作</li>
+</ul>
+<a id="more"></a>
+<h2 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h2><p>进程可以理解为一个程序，操作系统会分配CPU、内存等环境给要执行的进程，当这个进程执行完或它被分配的执行时间结束后，CPU就会执行下一个进程，如果它还没有执行完，那么CPU在之后再轮回到它时会从上一次结束的点继续执行。</p>
+<p>现代电脑的CPU都很强大，电脑上不可能同一时间只能运行一个程序，操作系统会调度多进程运行多个程序从而充分利用CPU，比如我们同时打开了QQ、Chrome和Sublime就是三个进程。</p>
+<h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><p>虽然进程实现了操作系统上多个程序的并发，但对于一个程序运行来说，以blocking的形式运行难免会出现问题，如果一个进程在某个点阻塞，如果它的阻塞不会影响后续的代码，那么我们完全可以提前运行后面的程序而不必等其阻塞恢复，我们希望在一个进程里有多个工人并发同时工作以进一步增加效率，这里的工人就是线程。比如Word有多个线程，一个线程负责输入，一个线程负责显示，还有线程负责自动保存，这让我们感觉到输入和显示同时发生。</p>
+<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ul>
+<li>一个操作系统可以包含多个进程，一个进程可以包含多个线程</li>
+<li>多进程分别拥有不同的内存，而同一进程下的多个线程共享同一部分内存，因此线程之间可以读写同样的数据变量</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="http://www.cnblogs.com/hazir/archive/2011/05/09/2447287.html" target="_blank" rel="external">http://www.cnblogs.com/hazir/archive/2011/05/09/2447287.html</a></p>
+
+      
+    </div>
+
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/04/difference-between-process-and-thread/"
+           data-title="进程和线程的区别" data-url="http://yoursite.com/2017/01/04/difference-between-process-and-thread/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:hezhang0929@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/zhanghedr" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/howard-72-93" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Howard</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhanghedr"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>

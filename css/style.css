@@ -427,7 +427,7 @@ h6 {
   padding: 0 20px; }
 
 .header {
-  padding: 20px 80px; }
+  padding: 20px 15px; }
   .header:before, .header:after {
     content: " ";
     display: table; }
