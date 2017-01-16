@@ -28,33 +28,33 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/2016/12/20/java-design-patterns/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2016/12/20/java-design-patterns/"/>
 
 
 <meta name="description" content="设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。当然其中一些模式可能到了其他语言里就失效了，比如python基于语言的特性某些设计模式会有其他的解决方法，但是学习这些模式肯定还是有帮助的，在现实中没必要刻意去套用模式，最终还是简洁有效的code最好。本文介绍常用J">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见 Java 设计模式">
-<meta property="og:url" content="http://yoursite.com/2016/12/20/java-design-patterns/index.html">
+<meta property="og:url" content="http://www.zhanghedr.com/2016/12/20/java-design-patterns/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。当然其中一些模式可能到了其他语言里就失效了，比如python基于语言的特性某些设计模式会有其他的解决方法，但是学习这些模式肯定还是有帮助的，在现实中没必要刻意去套用模式，最终还是简洁有效的code最好。本文介绍常用J">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/observer.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/iterator.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/strategy.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/template.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/singleton.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/factory.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/abstractfactory.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/builder.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/decorator.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/adapter.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/facade.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/proxy.png">
-<meta property="og:image" content="http://yoursite.com/img/java_design_patterns/mvc.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/observer.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/iterator.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/strategy.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/template.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/singleton.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/factory.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/abstractfactory.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/builder.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/decorator.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/adapter.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/facade.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/proxy.png">
+<meta property="og:image" content="http://www.zhanghedr.com/img/java_design_patterns/mvc.png">
 <meta property="og:updated_time" content="2017-01-03T23:29:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见 Java 设计模式">
 <meta name="twitter:description" content="设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。当然其中一些模式可能到了其他语言里就失效了，比如python基于语言的特性某些设计模式会有其他的解决方法，但是学习这些模式肯定还是有帮助的，在现实中没必要刻意去套用模式，最终还是简洁有效的code最好。本文介绍常用J">
-<meta name="twitter:image" content="http://yoursite.com/img/java_design_patterns/observer.png">
+<meta name="twitter:image" content="http://www.zhanghedr.com/img/java_design_patterns/observer.png">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
@@ -233,7 +233,7 @@
 <h3 id="代码和结构图-11"><a href="#代码和结构图-11" class="headerlink" title="代码和结构图"></a><a href="https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/proxy" target="_blank" rel="external">代码</a>和结构图</h3><p>用ProxyUser代理RealUser来玩游戏，在proxy中限制一个user玩游戏的次数。<br><img src="/img/java_design_patterns/proxy.png" alt=""></p>
 <h1 id="Architectural模式"><a href="#Architectural模式" class="headerlink" title="Architectural模式"></a>Architectural模式</h1><h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><h3 id="介绍-12"><a href="#介绍-12" class="headerlink" title="介绍"></a>介绍</h3><p>用于设计GUI和web frameworks，将系统分为view, controller和model三个部分。</p>
 <h3 id="使用场景-12"><a href="#使用场景-12" class="headerlink" title="使用场景"></a>使用场景</h3><p>MVC常用在web框架中，比如Spring MVC。</p>
-<h3 id="代码和结构图-12"><a href="#代码和结构图-12" class="headerlink" title="代码和结构图"></a><a href="https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/mvc" target="_blank" rel="external">代码</a>和结构图</h3><p>假设从数据库拿到name和email形成user对象，然后经过controller控制让user属性在view中显示出来。<br><img src="/img/java_design_patterns/mvc.png" alt=""><br><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://yoursite.com/2016/12/20/java-design-patterns/">http://yoursite.com/2016/12/20/java-design-patterns/</a></p>
+<h3 id="代码和结构图-12"><a href="#代码和结构图-12" class="headerlink" title="代码和结构图"></a><a href="https://github.com/zhanghedr/design-pattern/tree/master/src/main/java/com/zhanghedr/mvc" target="_blank" rel="external">代码</a>和结构图</h3><p>假设从数据库拿到name和email形成user对象，然后经过controller控制让user属性在view中显示出来。<br><img src="/img/java_design_patterns/mvc.png" alt=""><br><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2016/12/20/java-design-patterns/">http://www.zhanghedr.com/2016/12/20/java-design-patterns/</a></p>
 
       
     </div>
@@ -247,7 +247,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/20/java-design-patterns/"
-           data-title="常见 Java 设计模式" data-url="http://yoursite.com/2016/12/20/java-design-patterns/">
+           data-title="常见 Java 设计模式" data-url="http://www.zhanghedr.com/2016/12/20/java-design-patterns/">
       </div>
     
   </div>

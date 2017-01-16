@@ -28,13 +28,13 @@
 
 
 
-<link rel="canonical" href="http://yoursite.com/2016/12/07/hexo-blog-common-solution/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/"/>
 
 
 <meta name="description" content="这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建 Hexo 博客常见方案">
-<meta property="og:url" content="http://yoursite.com/2016/12/07/hexo-blog-common-solution/index.html">
+<meta property="og:url" content="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。">
 <meta property="og:updated_time" content="2017-01-16T17:25:50.000Z">
@@ -187,7 +187,7 @@
 <h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>hexo已经提供内置的部署配置，只需要配置好repo就能一键部署。当然如果你需要更灵活的方式，可以自己写个script来部署。</p>
 <h2 id="注册域名"><a href="#注册域名" class="headerlink" title="注册域名"></a>注册域名</h2><p>至此你应该就能在username.github.io看到自己的博客online了，现在可以给你的博客注册一个域名。因为听说国内的域名要备案所以我就没考虑，对于域名商看了很多推荐，大家普遍推荐的有NameSilo, GANDI, uniregistry，普遍不推荐的有Godaddy, 1&amp;1(这家虽然便宜但千万别用，血的教训)。我选了推荐最多的NameSilo，续费的价格也不会坑，注意用$1 OFF的折扣，网上一搜就有。</p>
 <h2 id="DNS解析服务器"><a href="#DNS解析服务器" class="headerlink" title="DNS解析服务器"></a>DNS解析服务器</h2><p>注册域名时唯一要注意的就是在注册过程中就选你的NameServers，因为用国外的DNS解析很慢，大家普遍推荐用国内的<a href="https://www.dnspod.cn/" target="_blank" rel="external">DNSPod</a>，只需要填下面两个地址在NameServers里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">F1G1NS1.DNSPOD.NET</div><div class="line">F1G1NS2.DNSPOD.NET</div></pre></td></tr></table></figure></p>
-<p>注册完成后再回到DNSPod添加你的域名，并添加CNAME记录。我这里选择www子域名作为主站，所以让顶级域名<a href="http://www.zhanghedr.com/" target="_blank" rel="external">zhanghedr.com</a>跳转到<a href="http://www.zhanghedr.com/" target="_blank" rel="external">www.zhanghedr.com</a>，然后用CNAME解析<a href="http://www.zhanghedr.com/" target="_blank" rel="external">www.zhanghedr.com</a>到username.github.io。DNSPod对于每个选项有详细解释，在这一点上完爆了AWS Route 53，虽然Route 53只是代理商，不是供应商。至此你只需要等待一会就能看到DNS设置生效，我只等了几分钟。</p>
+<p>注册完成后再回到DNSPod添加你的域名，并添加CNAME记录。我这里选择www子域名作为主站，所以让顶级域名<a href="http://www.zhanghedr.com/">zhanghedr.com</a>跳转到<a href="http://www.zhanghedr.com/">www.zhanghedr.com</a>，然后用CNAME解析<a href="http://www.zhanghedr.com/">www.zhanghedr.com</a>到username.github.io。DNSPod对于每个选项有详细解释，在这一点上完爆了AWS Route 53，虽然Route 53只是代理商，不是供应商。至此你只需要等待一会就能看到DNS设置生效，我只等了几分钟。</p>
 <h2 id="常见配置"><a href="#常见配置" class="headerlink" title="常见配置"></a>常见配置</h2><p>这里列出一些常见的主站_config.yml配置key</p>
 <ul>
 <li>title</li>
@@ -212,7 +212,7 @@
 <li>disqus_shortname</li>
 <li>busuanzi_count</li>
 </ul>
-<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://yoursite.com/2016/12/07/hexo-blog-common-solution/">http://yoursite.com/2016/12/07/hexo-blog-common-solution/</a></p>
+<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/">http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/</a></p>
 
       
     </div>
@@ -226,7 +226,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/12/07/hexo-blog-common-solution/"
-           data-title="搭建 Hexo 博客常见方案" data-url="http://yoursite.com/2016/12/07/hexo-blog-common-solution/">
+           data-title="搭建 Hexo 博客常见方案" data-url="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/">
       </div>
     
   </div>
