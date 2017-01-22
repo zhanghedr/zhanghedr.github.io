@@ -16,6 +16,8 @@ categories: Mac
 
 首先在MAC上进入设置->iCloud，取消不需要的同步项，比如我不用额Safari还有占空间的Photos，注意在取消照片同步前，先把iCloud上的照片本地备份下，然后在管理中删除所有照片和取消照片同步，这样iCloud就有空间来做文档同步了。同样在iPhone上也在iCloud设置中取消不必要的同步项，包括照片。
 
+除了照片以外，iPhone备份也是iCloud空间的大头，在手机上设置排除不需要备份的app，可以节省很多备份空间。
+
 开启iCloud Drive同步，设置中添加Documents文件夹，我会把我重要的文档放在其中这样就能自动同步了。
 
 # Image Capture导入和删除照片
