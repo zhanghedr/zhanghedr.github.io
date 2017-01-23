@@ -158,6 +158,3 @@ git diff ..origin
 git fetch
 git reset --hard origin/master
 ```
-
-## Reference
-[这里](https://www.atlassian.com/git/tutorials/what-is-version-control)有完整并详细的Git教程，带例子和图片讲解。
