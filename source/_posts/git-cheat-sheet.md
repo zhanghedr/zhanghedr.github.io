@@ -68,7 +68,7 @@ git branch -r                              # 列出所有remote branch
 git branch -a                              # 列出所有local和remote branch
 git branch --merged                        # 显示所有已合并到当前分支的分支
 git checkout [branch]                      # working dir切换到branch 
-git checkout -b [branch]                   # 新建并切换到branch
+git checkout -b [branch]                   # 基于当前branch新建并切换到新branch
 git branch [branch]                        # 新建branch但不切换到新branch
 git merge [branch]                         # 合并branch到当前分支
 git branch -d [branch]                     # 删除branch
@@ -77,11 +77,12 @@ git push origin --delete [branch]          # 删除remote branch
 
 ### 远程同步
 ``` sh
-git remote show origin       # 显示remote repo信息
-git remote add origin [URL]  # 为本地添加一个新的remote repo
-git fetch                    # 获取所有origin分支到origin/master，working dir不变
-git merge                    # 合并origin/master到master，working dir改变
-git pull origin [branch]     # 获取远程分支且合并到当前分支. git pull = git fetch + git merge
+git remote                     # 显示当前所有remote
+git remote show [remote]       # 显示remote信息
+git remote add [remote] [URL]  # 为本地添加一个新的remote
+git fetch                      # 获取所有origin分支到origin/master，working dir不变
+git merge                      # 合并origin/master到master，working dir改变
+git pull [remote] [branch]     # 获取远程分支且合并到当前分支. git pull = git fetch + git merge
 ```
 
 ### 日志
@@ -158,3 +159,19 @@ git diff ..origin
 git fetch
 git reset --hard origin/master
 ```
+
+### Pull Request流程
+
+```sh
+fork原始仓库
+git clone [URL]  # 抓取fork的仓库
+git remote add upstream [URL]  # 添加原仓库remote URL，如命名upstream
+git checkout -b [patch]  # 基于当前分支新建patch分支
+touch test  # 在patch下开发
+git checkout master && git pull upstream master  # 更新原仓库master
+git checkout [patch] && git merge master  # 合并到patch并解决冲突
+git add . && git commit -m "update" && git push origin [patch]  # 提交改动到自己仓库的patch分支
+pull request patch branch in github
+wait response
+```
+
