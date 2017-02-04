@@ -11,7 +11,7 @@
 
 
 
-  <meta name="description" content="认为对的，所以走下去"/>
+  <meta name="description" content="Virtualenv使用指定Python版本"/>
 
 
 
@@ -28,18 +28,19 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/page/2/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/"/>
 
 
-<meta name="description" content="认为对的，所以走下去">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To The Moon">
-<meta property="og:url" content="http://www.zhanghedr.com/page/2/index.html">
+<meta name="description" content="Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Virtualenv使用指定Python版本">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="认为对的，所以走下去">
+<meta property="og:description" content="Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。">
+<meta property="og:updated_time" content="2017-02-04T07:21:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To The Moon">
-<meta name="twitter:description" content="认为对的，所以走下去">
+<meta name="twitter:title" content="Virtualenv使用指定Python版本">
+<meta name="twitter:description" content="Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
@@ -75,7 +76,7 @@
 
 
 
-    <title> To The Moon </title>
+    <title> Virtualenv使用指定Python版本 · To The Moon </title>
   </head>
 
   <body>
@@ -151,135 +152,57 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  <section id="posts" class="posts">
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/07/hexo-blog-common-solution/">搭建 Hexo 博客常见方案</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016年12月7日
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-          
-        
-
-        
-          <p>这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。</p>
-          <div class="read-more">
-            <a href="/2016/12/07/hexo-blog-common-solution/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/06/Java-JDBC-PreparedStatement/">Java JDBC PreparedStatement 用法</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016年12月6日
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-          
-        
-
-        
-          <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
-          <div class="read-more">
-            <a href="/2016/12/06/Java-JDBC-PreparedStatement/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/04/2016-Thanksgiving/">2016 Thanksgiving</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016年12月4日
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-          
-        
-
-        
-          <p>今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大雪的Bryce Canyon。<br><img src="/img/2016_thanksgiving/map.png" alt=""></p>
-          <div class="read-more">
-            <a href="/2016/12/04/2016-Thanksgiving/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-  </section>
-
   
-  <nav class="pagination">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Virtualenv使用指定Python版本
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年2月4日
+        </span>
+      </div>
+    </header>
+
     
-      <a class="prev" href="/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text">上一页</span>
-      </a>
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用系统版本"><span class="toc-text">使用系统版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用本地版本"><span class="toc-text">使用本地版本</span></a></li></ol>
+        </div>
+      </div>
     
+
+    <div class="post-content">
+      
+        <p>Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。</p>
+<a id="more"></a>
+<h4 id="使用系统版本"><a href="#使用系统版本" class="headerlink" title="使用系统版本"></a>使用系统版本</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virtualenv -p /usr/<span class="built_in">local</span>/bin/python3 env</div></pre></td></tr></table></figure>
+<h4 id="使用本地版本"><a href="#使用本地版本" class="headerlink" title="使用本地版本"></a>使用本地版本</h4><p>以Python 3.5.3举例，安装条件<a href="https://github.com/jkbrzt/httpie" target="_blank" rel="external">httpie</a>, <a href="https://virtualenv.pypa.io/en/stable/" target="_blank" rel="external">virtualenv</a>。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install local python</span></div><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; mkdir -p ~/.localpython/3.5.3</div><div class="line">http --download https://www.python.org/ftp/python/3.5.3/Python-3.5.3.tgz</div><div class="line">tar -zxvf Python-3.5.3.tgz</div><div class="line"><span class="built_in">cd</span> Python-3.5.3</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/.localpython/3.5.3</div><div class="line">make</div><div class="line">make install</div><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; rm Python-3.5.3.tgz &amp;&amp; rm -rf Python-3.5.3</div><div class="line"></div><div class="line"><span class="comment"># create virtualenv with local python</span></div><div class="line"><span class="built_in">cd</span> /path/to/project</div><div class="line">virtualenv -p ~/.localpython/3.5.3/bin/python3.5 env</div><div class="line"><span class="built_in">source</span> env/bin/activate</div><div class="line">python --version</div><div class="line">deactivate</div></pre></td></tr></table></figure>
+<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/">http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/</a></p>
+
+      
+    </div>
+
     
-  </nav>
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/04/virtualenv-with-given-python-version/"
+           data-title="Virtualenv使用指定Python版本" data-url="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/">
+      </div>
+    
+  </div>
+
         </div>  
       </main>
 
