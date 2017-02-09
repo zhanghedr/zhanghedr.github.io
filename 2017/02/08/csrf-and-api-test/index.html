@@ -11,7 +11,7 @@
 
 
 
-  <meta name="description" content="Virtualenv使用指定Python版本"/>
+  <meta name="description" content="CSRF和API测试"/>
 
 
 
@@ -28,19 +28,19 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/"/>
 
 
-<meta name="description" content="Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。">
+<meta name="description" content="CSRF (Cross-site request forgery)是最著名的网络攻击之一，又被称作XSRF，这里讲一下其原理和如何在API测试中实现CSRF验证。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Virtualenv使用指定Python版本">
-<meta property="og:url" content="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/index.html">
+<meta property="og:title" content="CSRF和API测试">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。">
-<meta property="og:updated_time" content="2017-02-04T07:29:12.000Z">
+<meta property="og:description" content="CSRF (Cross-site request forgery)是最著名的网络攻击之一，又被称作XSRF，这里讲一下其原理和如何在API测试中实现CSRF验证。">
+<meta property="og:updated_time" content="2017-02-09T03:11:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Virtualenv使用指定Python版本">
-<meta name="twitter:description" content="Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。">
+<meta name="twitter:title" content="CSRF和API测试">
+<meta name="twitter:description" content="CSRF (Cross-site request forgery)是最著名的网络攻击之一，又被称作XSRF，这里讲一下其原理和如何在API测试中实现CSRF验证。">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
@@ -76,7 +76,7 @@
 
 
 
-    <title> Virtualenv使用指定Python版本 · To The Moon </title>
+    <title> CSRF和API测试 · To The Moon </title>
   </head>
 
   <body>
@@ -157,13 +157,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Virtualenv使用指定Python版本
+          CSRF和API测试
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年2月4日
+          2017年2月8日
         </span>
       </div>
     </header>
@@ -172,19 +172,40 @@
       <div class="post-toc" id="post-toc">
         <h2 class="post-toc-title">文章目录</h2>
         <div class="post-toc-content">
-          <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#使用系统版本"><span class="toc-text">使用系统版本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用本地版本"><span class="toc-text">使用本地版本</span></a></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSRF攻击原理"><span class="toc-text">CSRF攻击原理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#API测试验证CSRF"><span class="toc-text">API测试验证CSRF</span></a></li></ol>
         </div>
       </div>
     
 
     <div class="post-content">
       
-        <p>Virtualenv默认使用系统python版本，但在某些project我们想用另外一个版本的python，virtualenv在创建环境时可以选择已安装的python版本，但在某些情况下我们没有root权限，可以选择在用户本地安装一个python版本来创建环境。</p>
+        <p>CSRF (Cross-site request forgery)是最著名的网络攻击之一，又被称作XSRF，这里讲一下其原理和如何在API测试中实现CSRF验证。</p>
 <a id="more"></a>
-<h4 id="使用系统版本"><a href="#使用系统版本" class="headerlink" title="使用系统版本"></a>使用系统版本</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virtualenv -p /usr/<span class="built_in">local</span>/bin/python3 env</div></pre></td></tr></table></figure>
-<h4 id="使用本地版本"><a href="#使用本地版本" class="headerlink" title="使用本地版本"></a>使用本地版本</h4><p>以Python 3.5.3举例，安装条件<a href="https://github.com/jkbrzt/httpie" target="_blank" rel="external">httpie</a>, <a href="https://virtualenv.pypa.io/en/stable/" target="_blank" rel="external">virtualenv</a>。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install local python</span></div><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; mkdir -p ~/.localpython/3.5.3</div><div class="line">http --download https://www.python.org/ftp/python/3.5.3/Python-3.5.3.tgz</div><div class="line">tar -zxvf Python-3.5.3.tgz</div><div class="line"><span class="built_in">cd</span> Python-3.5.3</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/.localpython/3.5.3</div><div class="line">make</div><div class="line">make install</div><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; rm Python-3.5.3.tgz &amp;&amp; rm -rf Python-3.5.3</div><div class="line"></div><div class="line"><span class="comment"># create virtualenv with local python</span></div><div class="line"><span class="built_in">cd</span> /path/to/project</div><div class="line">virtualenv -p ~/.localpython/3.5.3/bin/python3.5 env</div><div class="line"><span class="built_in">source</span> env/bin/activate</div><div class="line">python --version</div><div class="line">deactivate</div></pre></td></tr></table></figure>
-<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/">http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/</a></p>
+<h1 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h1><p>简单来说CSRF就是攻击者欺骗用户访问某个危险网站B，在网站B里含有攻击者代码，以用户的名义发送请求给安全的网站A。如果用户最近登录过网站A还没有logout，session cookie还在的话，那么这个用户未授权请求就会成功，而且还是在用户和网站A都不知情的情况下，这个请求可以是GET或POST等，等于说攻击者可以模仿用户的身份对其进行一些更新删除操作，这个无疑是非常危险的，所以网站A需要有CSRF的防御机制，下面以Django举例。</p>
+<p>Django内置了CSRF验证机制，也就是Cookie-to-Header Token方法：</p>
+<ol>
+<li>用户登录后，除了session cookie，Django还会产生一个随机的<code>csrftoken</code> cookie</li>
+<li>前端在发送不安全的请求前，比如POST，设<code>X-CSRFToken</code>header，value是csrftoken</li>
+<li>Server验证cookie和这个请求header中的token值是否一致</li>
+</ol>
+<p>使用了这种防御机制之后，如果用户不小心点击了攻击者的链接，虽然他能利用网站A还存有的session验证用户身份，但是发出的请求header中没有CSRF Token或者不同，服务器CSRF验证失败这个请求将会返回403 Forbidden错误，从而阻止了攻击。</p>
+<p>根据<a href="https://tools.ietf.org/html/rfc7231.html#section-4.2.1" target="_blank" rel="external">RFC 7231#section-4.2.1</a>，安全的请求是只读、无危害的如GET，后端应该合理的实现GET请求，而对不安全的请求如POST/PUT/DELETE进行保护。</p>
+<h1 id="API测试验证CSRF"><a href="#API测试验证CSRF" class="headerlink" title="API测试验证CSRF"></a>API测试验证CSRF</h1><p>这里以Django和<a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en" target="_blank" rel="external">Postman</a>举例，Postman是一款很方便的HTTP API测试Chrome插件。</p>
+<ol>
+<li><p>安装<a href="https://chrome.google.com/webstore/detail/postman-interceptor/aicmkgpgakddgnaphhhpliifpcfhicfo?hl=en" target="_blank" rel="external">Postman Interceptor</a>插件，使Postman可以共享浏览器cookie，从而更方便测试，安装完成后在Postman右上角开启interceptor，这样就能看到浏览器中的cookies了</p>
+</li>
+<li><p>Postman右上角新建环境</p>
+</li>
+<li><p>新建login请求，并在test中加入下面script，获取CRSF cookie并且设置为postman环境变量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> crsf_cookie = postman.getResponseCookie(<span class="string">"csrftoken"</span>);</div><div class="line">postman.setEnvironmentVariable(<span class="string">"csrf_token"</span>, crsf_cookie.value);</div></pre></td></tr></table></figure>
+</li>
+<li><p>新建要测试的POST请求，添加CRSF token header，比如django：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X-CSRFToken : &#123;&#123;csrf_token&#125;&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>先发送login请求，然后发送要测试的POST请求</p>
+</li>
+</ol>
+<p>这样POST请求就能自动抓取环境中的CSRF token作为其header发送出去验证了，无需每次都手动设置。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/">http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/</a></p>
 
       
     </div>
@@ -197,8 +218,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/02/04/virtualenv-with-given-python-version/"
-           data-title="Virtualenv使用指定Python版本" data-url="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/">
+      <div class="ds-thread" data-thread-key="2017/02/08/csrf-and-api-test/"
+           data-title="CSRF和API测试" data-url="http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/">
       </div>
     
   </div>
