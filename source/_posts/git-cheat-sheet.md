@@ -85,6 +85,7 @@ git remote add [remote] [URL]  # 为本地添加一个新的remote
 git fetch                      # 获取所有origin分支到origin/master，working dir不变
 git merge                      # 合并origin/master到master，working dir改变
 git pull [remote] [branch]     # 获取远程分支且合并到当前分支. git pull = git fetch + git merge
+git rebase [remote]/[branch]   # 更新最新改动且重新apply本地commits到其之上
 ```
 
 #### 日志
@@ -162,22 +163,33 @@ git diff ..origin
 
 #### 重置本地working dir、index、local repo到远程最新commit，抛弃本地改动
 ``` sh
-git fetch
-git reset --hard origin/master
+git fetch origin  # 抓到本地
+git reset --hard origin/master  # 重置到本地
+```
+
+#### 删除本地和remote分支
+
+```sh
+git branch -d [branch]  # delete local, use -D to force delete
+git push origin --delete [branch]  # delete remote
 ```
 
 #### Pull Request流程
 
 ```sh
-fork原始仓库
+# fork原始仓库
 git clone [URL]  # 抓取fork的仓库
 git remote add upstream [URL]  # 添加原仓库remote URL，如命名upstream
-git checkout -b [patch]  # 基于当前分支新建patch分支
-touch test  # 在patch下开发
-git checkout master && git pull upstream master  # 更新原仓库master
-git checkout [patch] && git merge master  # 合并到patch并解决冲突
-git add . && git commit -m "update" && git push origin [patch]  # 提交改动到自己仓库的patch分支
-pull request patch branch in github
-wait response
+git checkout -b patch  # 基于当前分支新建patch分支
+# 在patch下开发
+git add . && git commit -m "update" && git push origin patch
+# git checkout master && git pull upstream master  # 如果需要的话可以同步原仓库master到自己master
+# 如果upstream仓库有了新的改动，需要更新到我们仓库而且rebase我们的commits
+git checkout patch
+git fetch upstream
+git rebase upstream/master  # 抓取upstream最新commits并且将自己patch下的commits在其之上重新apply上去
+git push -f origin patch  # 因为commit tree已经改变，需要force push
+compare and pull request patch branch in github
+wait for accept/deny/request change  # 注意此时如果发现有错的话依然可以继续commit，会更新到PR中
 ```
 
