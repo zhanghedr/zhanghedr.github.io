@@ -183,7 +183,6 @@ git remote add upstream [URL]  # 添加原仓库remote URL，如命名upstream
 git checkout -b patch  # 基于当前分支新建patch分支
 # 在patch下开发
 git add . && git commit -m "update" && git push origin patch
-# git checkout master && git pull upstream master  # 如果需要的话可以同步原仓库master到自己master
 # 如果upstream仓库有了新的改动，需要更新到我们仓库而且rebase我们的commits
 git checkout patch
 git fetch upstream
@@ -191,5 +190,8 @@ git rebase upstream/master  # 抓取upstream最新commits并且将自己patch下
 git push -f origin patch  # 因为commit tree已经改变，需要force push
 compare and pull request patch branch in github
 wait for accept/deny/request change  # 注意此时如果发现有错的话依然可以继续commit，会更新到PR中
+# 如果PR被接受并且merged，删除local和origin的patch分支，因为commit tree已经不同了
+git checkout master && git pull upstream master
+git checkout -b patch-1  # 基于upstream merged后的最新code开始一个新的branch
 ```
 
