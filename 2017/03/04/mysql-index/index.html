@@ -11,7 +11,7 @@
 
 
 
-  <meta name="description" content="新Macbook Pro插上USB断网问题"/>
+  <meta name="description" content="理解与优化MySQL索引"/>
 
 
 
@@ -28,19 +28,19 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2017/01/22/mac-network-issue/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/03/04/mysql-index/"/>
 
 
-<meta name="description" content="最近想用移动硬盘给2016 Macbook Pro做备份来着，结果一插上就断网，一拔下来就连上了，原本用Type C转USB转换器已经很蛋疼了，还有这事就更无语了，搜了下发现原来是因为WIFI频段2.4GHz和USB 3.0冲突造成的。">
+<meta name="description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新Macbook Pro插上USB断网问题">
-<meta property="og:url" content="http://www.zhanghedr.com/2017/01/22/mac-network-issue/index.html">
+<meta property="og:title" content="理解与优化MySQL索引">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/03/04/mysql-index/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="最近想用移动硬盘给2016 Macbook Pro做备份来着，结果一插上就断网，一拔下来就连上了，原本用Type C转USB转换器已经很蛋疼了，还有这事就更无语了，搜了下发现原来是因为WIFI频段2.4GHz和USB 3.0冲突造成的。">
-<meta property="og:updated_time" content="2017-03-04T07:37:26.000Z">
+<meta property="og:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优">
+<meta property="og:updated_time" content="2017-03-04T07:32:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="新Macbook Pro插上USB断网问题">
-<meta name="twitter:description" content="最近想用移动硬盘给2016 Macbook Pro做备份来着，结果一插上就断网，一拔下来就连上了，原本用Type C转USB转换器已经很蛋疼了，还有这事就更无语了，搜了下发现原来是因为WIFI频段2.4GHz和USB 3.0冲突造成的。">
+<meta name="twitter:title" content="理解与优化MySQL索引">
+<meta name="twitter:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
@@ -76,7 +76,7 @@
 
 
 
-    <title> 新Macbook Pro插上USB断网问题 · To The Moon </title>
+    <title> 理解与优化MySQL索引 · To The Moon </title>
   </head>
 
   <body>
@@ -157,13 +157,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          新Macbook Pro插上USB断网问题
+          理解与优化MySQL索引
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年1月22日
+          2017年3月4日
         </span>
       </div>
     </header>
@@ -172,16 +172,18 @@
 
     <div class="post-content">
       
-        <p>最近想用移动硬盘给2016 Macbook Pro做备份来着，结果一插上就断网，一拔下来就连上了，原本用Type C转USB转换器已经很蛋疼了，还有这事就更无语了，搜了下发现原来是因为WIFI频段2.4GHz和USB 3.0冲突造成的。</p>
+        <p>大家知道添加索引<strong>index(key)</strong>是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优化命中率。</p>
 <a id="more"></a>
-<p>解决方法大致有下面几种：</p>
-<ul>
-<li>听说官方转换器没有这个问题</li>
-<li>换5GHz的双频路由器</li>
-<li>试试别的Type C接口，把移动硬盘拿远点</li>
-</ul>
-<p>最简答的方法无疑就是第三种了，亲测确实换个口就连上网了，但还是不稳定，最终的方法我觉得还是第二种换个双频路由吧。</p>
-<p>提一下最近发现一个奇怪的问题，似乎电脑和sqlite3有网络冲突，我用<a href="http://sqlitebrowser.org/" target="_blank" rel="external">DB Browser for SQLite</a>或者其他sqlite客户端时网就变得特别不稳定，在2.4G和5G环境下都会被严重影响甚至掉线，关闭后就立即恢复正常了，求问这是什么原因。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/01/22/mac-network-issue/">http://www.zhanghedr.com/2017/01/22/mac-network-issue/</a></p>
+<p>MySQL主要的索引包括<code>PRIMARY KEY</code> <code>INDEX</code> <code>UNIQUE INDEX</code>，索引存储在<a href="https://en.wikipedia.org/wiki/B-tree" target="_blank" rel="external">B-tree</a>(基于<a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="external">binary search tree</a>)中，它会在以下操作中用到索引：</p>
+<ol>
+<li>WHERE里对应的单列或多列索引。</li>
+<li>组合索引的使用，比如3个column的索引<code>(col1, col2, col3)</code>，会命中这三种搜索条件组合<code>(col1)</code> <code>(col1, col2)</code> <code>(col1, col2, col3)</code>，也就是越左优先级越高。</li>
+<li><code>ORDER BY</code>和<code>GROUP BY</code>语句与WHERE类似，对于组合索引也是最左优先。</li>
+<li>在JOIN时，类和大小相同的column索引会更加有效，比如<code>VARCHAR(50)</code>和<code>VARCHAR(55)</code>大小不同。比如int 1和string的’1’比较前必须经过转换，这会让MySQL miss索引。</li>
+<li>用<code>function(indexed column)</code>会miss索引，比如<code>MONTH(indexed date)</code>。但方法<code>MIN(indexed column)</code>和<code>MAX(indexed column)</code>会命中索引。</li>
+<li>如果有多条索引可以查询，选择查询范围最小的index。</li>
+</ol>
+<p>MySQL表对于索引大小有限制，所以优化不是简单的把每个column都加上索引，如果使用了多列索引可以把不必要的单列索引删除。设计好一个表是第一步，表合理的结构、数据类和大小的选择，比如tinyint/smallint/mediumint/int/bigint和varchar(size)，然后就是如何创建合理的索引来满足最常用的业务需求，从而提高索引命中率。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/04/mysql-index/">http://www.zhanghedr.com/2017/03/04/mysql-index/</a></p>
 
       
     </div>
@@ -194,8 +196,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/01/22/mac-network-issue/"
-           data-title="新Macbook Pro插上USB断网问题" data-url="http://www.zhanghedr.com/2017/01/22/mac-network-issue/">
+      <div class="ds-thread" data-thread-key="2017/03/04/mysql-index/"
+           data-title="理解与优化MySQL索引" data-url="http://www.zhanghedr.com/2017/03/04/mysql-index/">
       </div>
     
   </div>

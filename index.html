@@ -158,6 +158,43 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/03/04/mysql-index/">理解与优化MySQL索引</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年3月4日
+        </span>
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      
+        
+          
+        
+
+        
+          <p>大家知道添加索引<strong>index(key)</strong>是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优化命中率。</p>
+          <div class="read-more">
+            <a href="/2017/03/04/mysql-index/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/02/08/csrf-and-api-test/">CSRF和API测试</a>
         
       </h1>
@@ -269,7 +306,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2017/01/22/mac-network-issue/">新Macbook Pro一插上USB就断网问题</a>
+          <a class="post-link" href="/2017/01/22/mac-network-issue/">新Macbook Pro插上USB断网问题</a>
         
       </h1>
 
@@ -289,7 +326,7 @@
         
 
         
-          <p>最近想用移动硬盘给2016 Macbook Pro做备份来着，结果一插上就断网，一拔下来就连上了，原本用Type C转USB转换器已经很蛋疼了，还有这档子事更无语了，搜了下发现原来是因为WIFI频段2.4GHz和USB 3.0冲突造成的。</p>
+          <p>最近想用移动硬盘给2016 Macbook Pro做备份来着，结果一插上就断网，一拔下来就连上了，原本用Type C转USB转换器已经很蛋疼了，还有这事就更无语了，搜了下发现原来是因为WIFI频段2.4GHz和USB 3.0冲突造成的。</p>
           <div class="read-more">
             <a href="/2017/01/22/mac-network-issue/" class="read-more-link">阅读更多</a>
           </div>
@@ -487,43 +524,6 @@
 </ul>
           <div class="read-more">
             <a href="/2017/01/04/difference-between-process-and-thread/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2016/12/20/java-design-patterns/">常见 Java 设计模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2016年12月20日
-        </span>
-      </div>
-    </header>
-
-    
-
-    <div class="post-content">
-      
-        
-          
-        
-
-        
-          <p>设计模式（Design Patterns）是一套被反复使用、代码设计经验的总结。设计模式有很多原则，比如降低耦合、简单化类、接口隔离等，都是为了提高代码复用率、代码可读性和代码可靠性。当然其中一些模式可能到了其他语言里就失效了，比如python基于语言的特性某些设计模式会有其他的解决方法，但是学习这些模式肯定还是有帮助的，在现实中没必要刻意去套用模式，最终还是简洁有效的code最好。本文介绍常用Java设计模式以及代码实例。</p>
-          <div class="read-more">
-            <a href="/2016/12/20/java-design-patterns/" class="read-more-link">阅读更多</a>
           </div>
         
       
