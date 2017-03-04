@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.zhanghedr.com/2017/03/04/mysql-index/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优">
-<meta property="og:updated_time" content="2017-03-04T07:32:11.000Z">
+<meta property="og:updated_time" content="2017-03-04T07:39:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解与优化MySQL索引">
 <meta name="twitter:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优">
@@ -172,7 +172,7 @@
 
     <div class="post-content">
       
-        <p>大家知道添加索引<strong>index(key)</strong>是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优化命中率。</p>
+        <p>大家知道添加索引<code>index(key)</code>是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从<code>O(n)</code>到<code>O(logn)</code>的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引，从而优化命中率。</p>
 <a id="more"></a>
 <p>MySQL主要的索引包括<code>PRIMARY KEY</code> <code>INDEX</code> <code>UNIQUE INDEX</code>，索引存储在<a href="https://en.wikipedia.org/wiki/B-tree" target="_blank" rel="external">B-tree</a>(基于<a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="external">binary search tree</a>)中，它会在以下操作中用到索引：</p>
 <ol>
