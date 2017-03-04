@@ -1,7 +1,7 @@
 ---
 title: Mac安装MySQL
 date: 2017-01-22 12:49:44
-categories: Tech
+categories: MySQL
 ---
 
 安装MySQL的方法很多，最好还是从官网下载，需要注意的是新版本的初始root密码改为随机生成了，这里讲下安装步骤和添加PATH。
