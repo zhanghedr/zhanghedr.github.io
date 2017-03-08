@@ -11,7 +11,7 @@
 
 
 
-  <meta name="description" content="理解与优化MySQL索引"/>
+  <meta name="description" content="Cache写机制"/>
 
 
 
@@ -28,19 +28,22 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2017/03/04/mysql-index/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/03/08/cache-writing-policies/"/>
 
 
-<meta name="description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。">
+<meta name="description" content="Cache的写机制有两种，分别是直写式(Write Through)和回写式(Write Back)，一般指硬件磁盘读写，但也可用于软件cache实现，比如DAL。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="理解与优化MySQL索引">
-<meta property="og:url" content="http://www.zhanghedr.com/2017/03/04/mysql-index/index.html">
+<meta property="og:title" content="Cache写机制">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/03/08/cache-writing-policies/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。">
-<meta property="og:updated_time" content="2017-03-05T03:24:23.000Z">
+<meta property="og:description" content="Cache的写机制有两种，分别是直写式(Write Through)和回写式(Write Back)，一般指硬件磁盘读写，但也可用于软件cache实现，比如DAL。">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/0/04/Write-through_with_no-write-allocation.svg">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg">
+<meta property="og:updated_time" content="2017-03-08T14:14:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="理解与优化MySQL索引">
-<meta name="twitter:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。">
+<meta name="twitter:title" content="Cache写机制">
+<meta name="twitter:description" content="Cache的写机制有两种，分别是直写式(Write Through)和回写式(Write Back)，一般指硬件磁盘读写，但也可用于软件cache实现，比如DAL。">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/0/04/Write-through_with_no-write-allocation.svg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
@@ -76,7 +79,7 @@
 
 
 
-    <title> 理解与优化MySQL索引 · To The Moon </title>
+    <title> Cache写机制 · To The Moon </title>
   </head>
 
   <body>
@@ -157,33 +160,35 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          理解与优化MySQL索引
+          Cache写机制
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年3月4日
+          2017年3月8日
         </span>
       </div>
     </header>
 
     
+      <div class="post-toc" id="post-toc">
+        <h2 class="post-toc-title">文章目录</h2>
+        <div class="post-toc-content">
+          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Through"><span class="toc-text">Write Through</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Back"><span class="toc-text">Write Back</span></a></li></ol>
+        </div>
+      </div>
+    
 
     <div class="post-content">
       
-        <p>大家知道添加索引<code>index(key)</code>是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从<code>O(n)</code>到<code>O(logn)</code>的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。</p>
+        <p>Cache的写机制有两种，分别是直写式(<strong>Write Through</strong>)和回写式(<strong>Write Back</strong>)，一般指硬件磁盘读写，但也可用于软件cache实现，比如DAL。</p>
 <a id="more"></a>
-<p>MySQL主要的索引包括<code>PRIMARY KEY</code> <code>INDEX</code> <code>UNIQUE INDEX</code>，索引存储在<a href="https://en.wikipedia.org/wiki/B-tree" target="_blank" rel="external">B-tree</a>(基于<a href="https://en.wikipedia.org/wiki/Binary_search_tree" target="_blank" rel="external">binary search tree</a>)中，它会在以下操作中用到索引：</p>
-<ol>
-<li>WHERE里对应的单列或多列索引。</li>
-<li>组合索引的使用，比如3个column的索引<code>(col1, col2, col3)</code>，会命中这三种搜索条件组合<code>(col1)</code> <code>(col1, col2)</code> <code>(col1, col2, col3)</code>，也就是越左优先级越高。</li>
-<li><code>ORDER BY</code>和<code>GROUP BY</code>语句与WHERE类似，对于组合索引也是最左优先。</li>
-<li>在JOIN时，类和大小相同的column索引会更加有效，比如<code>VARCHAR(50)</code>和<code>VARCHAR(55)</code>大小不同。比如int 1和string的’1’比较前必须经过转换，这会让MySQL miss索引。</li>
-<li>用<code>function(indexed column)</code>会miss索引，比如<code>MONTH(indexed date)</code>。但方法<code>MIN(indexed column)</code>和<code>MAX(indexed column)</code>会命中索引。</li>
-<li>如果有多条索引可以查询，选择查询范围最小的index。</li>
-</ol>
-<p>MySQL表对于索引大小有限制，所以优化不是简单的把每个column都加上索引，如果使用了多列索引可以把不必要的单列索引删除。设计好一个表是第一步，表合理的结构、数据类和大小的选择，比如tinyint/smallint/mediumint/int/bigint和varchar(size)，然后就是如何创建合理的索引来满足最常用的业务需求，从而提高索引命中率。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/04/mysql-index/">http://www.zhanghedr.com/2017/03/04/mysql-index/</a></p>
+<h3 id="Write-Through"><a href="#Write-Through" class="headerlink" title="Write Through"></a>Write Through</h3><p>在写的时候，同时更新cache和磁盘，这里可以理解为cache和数据库，这样数据库和缓存内容始终保持一致，这种方式实现简单一致性好，但效率一般。下流程图说明了这个过程，图片引用自wikipedia。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Write-through_with_no-write-allocation.svg" alt=""></p>
+<h3 id="Write-Back"><a href="#Write-Back" class="headerlink" title="Write Back"></a>Write Back</h3><p>也称作write-behind，在写的时候只写cache而延后写数据库，从而减少数据库的I/O而获得更好的性能。在延后写数据库之后这个cache标记为dirty，然后有两种情况，第一种是这个cache过期或LRU被踢掉了，那么它在invalidate时必须将它的最新内容写回到数据库中，要不然就丢失数据了；第二种情况是这个cache被新的写操作给替换了，这时可以选择继续延后写数据库，而始终保持cache内容最新，如果在更新非常频繁的内容上，可以在这部分cache延迟写多个周期后，再同步到数据库里。</p>
+<p>这种方法效率更高，但实现复杂，而且存在cache和数据库不一致问题，风险也更大，如果系统宕机可能造成数据丢失。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg" alt=""><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/08/cache-writing-policies/">http://www.zhanghedr.com/2017/03/08/cache-writing-policies/</a></p>
 
       
     </div>
@@ -196,8 +201,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/03/04/mysql-index/"
-           data-title="理解与优化MySQL索引" data-url="http://www.zhanghedr.com/2017/03/04/mysql-index/">
+      <div class="ds-thread" data-thread-key="2017/03/08/cache-writing-policies/"
+           data-title="Cache写机制" data-url="http://www.zhanghedr.com/2017/03/08/cache-writing-policies/">
       </div>
     
   </div>
