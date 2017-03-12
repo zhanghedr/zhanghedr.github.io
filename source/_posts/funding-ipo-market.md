@@ -1,5 +1,5 @@
 ---
-title: 由知乎 1 亿美元 D 轮融资学习IPO上市等金融概念
+title: 知乎 1 亿美元 D 轮融资
 date: 2017-01-14 22:39:15
 categories: Finance
 ---
