@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+  <meta name="description" content="N + 1 问题"/>
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="To The Moon">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.1.0" />
+
+
+
+<link rel="canonical" href="http://www.zhanghedr.com/2017/03/13/n-1-problem/"/>
+
+
+<meta name="description" content="在数据库中经常会碰到不同表之间关联的问题，为了防止单表过大字段过多，通常会通过表id将两个表联系起来，可以是一对一或者一对多的关系。API中也经常需要调用到多个表的信息，用惯了ORM简洁的调用方式后，代码中可能会出现N + 1问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="N + 1 问题">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/03/13/n-1-problem/index.html">
+<meta property="og:site_name" content="To The Moon">
+<meta property="og:description" content="在数据库中经常会碰到不同表之间关联的问题，为了防止单表过大字段过多，通常会通过表id将两个表联系起来，可以是一对一或者一对多的关系。API中也经常需要调用到多个表的信息，用惯了ORM简洁的调用方式后，代码中可能会出现N + 1问题。">
+<meta property="og:updated_time" content="2017-03-14T04:24:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="N + 1 问题">
+<meta name="twitter:description" content="在数据库中经常会碰到不同表之间关联的问题，为了防止单表过大字段过多，通常会通过表id将两个表联系起来，可以是一对一或者一对多的关系。API中也经常需要调用到多个表的信息，用惯了ORM简洁的调用方式后，代码中可能会出现N + 1问题。">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.1.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?cc84c29e36bdbfe47c46314bc1a28005";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-88565115-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+
+    <title> N + 1 问题 · To The Moon </title>
+  </head>
+
+  <body>
+    <div class="container">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">To The Moon</a>
+</div>
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories">
+            分类
+          </a>
+        </li>
+      
+      
+    </ul>
+  
+</nav>
+
+<div class="mobile-navbar">
+  <div class="mobile-header">
+    <div class="mobile-header-logo">
+      <a href="/." class="logo">To The Moon</a>
+    </div>
+
+    <div class="mobile-header-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+  <nav class="mobile-menu">
+    
+      
+      <a class="mobile-menu-item" href="/">
+        首页
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/archives/">
+        归档
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/categories">
+        分类
+      </a>
+    
+  </nav>
+</div>
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          N + 1 问题
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年3月13日
+        </span>
+      </div>
+    </header>
+
+    
+
+    <div class="post-content">
+      
+        <p>在数据库中经常会碰到不同表之间关联的问题，为了防止单表过大字段过多，通常会通过表id将两个表联系起来，可以是一对一或者一对多的关系。API中也经常需要调用到多个表的信息，用惯了ORM简洁的调用方式后，代码中可能会出现N + 1问题。</p>
+<a id="more"></a>
+<p>假设一个社区网站的信息流首页，要显示用户关注的最新帖子(thread)列表，在每个列表条目中要显示thread标题和作者username，那么N + 1问题就在于用ORM先读取了所有threads，然后根据thread表中的user_id在user表中循环找username如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">threads = Thread.objects.all().order_by(<span class="string">"-create_time"</span>)</div><div class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</div><div class="line">	user = User.objects.get(id=thread.user_id)</div></pre></td></tr></table></figure>
+<p>这里只是举例Django ORM简单伪代码，不包括条件查找和分页问题，某些ORM若执行类似上面的代码会产生如下SQL:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> title, user_id <span class="keyword">FROM</span> <span class="keyword">thread</span> <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> username <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1</span></div><div class="line"><span class="keyword">SELECT</span> username <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">2</span></div><div class="line"><span class="keyword">SELECT</span> username <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">3</span></div><div class="line"><span class="keyword">SELECT</span> username <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">4</span></div><div class="line">...</div></pre></td></tr></table></figure>
+<p>这样会生成N + 1条SQL，N是threads个数，即使都是用索引读取，数据库机器造成的网络开销时间还是不可忽视的。有时还不止是2个表关联，比如列表项中可能还要显示thread的tags和最新回复内容，那么就可能是3N + 1了。</p>
+<p>当然ORM也会给出一些解决办法，这个基于不同ORM而异。这里说下最直观的两种解决方法，首先是提取出threads的user_id set，然后用IN (set)去读取user表，就变成了总共2条SQL语句如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> title, user_id <span class="keyword">FROM</span> <span class="keyword">thread</span> <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> username <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">IN</span> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ...)</div></pre></td></tr></table></figure>
+<p>另外一种就是用JOIN了：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> t.title, u.username <span class="keyword">FROM</span> <span class="keyword">thread</span> t</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">user</span> u <span class="keyword">ON</span> t.user_id = u.id</div><div class="line"><span class="keyword">WHERE</span> ...</div></pre></td></tr></table></figure>
+<p>这样只有一条SQL，甚至可以JOIN更多的表，当然JOIN能不用尽量不用，会影响到性能。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/13/n-1-problem/">http://www.zhanghedr.com/2017/03/13/n-1-problem/</a></p>
+
+      
+    </div>
+
+    
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/13/n-1-problem/"
+           data-title="N + 1 问题" data-url="http://www.zhanghedr.com/2017/03/13/n-1-problem/">
+      </div>
+    
+  </div>
+
+        </div>  
+      </main>
+
+      <footer id="footer" class="footer">
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:hezhang0929@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/zhanghedr" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/howard-72-93" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2016 - 
+    
+    2017
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Howard</span>
+  </span>
+</div>
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zhanghedr"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.1.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.1.0"></script>
+
+  </body>
+</html>
