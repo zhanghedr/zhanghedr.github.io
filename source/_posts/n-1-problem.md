@@ -13,7 +13,7 @@ categories: Tech
 ``` Python
 threads = Thread.objects.all().order_by("-create_time")
 for thread in threads:
-	user = User.objects.get(id=thread.user_id)
+    user = User.objects.get(id=thread.user_id)
 ```
 
 这里只是举例Django ORM简单伪代码，不包括条件查找和分页问题，某些ORM若执行类似上面的代码会产生如下SQL:
