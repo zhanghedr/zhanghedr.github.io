@@ -21,7 +21,7 @@ menu:
   Archives: /archives/
   # Tags: /tags
   Categories: /categories
-  # About: /about
+  About: /about
 
 # site search option
 search: false

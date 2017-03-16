@@ -3,7 +3,7 @@
 
 var fs = require('fs');
 
-hexo.extend.filter.register('before_post_render', function(data){
+hexo.extend.filter.register('before_post_render', function(data) {
     if(data.copyright == false) 
     	return data;
 
