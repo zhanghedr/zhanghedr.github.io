@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.zhanghedr.com/2017/03/04/mysql-index/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。">
-<meta property="og:updated_time" content="2017-03-05T03:24:23.000Z">
+<meta property="og:updated_time" content="2017-03-16T02:20:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解与优化MySQL索引">
 <meta name="twitter:description" content="大家知道添加索引index(key)是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从O(n)到O(logn)的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。">
@@ -179,7 +179,7 @@
 <li>WHERE里对应的单列或多列索引。</li>
 <li>组合索引的使用，比如3个column的索引<code>(col1, col2, col3)</code>，会命中这三种搜索条件组合<code>(col1)</code> <code>(col1, col2)</code> <code>(col1, col2, col3)</code>，也就是越左优先级越高。</li>
 <li><code>ORDER BY</code>和<code>GROUP BY</code>语句与WHERE类似，对于组合索引也是最左优先。</li>
-<li>在JOIN时，类和大小相同的column索引会更加有效，比如<code>VARCHAR(50)</code>和<code>VARCHAR(55)</code>大小不同。比如int 1和string的’1’比较前必须经过转换，这会让MySQL miss索引。</li>
+<li>在<code>JOIN</code>时，类和大小相同的column索引会更加有效，比如<code>VARCHAR(50)</code>和<code>VARCHAR(55)</code>大小不同。比如int 1和string的’1’比较前必须经过转换，这会让MySQL miss索引。</li>
 <li>用<code>function(indexed column)</code>会miss索引，比如<code>MONTH(indexed date)</code>。但方法<code>MIN(indexed column)</code>和<code>MAX(indexed column)</code>会命中索引。</li>
 <li>如果有多条索引可以查询，选择查询范围最小的index。</li>
 </ol>
