@@ -112,6 +112,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -144,6 +151,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -209,7 +221,7 @@
 <p>注意在实际使用中不要使用<code>*</code>，在JOIN匹配后如果一个表ON字段有重复，那么对应的表记录也会被重复，JOIN的条件ON字段一般是在索引上以保证速度，它会比subquery快，但是JOIN还是尽量少用。</p>
 <h3 id="UNION"><a href="#UNION" class="headerlink" title="UNION"></a>UNION</h3><p>把相似的字段水平合并，UNION返回唯一的结果，UNION ALL返回有重复的结果。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> a</div><div class="line"><span class="keyword">UNION</span></div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> b</div><div class="line"></div><div class="line"><span class="keyword">id</span>         </div><div class="line"><span class="comment">------</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">6</span></div><div class="line"></div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> a</div><div class="line"><span class="keyword">UNION</span> ALL</div><div class="line"><span class="keyword">SELECT</span> <span class="keyword">id</span> <span class="keyword">FROM</span> b</div><div class="line"></div><div class="line"><span class="keyword">id</span>         </div><div class="line"><span class="comment">------</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">2</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">3</span></div><div class="line"><span class="number">4</span></div><div class="line"><span class="number">5</span></div><div class="line"><span class="number">6</span></div></pre></td></tr></table></figure>
-<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/15/sql-join-and-union/">http://www.zhanghedr.com/2017/03/15/sql-join-and-union/</a></p>
+<p><br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/15/sql-join-and-union/">http://www.zhanghedr.com/2017/03/15/sql-join-and-union/</a></p>
 
       
     </div>

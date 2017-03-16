@@ -113,6 +113,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -145,6 +152,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -188,7 +200,7 @@
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Write-through_with_no-write-allocation.svg" alt=""></p>
 <h3 id="Write-Back"><a href="#Write-Back" class="headerlink" title="Write Back"></a>Write Back</h3><p>也称作write-behind，在写的时候只写cache而延后写数据库，从而减少数据库的I/O而获得更好的性能。在延后写数据库之后这个cache标记为dirty，然后有两种情况，第一种是这个cache过期或LRU被踢掉了，那么它在invalidate时必须将它的最新内容写回到数据库中，保证数据一致；第二种情况是这个cache被新的写操作给替换了，这时可以选择继续延后写数据库，而始终保持cache内容最新，如果在更新非常频繁的内容上，可以在这部分cache延迟写多个周期后，再同步到数据库里。</p>
 <p>这种方法效率更高，但实现复杂，而且存在cache和数据库不一致问题，如果系统宕机可能造成数据丢失。</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg" alt=""><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/08/cache-writing-policies/">http://www.zhanghedr.com/2017/03/08/cache-writing-policies/</a></p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Write-back_with_write-allocation.svg" alt=""><br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/08/cache-writing-policies/">http://www.zhanghedr.com/2017/03/08/cache-writing-policies/</a></p>
 
       
     </div>

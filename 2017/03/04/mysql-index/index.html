@@ -110,6 +110,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -142,6 +149,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -183,7 +195,7 @@
 <li>用<code>function(indexed column)</code>会miss索引，比如<code>MONTH(indexed date)</code>。但方法<code>MIN(indexed column)</code>和<code>MAX(indexed column)</code>会命中索引。</li>
 <li>如果有多条索引可以查询，选择查询范围最小的index。</li>
 </ol>
-<p>MySQL表对于索引大小有限制，所以优化不是简单的把每个column都加上索引，如果使用了多列索引可以把不必要的单列索引删除。设计好一个表是第一步，表合理的结构、数据类和大小的选择，比如tinyint/smallint/mediumint/int/bigint和varchar(size)，然后就是如何创建合理的索引来满足最常用的业务需求，从而提高索引命中率。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/04/mysql-index/">http://www.zhanghedr.com/2017/03/04/mysql-index/</a></p>
+<p>MySQL表对于索引大小有限制，所以优化不是简单的把每个column都加上索引，如果使用了多列索引可以把不必要的单列索引删除。设计好一个表是第一步，表合理的结构、数据类和大小的选择，比如tinyint/smallint/mediumint/int/bigint和varchar(size)，然后就是如何创建合理的索引来满足最常用的业务需求，从而提高索引命中率。<br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/04/mysql-index/">http://www.zhanghedr.com/2017/03/04/mysql-index/</a></p>
 
       
     </div>

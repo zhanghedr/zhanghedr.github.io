@@ -112,6 +112,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -144,6 +151,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -216,7 +228,7 @@
 <h4 id="重置本地working-dir、index、local-repo到远程最新commit，抛弃本地改动"><a href="#重置本地working-dir、index、local-repo到远程最新commit，抛弃本地改动" class="headerlink" title="重置本地working dir、index、local repo到远程最新commit，抛弃本地改动"></a>重置本地working dir、index、local repo到远程最新commit，抛弃本地改动</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch origin  <span class="comment"># 抓到本地</span></div><div class="line">git reset --hard origin/master  <span class="comment"># 重置到本地</span></div></pre></td></tr></table></figure>
 <h4 id="删除本地和remote分支"><a href="#删除本地和remote分支" class="headerlink" title="删除本地和remote分支"></a>删除本地和remote分支</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch <span class="_">-d</span> [branch]  <span class="comment"># delete local, use -D to force delete</span></div><div class="line">git push origin --delete [branch]  <span class="comment"># delete remote</span></div></pre></td></tr></table></figure>
 <h4 id="Pull-Request流程"><a href="#Pull-Request流程" class="headerlink" title="Pull Request流程"></a>Pull Request流程</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># fork原始仓库</span></div><div class="line">git <span class="built_in">clone</span> [URL]  <span class="comment"># 抓取fork的仓库</span></div><div class="line">git remote add upstream [URL]  <span class="comment"># 添加原仓库remote URL，如命名upstream</span></div><div class="line">git checkout -b patch  <span class="comment"># 基于当前分支新建patch分支</span></div><div class="line"><span class="comment"># 在patch下开发</span></div><div class="line">git add . &amp;&amp; git commit -m <span class="string">"update"</span> &amp;&amp; git push origin patch</div><div class="line"><span class="comment"># 如果upstream仓库有了新的改动，需要更新到我们仓库而且rebase我们的commits</span></div><div class="line">git checkout patch</div><div class="line">git fetch upstream</div><div class="line">git rebase upstream/master  <span class="comment"># 抓取upstream最新commits并且将自己patch下的commits在其之上重新apply上去</span></div><div class="line">git push <span class="_">-f</span> origin patch  <span class="comment"># 因为commit tree已经改变，需要force push</span></div><div class="line">compare and pull request patch branch <span class="keyword">in</span> github</div><div class="line"><span class="built_in">wait</span> <span class="keyword">for</span> accept/deny/request change  <span class="comment"># 注意此时如果发现有错的话依然可以继续commit，会更新到PR中</span></div><div class="line"><span class="comment"># 如果PR被接受并且merged，删除local和origin的patch分支，因为commit tree已经不同了</span></div><div class="line">git checkout master &amp;&amp; git pull upstream master</div><div class="line">git checkout -b patch-1  <span class="comment"># 基于upstream merged后的最新code开始一个新的branch</span></div></pre></td></tr></table></figure>
-<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2016/12/10/git-cheat-sheet/">http://www.zhanghedr.com/2016/12/10/git-cheat-sheet/</a></p>
+<p><br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2016/12/10/git-cheat-sheet/">http://www.zhanghedr.com/2016/12/10/git-cheat-sheet/</a></p>
 
       
     </div>

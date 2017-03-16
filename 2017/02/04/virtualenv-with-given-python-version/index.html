@@ -110,6 +110,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -142,6 +149,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -184,7 +196,7 @@
 <h4 id="使用系统版本"><a href="#使用系统版本" class="headerlink" title="使用系统版本"></a>使用系统版本</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">virtualenv -p /usr/<span class="built_in">local</span>/bin/python3 env</div></pre></td></tr></table></figure>
 <h4 id="使用本地版本"><a href="#使用本地版本" class="headerlink" title="使用本地版本"></a>使用本地版本</h4><p>以Python 3.5.3举例，安装条件<a href="https://github.com/jkbrzt/httpie" target="_blank" rel="external">httpie</a>, <a href="https://virtualenv.pypa.io/en/stable/" target="_blank" rel="external">virtualenv</a>。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># install local python</span></div><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; mkdir -p ~/.localpython/3.5.3</div><div class="line">http --download https://www.python.org/ftp/python/3.5.3/Python-3.5.3.tgz</div><div class="line">tar -zxvf Python-3.5.3.tgz</div><div class="line"><span class="built_in">cd</span> Python-3.5.3</div><div class="line">./configure --prefix=<span class="variable">$HOME</span>/.localpython/3.5.3</div><div class="line">make</div><div class="line">make install</div><div class="line"><span class="built_in">cd</span> ~ &amp;&amp; rm Python-3.5.3.tgz &amp;&amp; rm -rf Python-3.5.3</div><div class="line"></div><div class="line"><span class="comment"># create virtualenv with local python</span></div><div class="line"><span class="built_in">cd</span> /path/to/project</div><div class="line">virtualenv -p ~/.localpython/3.5.3/bin/python3.5 env</div><div class="line"><span class="built_in">source</span> env/bin/activate</div><div class="line">python --version</div><div class="line">deactivate</div></pre></td></tr></table></figure>
-<p><br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/">http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/</a></p>
+<p><br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/">http://www.zhanghedr.com/2017/02/04/virtualenv-with-given-python-version/</a></p>
 
       
     </div>

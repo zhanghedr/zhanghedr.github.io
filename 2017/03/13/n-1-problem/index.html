@@ -110,6 +110,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -142,6 +149,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -183,7 +195,7 @@
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> title, user_id <span class="keyword">FROM</span> <span class="keyword">thread</span> <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> username <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> <span class="keyword">id</span> <span class="keyword">IN</span> (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ...)</div></pre></td></tr></table></figure>
 <p>另外一种就是用JOIN了：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> t.title, u.username <span class="keyword">FROM</span> <span class="keyword">thread</span> t</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">user</span> u <span class="keyword">ON</span> t.user_id = u.id</div><div class="line"><span class="keyword">WHERE</span> ...</div></pre></td></tr></table></figure>
-<p>这样只有一条SQL，甚至可以JOIN更多的表，当然JOIN能不用尽量不用，会影响到性能。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/13/n-1-problem/">http://www.zhanghedr.com/2017/03/13/n-1-problem/</a></p>
+<p>这样只有一条SQL，甚至可以JOIN更多的表，当然JOIN能不用尽量不用，会影响到性能。<br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/03/13/n-1-problem/">http://www.zhanghedr.com/2017/03/13/n-1-problem/</a></p>
 
       
     </div>

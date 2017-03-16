@@ -110,6 +110,13 @@
           </a>
         </li>
       
+        
+        <li class="menu-item">
+          <a class="menu-item-link" href="/about">
+            关于
+          </a>
+        </li>
+      
       
     </ul>
   
@@ -142,6 +149,11 @@
       
       <a class="mobile-menu-item" href="/categories">
         分类
+      </a>
+    
+      
+      <a class="mobile-menu-item" href="/about">
+        关于
       </a>
     
   </nav>
@@ -201,7 +213,7 @@
 <p>但是上面的方法只是暂时作用于当前session，下次登录时添加的PATH就失效了，如果想永久添加，需要把这句话写到你使用的一个shell配置文件中，比如<code>~/.zshrc、~/.bashrc、~/.bash_profile、~/.profile</code>。最后要生效，只需重新读一遍配置文件<code>source ~/.zshrc</code>，要不然重启terminal也可以。</p>
 <p>但是上面这个永久方法只是对于当前user有效，因为是在<code>/Users/username/</code>目录下配置，想要为所有users都添加PATH，需要把<code>/usr/local/mysql/bin</code>添加到下面文件中：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/paths</div></pre></td></tr></table></figure>
-<h1 id="MySQL客户端"><a href="#MySQL客户端" class="headerlink" title="MySQL客户端"></a>MySQL客户端</h1><p>这里推荐<a href="https://www.sequelpro.com/" target="_blank" rel="external">Sequel Pro</a>，非常简洁快速还是开源的，不过只支持MySQL一种数据库。这时候你就可以在上面建一个<code>127.0.0.1</code>数据库测试一下了，用root和之前修改过的密码。<br><br><hr>本文版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/01/22/mac-install-mysql/">http://www.zhanghedr.com/2017/01/22/mac-install-mysql/</a></p>
+<h1 id="MySQL客户端"><a href="#MySQL客户端" class="headerlink" title="MySQL客户端"></a>MySQL客户端</h1><p>这里推荐<a href="https://www.sequelpro.com/" target="_blank" rel="external">Sequel Pro</a>，非常简洁快速还是开源的，不过只支持MySQL一种数据库。这时候你就可以在上面建一个<code>127.0.0.1</code>数据库测试一下了，用root和之前修改过的密码。<br><br><hr>本文原创版权所有，商业目的转载必须征得本人同意，非商业转载请注明出处<br>本文链接：<a href="http://www.zhanghedr.com/2017/01/22/mac-install-mysql/">http://www.zhanghedr.com/2017/01/22/mac-install-mysql/</a></p>
 
       
     </div>
