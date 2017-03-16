@@ -6,7 +6,7 @@ copyright: false
 
 # About
 
-专注后端Java/Python，熟悉运维和基本前端JS/HTML/CSS
+专注后端Java/Python，熟悉运维和前端JS/HTML/CSS
 
 喜欢折腾，热爱学习
 
