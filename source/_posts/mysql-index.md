@@ -13,7 +13,7 @@ MySQL主要的索引包括`PRIMARY KEY` `INDEX` `UNIQUE INDEX`，索引存储在
 1. WHERE里对应的单列或多列索引。
 2. 组合索引的使用，比如3个column的索引`(col1, col2, col3)`，会命中这三种搜索条件组合`(col1)` `(col1, col2)` `(col1, col2, col3)`，也就是越左优先级越高。
 3. `ORDER BY`和`GROUP BY`语句与WHERE类似，对于组合索引也是最左优先。
-4. 在JOIN时，类和大小相同的column索引会更加有效，比如`VARCHAR(50)`和`VARCHAR(55)`大小不同。比如int 1和string的'1'比较前必须经过转换，这会让MySQL miss索引。
+4. 在`JOIN`时，类和大小相同的column索引会更加有效，比如`VARCHAR(50)`和`VARCHAR(55)`大小不同。比如int 1和string的'1'比较前必须经过转换，这会让MySQL miss索引。
 5. 用`function(indexed column)`会miss索引，比如`MONTH(indexed date)`。但方法`MIN(indexed column)`和`MAX(indexed column)`会命中索引。
 6. 如果有多条索引可以查询，选择查询范围最小的index。
 
