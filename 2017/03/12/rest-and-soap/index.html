@@ -37,7 +37,7 @@
 <meta property="og:url" content="http://www.zhanghedr.com/2017/03/12/rest-and-soap/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
-<meta property="og:updated_time" content="2017-03-19T01:27:55.000Z">
+<meta property="og:updated_time" content="2017-03-19T15:05:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="REST 与 SOAP">
 <meta name="twitter:description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
@@ -195,10 +195,10 @@
 <a id="more"></a>
 <h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><p>REST的优点主要有以下四点：</p>
 <ul>
-<li>URL表示对应资源。</li>
+<li>URL表示对应资源，一般只有名词没有动词。</li>
 <li>使用标准HTTP方法(GET/POST/PUT/DELETE等)抽象化接口，对于同一资源无需自定义对其的增查删改方法。</li>
 <li>Request和response的payload支持多种格式，常见的有<code>JSON</code>和<code>XML</code>，一般推荐用<code>JSON</code>。</li>
-<li>可以根据HTTP Header缓存GET请求资源。</li>
+<li>可以根据HTTP Header缓存GET请求，注意保证GET不会改变状态。</li>
 </ul>
 <h2 id="API-Root-URL"><a href="#API-Root-URL" class="headerlink" title="API Root URL"></a>API Root URL</h2><p>常用的URL是<code>https://api.example.com/v1</code>，其构成为：</p>
 <ul>
