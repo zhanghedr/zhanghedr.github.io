@@ -4,7 +4,7 @@ date: 2017-03-18 21:26:47
 categories: Tech
 ---
 
-Hash在软件领域有非常多的应用， 最熟悉的莫过于HashMap，还有MD5/SHA-1哈希算法等，这里主要讲一下hash函数特性和Java中的HashMap原理。
+Hash函数在软件领域有非常多的应用， 最熟悉的莫过于HashMap，这里主要讲一下hash函数特性和Java中HashMap原理。
 
 <!-- more -->
 
@@ -27,15 +27,9 @@ public int hashCode() {
 }
 ```
 
-### MD5和SHA-1
-
-所以hash最重要的就是防碰撞特性，那么hash函数实现的好坏就非常重要了。经典的hash函数实现有MD5和SHA-1加密算法，MD5输出128位，SHA-1输出160位，SHA-1是基于MD5的哈希算法。他们最重要的应用之一就是文件或和据校验，比如下载软件会告诉你一个MD5哈西值，下载后你可以用`md5sum`监测其MD5值是否和网站给的值相同，用以监测文件的完整性，因为只要任意改动文件一处，那么MD5值就是完全不同。
-
-但要注意MD5和SHA-1因为年代久远都已经不再安全，[2017年Google宣布实际破解了SHA-1算法](https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html)，两个PDF文件产生了相同的hash值，实现了碰撞，那么也就是说攻击者有可能用hash值相同的恶意文件冒充原文件，SHA-1在互联网上有那么多的应用该怎么办呢，甚至包括了数字证书签名、GIT/SVN等。首先SHA-1也不是谁都能破解的，也就是Google这么强大的计算能力才做到了，但是为了避免以后潜在的安全漏洞，Google推荐使用更加安全的SHA-256算法。
-
 ### HashMap
 
-HashMap作为hash函数的经典应用和Java最常用的数据结构之一，其实现非常有学习意义，这里以**Java 7**为例，注意Java 8里改动提升了很多且使用了tree，下面的某些地方可能不太适用。首先看一下HashMap的时间复杂度，其中n为entry的个数：
+HashMap作为hash函数的经典应用和Java最常用的数据结构之一，其实现非常有学习意义，这里以**Java 7源码**为例，注意Java 8里改动提升了很多且使用了tree，下面的某些地方可能不太适用。首先看一下HashMap的时间复杂度，其中n为entry的个数：
 
 | Action | Average | Worst |
 | :----- | ------- | ----- |
@@ -45,7 +39,7 @@ HashMap作为hash函数的经典应用和Java最常用的数据结构之一，�
 
 HashMap最著名的就是其平均O(1)的时间复杂度，这正是利用了hash函数的特性，HashMap是一个buckets(table)数组，index是key的hash值，对于不同的object产生不同的hash值快速锁定其index，而不需要遍历比较。而每个bucket是一个entry的单向链表(非ArrayList和LinkedList)，数组每个元素即为链表head，至于为什么桶里是一个链表而不是单个entry是因为hash函数存在碰撞可能，hash碰撞后还需要通过equals()判断然后放在同一个桶里，理想情况是entry均匀的分布在各个桶里。理论上确实存在最坏情况O(n)，如果用一个所有对象都生成一个hash值的hash函数，那么只会有一个桶即一个链表保存所有entry。
 
-首先看一下链表node(entry)的结构：
+首先看一下链表node(entry)的结构和hash函数：
 
 ```java
 static class Entry<K,V> implements Map.Entry<K,V> {
@@ -53,6 +47,24 @@ static class Entry<K,V> implements Map.Entry<K,V> {
     V value;
     Entry<K,V> next;
     int hash;
+}
+
+final int hash(Object k) {
+    int h = 0;
+    if (useAltHashing) {
+        if (k instanceof String) {
+            return sun.misc.Hashing.stringHash32((String) k);
+        }
+        h = hashSeed;
+    }
+
+    h ^= k.hashCode();
+
+    // This function ensures that hashCodes that differ only by
+    // constant multiples at each bit position have a bounded
+    // number of collisions (approximately 8 at default load factor).
+    h ^= (h >>> 20) ^ (h >>> 12);
+    return h ^ (h >>> 7) ^ (h >>> 4);
 }
 ```
 
@@ -160,6 +172,6 @@ final Entry<K,V> removeEntryForKey(Object key) {
 - **ConcurrentHashMap**: 用于多线程的HashMap，HashMap本身线程不安全
 - **EnumMap**: 用enum作为key的Map
 - **LinkedHashMap**: 可预知迭代顺序的HashMap (可以用来实现LRU)
-- **TreeMap**: 基于SortedMap接口，使用key的Comparable排序或者提供Comparator
+- **TreeMap**: 基于SortedMap接口，使用key的Comparable或者提供的Comparator排序
 
 如果对Java 8的HashMap优化感兴趣，可以参考美团的[文章](https://zhuanlan.zhihu.com/p/21673805)。

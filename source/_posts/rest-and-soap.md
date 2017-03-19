@@ -12,10 +12,10 @@ categories: Tech
 
 REST的优点主要有以下四点：
 
-- URL表示对应资源。
+- URL表示对应资源，一般只有名词没有动词。
 - 使用标准HTTP方法(GET/POST/PUT/DELETE等)抽象化接口，对于同一资源无需自定义对其的增查删改方法。
 - Request和response的payload支持多种格式，常见的有`JSON`和`XML`，一般推荐用`JSON`。
-- 可以根据HTTP Header缓存GET请求资源。
+- 可以根据HTTP Header缓存GET请求，注意保证GET不会改变状态。
 
 ## API Root URL
 
