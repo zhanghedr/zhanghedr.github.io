@@ -4,7 +4,7 @@ date: 2017-03-20 20:34:57
 categories: Tech
 ---
 
-缓存是Web重要的组成部分，从浏览器开始到数据库的整个流程里，可以使用多种不同的缓存方案，本文主要是整理和学习Google开发者文章[HTTP Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching#cache-control)的内容，讲一下基于HTTP/1.1的浏览器缓存，本文所有图片均引自于这篇Google文章。
+缓存是Web重要的组成部分，从浏览器开始到数据库的整个流程里，可以使用多种不同的缓存方案，本文主要是整理和学习Google开发者文章[HTTP Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)的内容，讲一下基于HTTP/1.1的浏览器缓存，本文所有图片均引自于这篇Google文章。
 
 <!-- more -->
 
