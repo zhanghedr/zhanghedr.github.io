@@ -10,7 +10,7 @@ copyright: false
 
 喜欢折腾，热爱学习
 
-业余爱好旅游、电影、音乐、游戏、NBA
+业余爱好旅游、电影、音乐、NBA
 
 Blog名源自剧情游戏 [To the Moon](http://store.steampowered.com/app/206440/)
 
