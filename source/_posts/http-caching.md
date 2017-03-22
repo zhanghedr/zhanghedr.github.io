@@ -4,11 +4,11 @@ date: 2017-03-20 20:34:57
 categories: Tech
 ---
 
-缓存是Web重要的组成部分，从浏览器开始到数据库的整个流程里，可以使用多种不同的缓存方案，本文主要是整理和学习Google开发者文章[HTTP Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)的内容，讲一下基于HTTP/1.1的浏览器缓存，本文所有图片均引自于这篇Google文章。
+缓存是Web重要的组成部分，从浏览器开始到数据库的整个流程里，可以使用多种不同的缓存方案，本文主要是整理和学习Google开发者文章[HTTP Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)的内容，讲一下基于HTTP/1.1的浏览器缓存，本文所有图片均引自于这篇文章。
 
 <!-- more -->
 
-浏览器是用户Web入口，大家知道刷新或者后退一个页面时响应很快，这是因为浏览器使用了本地磁盘的缓存资源，避免了去网站服务器GET请求和重新下载资源，这样减少了延迟也节省了流量，对js/css/img等静态资源进行尽可能长时间的合理cache，能大大提高网站性能。浏览器通过HTTP headers决定缓存策略，缓存主要由以下几个headers控制：
+浏览器是用户Web入口，大家知道刷新或者后退一个页面时响应很快，这是因为浏览器使用了本地磁盘的缓存资源，避免了去网站服务器GET请求和重新下载资源，这样减少了延迟也节省了流量，对js/css/img等静态资源进行尽可能长时间的合理cache，能大大提高网站性能。浏览器通过web server响应的HTTP headers决定缓存策略，缓存主要由以下几个headers控制：
 
 - `Cache-Control` 用于控制cache作用范围、条件和持续时间
 - `ETag` 在cache过期后用于检验资源是否更新的token，通常是文件hash值
@@ -59,4 +59,4 @@ categories: Tech
 - 保证服务器提供ETag，用于重新验证过期的缓存
 - 让public的文件同时缓存于CDN以减少延迟
 
-Google开发者还推出了[PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)对网站性能打分，并提供相关优化建议，大家可以试一下。
+Google有个[PageSpeed Insights](https://developers.google.com/speed/pagespeed/insights/)可以对网站性能打分，并提供相关优化建议，大家可以试一下。至于如何配置web server(如Nginx/Apache)静态文件缓存，设置响应header，可以网上搜索有很多教程。
