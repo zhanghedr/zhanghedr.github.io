@@ -23,12 +23,6 @@ menu:
   Categories: /categories
   About: /about
 
-# site search option
-search: false
-
-# Fancybox
-fancybox: true
-
 # ===========================================
 # Theme Settings
 # ===========================================
@@ -36,6 +30,20 @@ fancybox: true
 # color: Default | Mint Green | Cobalt Blue | Hot Pink | Dark Violet
 theme:
   color: Default
+  toc: true
+  search: true
+  fancybox: true
+
+copyright:
+  enable: true
+  # https://creativecommons.org/
+  license: '本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可'
+
+reward:
+  enable: true
+  qrCode: 
+    wechat: /img/reward/wechat.png
+    # alipay: /image/reward/alipay.png
 
 # ===========================================
 # Social links Settings
@@ -45,9 +53,12 @@ social:
   stack-overflow:
   twitter:
   facebook:
+  linkedin:
+  google:
   github: https://github.com/zhanghedr
   weibo: 
   zhihu: https://www.zhihu.com/people/howard-72-93
+  pocket:
 
 # ===========================================
 # Third Party Services Settings
@@ -59,12 +70,13 @@ baidu_analytics: cc84c29e36bdbfe47c46314bc1a28005
 google_analytics: UA-88565115-1
 
 # Duoshuo
-duoshuo_shortname: zhanghedr
+duoshuo_shortname: 
 # Disqus
 disqus_shortname: 
-
+# netease
+netease_key: c67c2b3395a848d885a001d19d48175d
 
 # ===========================================
 # Version
 # ===========================================
-version: 2.1.0
+version: 2.3.x

@@ -64,18 +64,18 @@ $global-background: $white !default;
 
 // Headings font size of the site.
 $global-headings: (
-  h1: 1.5rem,
-  h2: 1.4rem,
-  h3: 1.3rem,
-  h4: 1.2rem,
-  h5: 1.1rem,
-  h6: 1rem
+  h1: 2em,
+  h2: 1.5em,
+  h3: 1.2em,
+  h4: 1em,
+  h5: 0.8em,
+  h6: 0.6em
 ) !default;
 
 
 // ========== Header ========== //
 // Padding of the site header.
-$header-padding: 20px 80px !default;
+$header-padding: 20px 20px !default;
 
 // Font family: Chancery 
 @font-face {
@@ -106,7 +106,7 @@ $menu-item-mobile-margin: 5px !default;
 $menu-link-font-size: 18px !default;
 
 // Height of the mobile header.
-$mobile-header-height: 50px !default;
+$mobile-navbar-height: 50px !default;
 
 // ========== Post ========== //
 // Margin bottom of post list.
@@ -122,7 +122,7 @@ $post-border: 1px solid $light-gray !default;
 $post-title-font-size: 27px !default;
 
 // Font weight of post title.
-$post-title-font-weight: 200 !default;
+$post-title-font-weight: 400 !default;
 
 // Margin top of the post meta (post time).
 $post-meta-margin-top: 5px !default;
@@ -134,7 +134,7 @@ $post-time-font-color: $dark-gray !default;
 $post-readMore-border-bottom: 1px solid $theme-color !default;
 
 // Margin top of the post footer.
-$post-footer-margin-top: 40px !default;
+$post-footer-margin-top: 20px !default;
 
 // Border top of post footer.
 $post-footer-border-top: 1px solid $light-gray !default;
@@ -178,7 +178,6 @@ $content-blockquote-border-left: 3px solid rgba($theme-color, 0.3) !default;
 // Border color of the table.
 $content-table-border-color: darken($deputy-color, 3%) !default;
 
-
 // ========== Code ========== //
 // Color of the code.
 $code-color: #c7254e !default;
@@ -201,9 +200,28 @@ $code-highlight-color: (
 ) !default;
 
 // Code type list.
-$code-type-list: ("html", "js", "bash", "css", "scss","diff", "java", "xml",
-                 "python", "json", "swift", "ruby", "perl", "php", "c", "java",
-                 "cpp", "scheme") !default;
+$code-type-list: (
+  html: "HTML",
+  js: "JavaScript",
+  bash: "Bash",
+  css: "CSS",
+  scss: "Scss",
+  java: "Java",
+  xml: "XML",
+  python: "Python",
+  json: "JSON",
+  swift: "Swift",
+  ruby: "Ruby",
+  php: "PHP",
+  c: "C",
+  cpp: "C++",
+  scheme: "Scheme",
+  objectivec: "Objective-C",
+  yml: "YAML",
+  stylus: "Stylus",
+  sql: "SQL",
+  http: "HTTP"
+) !default;
 
 // Color of the code background.
 $code-background: $deputy-color !default;
@@ -233,7 +251,7 @@ $copyright-margin: 10px 0 !default;
 
 // ========== Archive ========== //
 // Margin of the archive.
-$archive-margin: 2em auto !default;
+$archive-margin: 2em 0px !default;
 
 // Max width of the archive.
 $archive-max-width: 550px !default;

@@ -16,19 +16,14 @@
       </div>
     </header>
 
-    {% if not is_home() and toc(page.content) %}
-      <div class="post-toc" id="post-toc">
-        <h2 class="post-toc-title">{{ __('posts.toc') }}</h2>
-        <div class="post-toc-content">
-          {{ toc(page.content, {list_number: false}) }}
-        </div>
-      </div>
-    {% endif %}
+    {# Post TOC #}
+    {% include "../_partial/_post/toc.swig" %}
 
     <div class="post-content">
       {% if is_home() %}
+        {% set excerpt = "" %}
         {% if post.description %}
-          {% set excerpt = post.description %}
+          {% set excerpt = '<p>' + post.description + '</p>' %}
         {% elif post.excerpt %}
           {% set excerpt = post.excerpt %}
         {% endif %}
@@ -46,16 +41,27 @@
       {% endif %}
     </div>
 
-    {% if post.tags and post.tags.length and not is_home() %}
-      <footer class="post-footer">
-        <div class="post-tags">
-          {% for tag in post.tags %}
-            <a href="{{ url_for(tag.path) }}">{{ tag.name }}</a>
-          {% endfor %}
-        </div>
+    {% if not is_home() %}
+      {# Post Copyright #}
+      {% include "../_partial/_post/copyright.swig" %}
 
+      {# Reward #}
+      {% include "../_partial/_post/reward.swig" %}
+    {% endif %}
+
+    {% if not is_home() %}
+      <footer class="post-footer">
+        {% if post.tags and post.tags.length %}
+          <div class="post-tags">
+            {% for tag in post.tags %}
+              <a href="{{ url_for(tag.path) }}">{{ tag.name }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {# Post Pagination #}
         {% include "../_partial/pagination.swig" %}
       </footer>
     {% endif %}
+
   </article>
 {% endmacro %}
