@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="2016 Thanksgiving"/>
+  <meta name="description" content="Session 和 Cookie"/>
 
 
 
@@ -29,27 +29,21 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2016/12/04/2016-Thanksgiving/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/03/29/session-and-cookie/"/>
 
 
-<meta name="description" content="今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大">
+<meta name="description" content="Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2016 Thanksgiving">
-<meta property="og:url" content="http://www.zhanghedr.com/2016/12/04/2016-Thanksgiving/index.html">
+<meta property="og:title" content="Session 和 Cookie">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/03/29/session-and-cookie/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/map.png">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/death_valley.JPG">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/grand_canyon.JPG">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/antelope_canyon.jpg">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/horseshoe_bend.JPG">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/zion.JPG">
-<meta property="og:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/bryce.JPG">
-<meta property="og:updated_time" content="2016-12-29T08:00:12.000Z">
+<meta property="og:description" content="Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。">
+<meta property="og:image" content="http://www.zhanghedr.com/img/session_and_cookie/facebook.jpg">
+<meta property="og:updated_time" content="2017-03-31T02:57:16.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2016 Thanksgiving">
-<meta name="twitter:description" content="今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大">
-<meta name="twitter:image" content="http://www.zhanghedr.com/img/2016_thanksgiving/map.png">
+<meta name="twitter:title" content="Session 和 Cookie">
+<meta name="twitter:description" content="Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。">
+<meta name="twitter:image" content="http://www.zhanghedr.com/img/session_and_cookie/facebook.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -98,7 +92,7 @@
 
 
 
-    <title> 2016 Thanksgiving · To The Moon </title>
+    <title> Session 和 Cookie · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -223,13 +217,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          2016 Thanksgiving
+          Session 和 Cookie
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2016年12月4日
+          2017年3月29日
         </span>
       </div>
     </header>
@@ -239,31 +233,43 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#路线"><span class="toc-text">路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#照片"><span class="toc-text">照片</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-text">Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie属性"><span class="toc-text">Cookie属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie分类"><span class="toc-text">Cookie分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-text">Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>今年感恩节去了一趟西部，走了一圈国家公园package环线，路线如下图，分别有Death Valley National Park, Zion National Park, Bryce Canyon National Park, Horseshoe Bend, Antelope Canyon, Grand Canyon National Park，拱门在右上角太远就没去了，发现最喜欢的还是碰巧下大雪的Bryce Canyon。<br><img src="/img/2016_thanksgiving/map.png" alt=""></p>
+        <p>Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。</p>
 <a id="more"></a>
-<h2 id="路线"><a href="#路线" class="headerlink" title="路线"></a>路线</h2><ol>
-<li>Arrive Vegas</li>
-<li>Dead Valley</li>
-<li>Zion</li>
-<li>Brcye</li>
-<li>Upper/Lower Antelope Canyon, Horseshoe Bend</li>
-<li>Grand Canyon South Rim</li>
-<li>Back Vegas</li>
-</ol>
-<h2 id="照片"><a href="#照片" class="headerlink" title="照片"></a>照片</h2><p>这里挑出每个公园的代表照片</p>
-<p><center><em>Death Valley National Park</em></center><img src="/img/2016_thanksgiving/death_valley.JPG" alt=""></p>
-<p><center><em>Grand Canyon National Park</em></center><img src="/img/2016_thanksgiving/grand_canyon.JPG" alt=""></p>
-<p><center><em>Antelope Canyon</em></center><img src="/img/2016_thanksgiving/antelope_canyon.jpg" alt=""></p>
-<p><center><em>Horseshoe Bend</em></center><img src="/img/2016_thanksgiving/horseshoe_bend.JPG" alt=""></p>
-<p><center><em>Zion National Park</em></center><img src="/img/2016_thanksgiving/zion.JPG" alt=""></p>
-<p><center><em>Bryce Canyon National Park</em></center><img src="/img/2016_thanksgiving/bryce.JPG" alt=""></p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie通过Server返回HTTP响应头设置比如：</p>
+<p><code>Set-Cookie: wd=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=-1490916428; path=/; domain=.facebook.com</code></p>
+<p>然后浏览器在接下来发送请求时会在header中带上cookies比如：</p>
+<p><code>Cookie: theme=light; sessionToken=abc123</code></p>
+<p>如果用户浏览器禁用cookie，可以在请求时把cookie放到HTTP URL或POST body中。不同子域名或端口可以共享Cookie。</p>
+<h3 id="Cookie属性"><a href="#Cookie属性" class="headerlink" title="Cookie属性"></a>Cookie属性</h3><p>下面是facebook登录页面chrome显示的cookies：</p>
+<p><img src="/img/session_and_cookie/facebook.jpg" alt="facebook"></p>
+<p>可以看到分别有以下属性：</p>
+<ul>
+<li>Name / Value</li>
+<li>Domain / Path</li>
+<li>Expires / Max-Age</li>
+<li>Size</li>
+<li>HTTP</li>
+<li>Secure</li>
+<li>SameSite</li>
+</ul>
+<h3 id="Cookie分类"><a href="#Cookie分类" class="headerlink" title="Cookie分类"></a>Cookie分类</h3><p>下面是常见Cookie分类：</p>
+<ul>
+<li><code>Session cookie</code> 未设置过期时间的cookie，浏览器关闭后就被删除了，在<code>Expires / Max-Age</code>属性中为<code>Session</code>。</li>
+<li><code>Persistent cookie</code> 设置了过期时间的cookie，在浏览器关闭后依然保存，在<code>Expires / Max-Age</code>属性中可以看到过期时间，到期删除或用户手动删除。用于跟踪多个请求的状态，比如session。</li>
+<li><code>Secure cookie</code> 只能在HTTPS加密协议下传输，即上图属性<code>Secure</code>打钩的cookie。</li>
+<li><code>HttpOnly cookie</code> 不能被前端JS访问，即上图属性<code>HTTP</code>打钩的cookie。</li>
+<li><code>SameSite cookie</code> 只能在same site的情况下发送，即上图属性<code>SameSite</code>打钩的cookie。</li>
+</ul>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>HTTP是无状态协议，也就是说在用户登录后的HTTP请求不知道之前登录过没有，在登录时可以在cookie中保存一个server产生的无规律字符串session_id，同时把session_id=session保存在服务端，可以是内存或数据库，session对象包含了用户信息，如user_id、expire_time、last_activity等，这样每次请求server都可以用中间件或装饰器，通过cookie中的session_id得到session从而验证用户身份和信息。比如可以在某站登录后手动删除浏览器cookie，再刷新页面会被logout。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank" rel="external">https://en.wikipedia.org/wiki/HTTP_cookie</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a></p>
 
       
     </div>
@@ -283,7 +289,7 @@
     </p>
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://www.zhanghedr.com/2016/12/04/2016-Thanksgiving/">http://www.zhanghedr.com/2016/12/04/2016-Thanksgiving/</a>
+      <a href="http://www.zhanghedr.com/2017/03/29/session-and-cookie/">http://www.zhanghedr.com/2017/03/29/session-and-cookie/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -305,12 +311,12 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/06/Java-JDBC-PreparedStatement/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Java JDBC PreparedStatement 用法</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
+      <a class="next" href="/2017/03/20/http-caching/">
+        <span class="next-text nav-default">HTTP Caching</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
     
   </nav>
 

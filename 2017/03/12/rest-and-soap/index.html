@@ -38,7 +38,7 @@
 <meta property="og:url" content="http://www.zhanghedr.com/2017/03/12/rest-and-soap/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
-<meta property="og:updated_time" content="2017-03-19T15:05:34.000Z">
+<meta property="og:updated_time" content="2017-03-30T22:29:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="REST 与 SOAP">
 <meta name="twitter:description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
@@ -297,7 +297,7 @@
 </ul>
 <p>下面是请求的一个例子，响应也是类似结构返回对应请求XML。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">soap:Envelope</span></span></div><div class="line">    <span class="attr">xmlns:soap</span>=<span class="string">"http://www.w3.org/2003/05/soap-envelope/"</span> <span class="attr">soap:encodingStyle</span>=<span class="string">"http://www.w3.org/2003/05/soap-encoding"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">soap:Header</span>&gt;</span><span class="tag">&lt;/<span class="name">soap:Header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">soap:Body</span> <span class="attr">xmlns:m</span>=<span class="string">"http://www.example.org/abc"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">m:getUserById</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">m:id</span>&gt;</span>1<span class="tag">&lt;/<span class="name">m:id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">m:getUserById</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">soap:Body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">soap:Envelope</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>可以看到getUserById方法被定义在了SOAP message中，而URL<code>https://api.example.com/v1</code>没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。</p>
+<p>可以看到getUserById方法被定义在了SOAP message中，而URL<code>https://api.example.com/v1</code>没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。</p>
 <p>​          </p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://bourgeois.me/rest/" target="_blank" rel="external">https://bourgeois.me/rest/</a></p>
 <p><a href="https://www.ibm.com/developerworks/cn/webservices/0907_rest_soap/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/webservices/0907_rest_soap/</a></p>
@@ -333,20 +333,6 @@
 
       
       
-  <div class="post-reward">
-    <input type="checkbox" name="reward" id="reward" hidden />
-    <label class="reward-button" for="reward">赞赏支持</label>
-    <div class="qr-code">
-      
-      
-        <label class="qr-code-image" for="reward">
-          <img class="image" src="/img/reward/wechat.png" title="wechat">
-        </label>
-      
-      
-    </div>
-  </div>
-
     
 
     

@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title><![CDATA[Session 和 Cookie]]></title>
+      <url>http://www.zhanghedr.com/2017/03/29/session-and-cookie/</url>
+      <content type="html"><![CDATA[<p>Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。</p>
+<a id="more"></a>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie通过Server返回HTTP响应头设置比如：</p>
+<p><code>Set-Cookie: wd=deleted; expires=Thu, 01-Jan-1970 00:00:01 GMT; Max-Age=-1490916428; path=/; domain=.facebook.com</code></p>
+<p>然后浏览器在接下来发送请求时会在header中带上cookies比如：</p>
+<p><code>Cookie: theme=light; sessionToken=abc123</code></p>
+<p>如果用户浏览器禁用cookie，可以在请求时把cookie放到HTTP URL或POST body中。不同子域名或端口可以共享Cookie。</p>
+<h3 id="Cookie属性"><a href="#Cookie属性" class="headerlink" title="Cookie属性"></a>Cookie属性</h3><p>下面是facebook登录页面chrome显示的cookies：</p>
+<p><img src="/img/session_and_cookie/facebook.jpg" alt="facebook"></p>
+<p>可以看到分别有以下属性：</p>
+<ul>
+<li>Name / Value</li>
+<li>Domain / Path</li>
+<li>Expires / Max-Age</li>
+<li>Size</li>
+<li>HTTP</li>
+<li>Secure</li>
+<li>SameSite</li>
+</ul>
+<h3 id="Cookie分类"><a href="#Cookie分类" class="headerlink" title="Cookie分类"></a>Cookie分类</h3><p>下面是常见Cookie分类：</p>
+<ul>
+<li><code>Session cookie</code> 未设置过期时间的cookie，浏览器关闭后就被删除了，在<code>Expires / Max-Age</code>属性中为<code>Session</code>。</li>
+<li><code>Persistent cookie</code> 设置了过期时间的cookie，在浏览器关闭后依然保存，在<code>Expires / Max-Age</code>属性中可以看到过期时间，到期删除或用户手动删除。用于跟踪多个请求的状态，比如session。</li>
+<li><code>Secure cookie</code> 只能在HTTPS加密协议下传输，即上图属性<code>Secure</code>打钩的cookie。</li>
+<li><code>HttpOnly cookie</code> 不能被前端JS访问，即上图属性<code>HTTP</code>打钩的cookie。</li>
+<li><code>SameSite cookie</code> 只能在same site的情况下发送，即上图属性<code>SameSite</code>打钩的cookie。</li>
+</ul>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>HTTP是无状态协议，也就是说在用户登录后的HTTP请求不知道之前登录过没有，在登录时可以在cookie中保存一个server产生的无规律字符串session_id，同时把session_id=session保存在服务端，可以是内存或数据库，session对象包含了用户信息，如user_id、expire_time、last_activity等，这样每次请求server都可以用中间件或装饰器，通过cookie中的session_id得到session从而验证用户身份和信息。比如可以在某站登录后手动删除浏览器cookie，再刷新页面会被logout。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank" rel="external">https://en.wikipedia.org/wiki/HTTP_cookie</a></p>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[HTTP Caching]]></title>
       <url>http://www.zhanghedr.com/2017/03/20/http-caching/</url>
       <content type="html"><![CDATA[<p>缓存是Web重要的组成部分，从浏览器开始到数据库的整个流程里，可以使用多种不同的缓存方案，本文主要是整理和学习Google开发者文章<a href="https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching" target="_blank" rel="external">HTTP Caching</a>的内容，讲一下基于HTTP/1.1的浏览器缓存，本文所有图片均引自于这篇文章。</p>
@@ -277,7 +321,7 @@
 </ul>
 <p>下面是请求的一个例子，响应也是类似结构返回对应请求XML。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">soap:Envelope</span></span></div><div class="line">    <span class="attr">xmlns:soap</span>=<span class="string">"http://www.w3.org/2003/05/soap-envelope/"</span> <span class="attr">soap:encodingStyle</span>=<span class="string">"http://www.w3.org/2003/05/soap-encoding"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">soap:Header</span>&gt;</span><span class="tag">&lt;/<span class="name">soap:Header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">soap:Body</span> <span class="attr">xmlns:m</span>=<span class="string">"http://www.example.org/abc"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">m:getUserById</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">m:id</span>&gt;</span>1<span class="tag">&lt;/<span class="name">m:id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">m:getUserById</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">soap:Body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">soap:Envelope</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>可以看到getUserById方法被定义在了SOAP message中，而URL<code>https://api.example.com/v1</code>没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。</p>
+<p>可以看到getUserById方法被定义在了SOAP message中，而URL<code>https://api.example.com/v1</code>没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。</p>
 <p>​          </p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://bourgeois.me/rest/" target="_blank" rel="external">https://bourgeois.me/rest/</a></p>
 <p><a href="https://www.ibm.com/developerworks/cn/webservices/0907_rest_soap/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/webservices/0907_rest_soap/</a></p>
@@ -344,14 +388,14 @@
       <url>http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/</url>
       <content type="html"><![CDATA[<p>CSRF (Cross-site request forgery)是最著名的网络攻击之一，又被称作XSRF，这里讲一下其原理和如何在API测试中实现CSRF验证。</p>
 <a id="more"></a>
-<h1 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h1><p>简单来说CSRF就是攻击者欺骗用户访问某个危险网站B，在网站B里含有攻击者代码，以用户的名义发送请求给安全的网站A。如果用户最近登录过网站A还没有logout，session cookie还在的话，那么这个用户未授权请求就会成功，而且还是在用户和网站A都不知情的情况下，这个请求可以是GET或POST等，等于说攻击者可以模仿用户的身份对其进行一些更新删除操作，这个无疑是非常危险的，所以网站A需要有CSRF的防御机制，下面以Django举例。</p>
-<p>Django内置了CSRF验证机制，也就是Cookie-to-Header Token方法：</p>
+<h1 id="CSRF攻击原理"><a href="#CSRF攻击原理" class="headerlink" title="CSRF攻击原理"></a>CSRF攻击原理</h1><p>简单来说CSRF就是攻击者欺骗用户访问某个危险网站B，由于<code>Same-origin policy</code>B站JS不能直接请求安全网站A，但如果是GET则简单的点击就会上当，如果是POST则需要模仿表单提交，以用户的名义发送请求给A。如果用户最近登录过网站A还没有登出session cookie还在的话，那么这个用户未授权请求就会成功，而且还是在用户和网站A都不知情的情况下，攻击者可以模仿用户的身份对其进行一些改变状态的操作，这是很危险的，所以网站A需要有CSRF的防御机制，下面以Django举例。</p>
+<p>Django内置了CSRF验证机制，Cookie-to-Header Token方法：</p>
 <ol>
 <li>用户登录后，除了session cookie，Django还会产生一个随机的<code>csrftoken</code> cookie</li>
-<li>前端在发送不安全的请求前，比如POST，设<code>X-CSRFToken</code>header，value是csrftoken</li>
-<li>Server验证cookie和这个请求header中的token值是否一致</li>
+<li>在隐藏表单、HTTP header或POST body中也加入这个token，在Django中可以设<code>X-CSRFToken={csrftoken}</code>的header</li>
+<li>Server验证cookie和header中两个token的值是否一致</li>
 </ol>
-<p>使用了这种防御机制之后，如果用户不小心点击了攻击者的链接，虽然他能利用网站A还存有的session验证用户身份，但是发出的请求header中没有CSRF Token或者不同，服务器CSRF验证失败这个请求将会返回403 Forbidden错误，从而阻止了攻击。</p>
+<p>使用了这种token验证的防御机制后，如果用户不小心点击了攻击者的链接，虽然他能利用网站A还存有的session验证用户身份，但是发出的请求只有cookie token而没有header token，服务器CSRF验证失败将会返回403 Forbidden错误。</p>
 <p>根据<a href="https://tools.ietf.org/html/rfc7231.html#section-4.2.1" target="_blank" rel="external">RFC 7231#section-4.2.1</a>，安全的请求是只读、无危害的如GET，后端应该合理的实现GET请求，而对不安全的请求如POST/PUT/DELETE进行保护。</p>
 <h1 id="API测试验证CSRF"><a href="#API测试验证CSRF" class="headerlink" title="API测试验证CSRF"></a>API测试验证CSRF</h1><p>这里以Django和<a href="https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en" target="_blank" rel="external">Postman</a>举例，Postman是一款很方便的HTTP API测试Chrome插件。</p>
 <ol>
