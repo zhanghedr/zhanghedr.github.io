@@ -8,7 +8,7 @@ CSRF (Cross-site request forgery)是最著名的网络攻击之一，又被称�
 
 <!-- more -->
 
-# CSRF攻击原理
+## CSRF攻击原理
 
 简单来说CSRF就是攻击者欺骗用户访问某个危险网站B，由于`Same-origin policy`B站JS不能直接请求安全网站A，但如果是GET则简单的点击就会上当，如果是POST则需要模仿表单提交，以用户的名义发送请求给A。如果用户最近登录过网站A还没有登出session cookie还在的话，那么这个用户未授权请求就会成功，而且还是在用户和网站A都不知情的情况下，攻击者可以模仿用户的身份对其进行一些改变状态的操作，这是很危险的，所以网站A需要有CSRF的防御机制，下面以Django举例。
 
@@ -22,7 +22,7 @@ Django内置了CSRF验证机制，Cookie-to-Header Token方法：
 
 根据[RFC 7231#section-4.2.1](https://tools.ietf.org/html/rfc7231.html#section-4.2.1)，安全的请求是只读、无危害的如GET，后端应该合理的实现GET请求，而对不安全的请求如POST/PUT/DELETE进行保护。
 
-# API测试验证CSRF
+## API测试验证CSRF
 
 这里以Django和[Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)举例，Postman是一款很方便的HTTP API测试Chrome插件。
 
