@@ -129,7 +129,7 @@ Content-Length: 24
 </soap:Envelope>
 ```
 
-可以看到getUserById方法被定义在了SOAP message中，而URL`https://api.example.com/v1`没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。
+可以看到getUserById方法被定义在了SOAP message中，而URL`https://api.example.com/v1`没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。
 
 ​          
 
