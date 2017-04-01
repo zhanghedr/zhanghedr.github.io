@@ -574,7 +574,7 @@
         
 
         
-          <p>大家知道添加索引<code>index(key)</code>是最常见的MySQL速度优化方法之一，数据库会找到提前准备好的搜索条件对应数据位置，从而避免了对整个表的全局搜索，可以理解为从<code>O(n)</code>到<code>O(logn)</code>的提升。可以想象这在对于越大的表越有效果，在实际中也确实如此，如果在上千万条数据的表中没有命中索引那读取速度将非常慢，对于这种表在考虑分表前，不妨先进行索引优化、硬件升级、增加缓存等，本文探讨MySQL索引与优化。</p>
+          <p>索引<code>index(key)</code>是最常见的MySQL速度优化方法之一，大部分数据库和文件系统都采用<a href="https://en.wikipedia.org/wiki/B-tree">B-tree</a>和<a href="https://en.wikipedia.org/wiki/B%2B_tree">B+tree</a>作为索引数据结构，简略来说使带有索引的查找时间复杂度为<code>O(logn)</code>，而避免了全表扫描<code>O(n)</code>，在数据量大的表中速度可以提升几个数量级，本文粗略的学习和探讨MySQL索引原理、数据结构与优化。</p>
           <div class="read-more">
             <a href="/2017/03/04/mysql-index/" class="read-more-link">阅读更多</a>
           </div>
