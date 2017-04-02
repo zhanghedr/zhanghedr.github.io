@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="认为对的，所以走下去"/>
+  <meta name="description" content="网络传输协议"/>
 
 
 
@@ -29,18 +29,36 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/categories/Tech/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/"/>
 
 
-<meta name="description" content="认为对的，所以走下去">
-<meta property="og:type" content="website">
-<meta property="og:title" content="To The Moon">
-<meta property="og:url" content="http://www.zhanghedr.com/categories/Tech/index.html">
+<meta name="description" content="Web中接触最多的就是HTTP/HTTPS协议，但它还有底层的协议，按层高到低排列举例：
+
+应用层 (Application)：HTTP、TLS/SSL、SSH、FTP
+传输层 (Transport)：TCP、UDP
+网络层 (Internet)：IP (IPv4, IPv6)
+链接层 (Link)：IEEE 802.11‎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络传输协议">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="认为对的，所以走下去">
+<meta property="og:description" content="Web中接触最多的就是HTTP/HTTPS协议，但它还有底层的协议，按层高到低排列举例：
+
+应用层 (Application)：HTTP、TLS/SSL、SSH、FTP
+传输层 (Transport)：TCP、UDP
+网络层 (Internet)：IP (IPv4, IPv6)
+链接层 (Link)：IEEE 802.11‎">
+<meta property="og:image" content="http://www.zhanghedr.com/img/internet_communication_protocol/tcp.jpg">
+<meta property="og:updated_time" content="2017-04-02T01:27:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="To The Moon">
-<meta name="twitter:description" content="认为对的，所以走下去">
+<meta name="twitter:title" content="网络传输协议">
+<meta name="twitter:description" content="Web中接触最多的就是HTTP/HTTPS协议，但它还有底层的协议，按层高到低排列举例：
+
+应用层 (Application)：HTTP、TLS/SSL、SSH、FTP
+传输层 (Transport)：TCP、UDP
+网络层 (Internet)：IP (IPv4, IPv6)
+链接层 (Link)：IEEE 802.11‎">
+<meta name="twitter:image" content="http://www.zhanghedr.com/img/internet_communication_protocol/tcp.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -89,11 +107,7 @@
 
 
 
-    <title>
-  
-    Tech · To The Moon
-  
-</title>
+    <title> 网络传输协议 · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -214,183 +228,106 @@
           <div id="content" class="content">
             
   
-  <section id="archive" class="archive">
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          网络传输协议
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年4月1日
+        </span>
+      </div>
+    </header>
+
     
-      
-        <div class="archive-title category">
-          <h2 class="archive-name">Tech</h2>
-        </div>
-      
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP"><span class="toc-text">IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket"><span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP长连接"><span class="toc-text">TCP长连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长轮询"><span class="toc-text">长轮询</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>Web中接触最多的就是HTTP/HTTPS协议，但它还有底层的协议，按层高到低排列举例：</p>
+<ul>
+<li><strong>应用层 (Application)</strong>：HTTP、TLS/SSL、SSH、FTP</li>
+<li><strong>传输层 (Transport)</strong>：TCP、UDP</li>
+<li><strong>网络层 (Internet)</strong>：IP (IPv4, IPv6)</li>
+<li><strong>链接层 (Link)</strong>：IEEE 802.11‎ </li>
+</ul>
+<a id="more"></a>
+<h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p>IP主要负责寻址和数据包的传输</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP实现了在IP层之上可靠、有序、准确的传输数据包，因为太广泛的应用也常说TCP/IP，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：</p>
+<p><img src="/img/internet_communication_protocol/tcp.jpg" alt="tcp"></p>
+<h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>HTTP经过多年已经有多个版本了1.0, 1.1, 2.0，包含HTTP方法、URI、HTTP版本、header、body、status code等。HTTP是无状态的，通过request和response交互，必须是客户端请求服务端，而不能反过来，服务端是被动的。新的Websocket协议解决这个问题，服务端可以主动的响应客户端了。</p>
+<p>而HTTPS是基于TLS/SSL协议的HTTP，数据经过了加密且传输的两方身份经过了验证，大大提高了HTTP的安全性。</p>
+<h3 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h3><p>Socket本身不是协议，而是TCP/UDP传输协议的实现接口API，用于两个节点建立和关闭TCP连接、发送和接收数据。</p>
+<h3 id="TCP长连接"><a href="#TCP长连接" class="headerlink" title="TCP长连接"></a>TCP长连接</h3><p>HTTP是基于TCP传输通信的，首先TCP打开一个连接，然后HTTP在其中发送请求和接收响应，结束后TCP关闭连接，这是一个TCP短连接。一个页面有很多动态和静态资源请求，每次建立和关闭会消耗很多资源和时间，HTTP 1.0通过在响应头的<code>Connection: keep-alive</code>建立长连接，但HTTP 1.1已经默认所有连接都是长连接了，在一个HTTP请求完成后连接不会关闭，后续的请求可以继续用这个连接直到timeout，这样不会产生过多连接减少负担，当然长连接也需要消耗服务器一定资源去管理和维持。</p>
+<h3 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h3><p>在访问不高的情况下简单用JS写一个Ajax循环轮询请求即可，但其实很多请求是无效浪费的。对于时间敏感访问量大的应用，可以用长轮询方式，客户端向服务器发送Ajax请求，server会挂起请求监测是否有消息，有新消息或超时才返回响应关闭连接，这样减少了无用的请求。</p>
+
+      
+    </div>
 
     
       
       
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-04-01
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/04/01/internet-communication-protocol/" class="archive-post-link">
-            网络传输协议
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-29
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/29/session-and-cookie/" class="archive-post-link">
-            Session 和 Cookie
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-20
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/20/http-caching/" class="archive-post-link">
-            HTTP Caching
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-19
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/19/md5-sha1-salt/" class="archive-post-link">
-            MD5 / SHA-1 + Salt
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-18
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/18/hash-and-hashmap/" class="archive-post-link">
-            Hash 与 HashMap
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-13
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/13/n-1-problem/" class="archive-post-link">
-            N + 1 问题
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-12
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/12/rest-and-soap/" class="archive-post-link">
-            REST 与 SOAP
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-03-08
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/03/08/cache-writing-policies/" class="archive-post-link">
-            Cache写机制
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-02-08
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/02/08/csrf-and-api-test/" class="archive-post-link">
-            CSRF和API测试
-          </a>
-        </span>
-      </div>
-    
-      
-      
-      <div class="archive-post">
-        <span class="archive-post-time">
-          
-            2017-02-04
-          
-        </span>
-        <span class="archive-post-title">
-          <a href="/2017/02/04/virtualenv-with-given-python-version/" class="archive-post-link">
-            Virtualenv使用指定Python版本
-          </a>
-        </span>
-      </div>
-    
-  </section>
 
-  
-  <nav class="pagination">
+  <div class="post-copyright">
+    
+    <p class="copyright-item">
+      <span>链接: </span>
+      <a href="http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/">http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/</a>
+    </p>
+
+    <p class="copyright-item">
+      
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
     
     
-      <a class="next" href="/categories/Tech/page/2/">
-        <span class="next-text">下一页</span>
+      <a class="next" href="/2017/03/29/session-and-cookie/">
+        <span class="next-text nav-default">Session 和 Cookie</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
 
 
           </div>
           
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
 
         </div>  
       </main>
