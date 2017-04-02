@@ -112,6 +112,8 @@ EXPLAIN SELECT * FROM app.post WHERE status=0;
 - 每个字段用尽可能小的类型大小
 - 在字段过长的情况下，可以用前缀索引
 
+如理解有误的地方欢迎指正。
+
 ### 参考资料
 
 张洋的博客 - [MySQL索引背后的数据结构及算法原理](http://blog.codinglabs.org/articles/theory-of-mysql-index.html)
