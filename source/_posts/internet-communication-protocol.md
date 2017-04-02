@@ -4,7 +4,7 @@ date: 2017-04-01 17:36:07
 categories: Tech
 ---
 
-Web中接触最多的就是HTTP/HTTPS协议，但它还有底层的协议，按层高到低排列举例：
+Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：
 
 - **应用层 (Application)**：HTTP、TLS/SSL、SSH、FTP
 - **传输层 (Transport)**：TCP、UDP
