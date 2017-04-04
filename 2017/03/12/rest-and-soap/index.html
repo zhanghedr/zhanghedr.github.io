@@ -32,16 +32,16 @@
 <link rel="canonical" href="http://www.zhanghedr.com/2017/03/12/rest-and-soap/"/>
 
 
-<meta name="description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
+<meta name="description" content="REST、SOAP和RPC是最常见的Web Services，其中REST和SOAP都是基于HTTP通信，但有很多不同点，基于数据格式又可以分JSON和XML，随着互联网的发展REST变得越来越流行，本文主要讨论它们的特性和不同。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="REST 与 SOAP">
 <meta property="og:url" content="http://www.zhanghedr.com/2017/03/12/rest-and-soap/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
-<meta property="og:updated_time" content="2017-03-30T22:29:38.000Z">
+<meta property="og:description" content="REST、SOAP和RPC是最常见的Web Services，其中REST和SOAP都是基于HTTP通信，但有很多不同点，基于数据格式又可以分JSON和XML，随着互联网的发展REST变得越来越流行，本文主要讨论它们的特性和不同。">
+<meta property="og:updated_time" content="2017-04-04T23:30:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="REST 与 SOAP">
-<meta name="twitter:description" content="一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。">
+<meta name="twitter:description" content="REST、SOAP和RPC是最常见的Web Services，其中REST和SOAP都是基于HTTP通信，但有很多不同点，基于数据格式又可以分JSON和XML，随着互联网的发展REST变得越来越流行，本文主要讨论它们的特性和不同。">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -231,14 +231,14 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#REST"><span class="toc-text">REST</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Root-URL"><span class="toc-text">API Root URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL资源"><span class="toc-text">URL资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页"><span class="toc-text">分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#授权"><span class="toc-text">授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content-Type"><span class="toc-text">Content Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Request-Response"><span class="toc-text">HTTP Request Response</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SOAP"><span class="toc-text">SOAP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SOAP-Message"><span class="toc-text">SOAP Message</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#REST"><span class="toc-text">REST</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Root-URL"><span class="toc-text">API Root URL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#URL资源"><span class="toc-text">URL资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分页"><span class="toc-text">分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#状态码"><span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#授权"><span class="toc-text">授权</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Content-Type"><span class="toc-text">Content Type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-Request-Response"><span class="toc-text">HTTP Request Response</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SOAP"><span class="toc-text">SOAP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SOAP-Message"><span class="toc-text">SOAP Message</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WSDL"><span class="toc-text">WSDL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-Services-vs-API"><span class="toc-text">Web Services vs API</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。</p>
+        <p>REST、SOAP和RPC是最常见的Web Services，其中REST和SOAP都是基于HTTP通信，但有很多不同点，基于数据格式又可以分JSON和XML，随着互联网的发展REST变得越来越流行，本文主要讨论它们的特性和不同。</p>
 <a id="more"></a>
 <h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><p>REST的优点主要有以下四点：</p>
 <ul>
@@ -247,6 +247,7 @@
 <li>Request和response的payload支持多种格式，常见的有<code>JSON</code>和<code>XML</code>，一般推荐用<code>JSON</code>。</li>
 <li>可以根据HTTP Header缓存GET请求，注意保证GET不会改变状态。</li>
 </ul>
+<p>RESTful web services常见的框架有<a href="https://jersey.java.net/" target="_blank" rel="external">Jersey</a>和<a href="http://www.dropwizard.io/" target="_blank" rel="external">Dropwizard</a>。</p>
 <h2 id="API-Root-URL"><a href="#API-Root-URL" class="headerlink" title="API Root URL"></a>API Root URL</h2><p>常用的URL是<code>https://api.example.com/v1</code>，其构成为：</p>
 <ul>
 <li>HTTPS协议保证数据安全</li>
@@ -289,6 +290,7 @@
 <li>请求的资源和操作方法定义在POST payload SOAP message中，需要解析才能知道。</li>
 <li>只支持XML数据格式，在很多场景有局限性。</li>
 </ul>
+<p>SOAP web services常见框架有<a href="http://cxf.apache.org/" target="_blank" rel="external">Apache CXF</a>和<a href="http://axis.apache.org/axis2/java/core/" target="_blank" rel="external">Apache Axis2</a>。</p>
 <h2 id="SOAP-Message"><a href="#SOAP-Message" class="headerlink" title="SOAP Message"></a>SOAP Message</h2><p>因为SOAP所有的请求全部定义在其XML message中，所以其结构和内容显得格外重要，它主要由三部分构成：</p>
 <ul>
 <li>Envelope，XML root，必填</li>
@@ -298,7 +300,11 @@
 <p>下面是请求的一个例子，响应也是类似结构返回对应请求XML。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">soap:Envelope</span></span></div><div class="line">    <span class="attr">xmlns:soap</span>=<span class="string">"http://www.w3.org/2003/05/soap-envelope/"</span> <span class="attr">soap:encodingStyle</span>=<span class="string">"http://www.w3.org/2003/05/soap-encoding"</span>&gt;</div><div class="line">    <span class="tag">&lt;<span class="name">soap:Header</span>&gt;</span><span class="tag">&lt;/<span class="name">soap:Header</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">soap:Body</span> <span class="attr">xmlns:m</span>=<span class="string">"http://www.example.org/abc"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">m:getUserById</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">m:id</span>&gt;</span>1<span class="tag">&lt;/<span class="name">m:id</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">m:getUserById</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">soap:Body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">soap:Envelope</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>可以看到getUserById方法被定义在了SOAP message中，而URL<code>https://api.example.com/v1</code>没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。</p>
+<h2 id="WSDL"><a href="#WSDL" class="headerlink" title="WSDL"></a>WSDL</h2><p>WSDL全称Web Services Description Language，是基于XML的语言，用于描述SOAP的功能，通过WSDL可以在Web Services中直接调用对象，而不用手动组成SOAP message。</p>
 <p>​          </p>
+<h1 id="Web-Services-vs-API"><a href="#Web-Services-vs-API" class="headerlink" title="Web Services vs API"></a>Web Services vs API</h1><p>这两个概念容易搞混，API是软件接口，可以是本地接口也可以是基于网络的接口；而Web Services是API的一种，是基于网络的接口。</p>
+<p>比如Google Map API分别提供了Android、iOS和Web Services接口，前两个是基于平台的库API，而Web Services是基于网络的REST API。</p>
+<p>​         </p>
 <h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p><a href="https://bourgeois.me/rest/" target="_blank" rel="external">https://bourgeois.me/rest/</a></p>
 <p><a href="https://www.ibm.com/developerworks/cn/webservices/0907_rest_soap/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/webservices/0907_rest_soap/</a></p>
 
