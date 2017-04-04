@@ -4,7 +4,7 @@ date: 2017-03-12 00:02:24
 categories: Tech
 ---
 
-一个好的API设计是非常重要的，它连接了前端和第三方开发者，REST和SOAP是API开发中的两种架构，基于资源和HTTP方法的REST成为了互联网开发的主流选择，本文主要讨论REST特性，同时对比两种实现。
+REST、SOAP和RPC是最常见的Web Services，其中REST和SOAP都是基于HTTP通信，但有很多不同点，基于数据格式又可以分JSON和XML，随着互联网的发展REST变得越来越流行，本文主要讨论它们的特性和不同。
 
 <!-- more -->
 
@@ -16,6 +16,8 @@ REST的优点主要有以下四点：
 - 使用标准HTTP方法(GET/POST/PUT/DELETE等)抽象化接口，对于同一资源无需自定义对其的增查删改方法。
 - Request和response的payload支持多种格式，常见的有`JSON`和`XML`，一般推荐用`JSON`。
 - 可以根据HTTP Header缓存GET请求，注意保证GET不会改变状态。
+
+RESTful web services常见的框架有[Jersey](https://jersey.java.net/)和[Dropwizard](http://www.dropwizard.io/)。
 
 ## API Root URL
 
@@ -106,6 +108,8 @@ Content-Length: 24
 - 请求的资源和操作方法定义在POST payload SOAP message中，需要解析才能知道。
 - 只支持XML数据格式，在很多场景有局限性。
 
+SOAP web services常见框架有[Apache CXF](http://cxf.apache.org/)和[Apache Axis2](http://axis.apache.org/axis2/java/core/)。
+
 ## SOAP Message
 
 因为SOAP所有的请求全部定义在其XML message中，所以其结构和内容显得格外重要，它主要由三部分构成：
@@ -131,7 +135,19 @@ Content-Length: 24
 
 可以看到getUserById方法被定义在了SOAP message中，而URL`https://api.example.com/v1`没有包括任何信息，可以使用这一个ROOT URL通过不同的message实现所有API功能，这种不灵活的方式造成了SOAP在互联网中越来越少的应用。
 
+## WSDL
+
+WSDL全称Web Services Description Language，是基于XML的语言，用于描述SOAP的功能，通过WSDL可以在Web Services中直接调用对象，而不用手动组成SOAP message。
+
 ​          
+
+# Web Services vs API
+
+这两个概念容易搞混，API是软件接口，可以是本地接口也可以是基于网络的接口；而Web Services是API的一种，是基于网络的接口。
+
+比如Google Map API分别提供了Android、iOS和Web Services接口，前两个是基于平台的库API，而Web Services是基于网络的REST API。
+
+​         
 
 # 参考资料
 
