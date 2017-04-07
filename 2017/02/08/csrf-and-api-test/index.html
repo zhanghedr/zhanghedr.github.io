@@ -38,7 +38,7 @@
 <meta property="og:url" content="http://www.zhanghedr.com/2017/02/08/csrf-and-api-test/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="CSRF (Cross-site request forgery)、XSS (Cross-site scripting)和SQL注入是几个最著名的网络攻击，这里主要讲一下CSRF原理和如何在API测试中实现CSRF验证，也简单说明下XSS和SQL注入。">
-<meta property="og:updated_time" content="2017-04-07T01:22:22.000Z">
+<meta property="og:updated_time" content="2017-04-07T04:28:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络安全浅谈">
 <meta name="twitter:description" content="CSRF (Cross-site request forgery)、XSS (Cross-site scripting)和SQL注入是几个最著名的网络攻击，这里主要讲一下CSRF原理和如何在API测试中实现CSRF验证，也简单说明下XSS和SQL注入。">
@@ -245,8 +245,8 @@
 <li>Web server采用反向代理服务器如Nginx，这样JS的请求都通过反向代理分发到了后台多个服务器了</li>
 <li>使用<strong>Cross-origin resource sharing</strong> (<strong>CORS</strong>)规定，服务器响应添加头<code>Access-Control-Allow-Origin</code>和其他相关的方法设置，允许指定的domain跨站访问，比如说主站，但如果为<code>*</code>则是公开资源</li>
 </ul>
-<p>比如facebook的POST请求<a href="https://www.facebook.com/ajax/bz返回的响应头限制了只有主站的JS可以访问，不能跨域访问：" target="_blank" rel="external">https://www.facebook.com/ajax/bz返回的响应头限制了只有主站的JS可以访问，不能跨域访问：</a></p>
-<p><code>access-control-allow-origin: https://www.facebook.com</code></p>
+<p>比如facebook的POST请求<a href="https://www.facebook.com/ajax/bz" target="_blank" rel="external">https://www.facebook.com/ajax/bz</a> 返回的响应头限制了只有主站的JS可以访问，不能跨域访问：</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">access-control-allow-origin</span>: https://www.facebook.com</div></pre></td></tr></table></figure>
 <h2 id="CSRF攻击"><a href="#CSRF攻击" class="headerlink" title="CSRF攻击"></a>CSRF攻击</h2><p>简单来说CSRF就是攻击者欺骗用户访问某个危险网站B，由于<code>Same-origin policy</code>B站JS不能直接请求安全网站A，但如果是GET则简单的点击或者通过图片src加载就会上当，如果是POST则需要模仿表单提交，以用户的名义发送请求给A。如果用户最近登录过网站A还没有登出session cookie还在的话，那么这个用户未授权请求就会成功，而且还是在用户和网站A都不知情的情况下，攻击者可以模仿用户的身份对其进行一些改变状态的操作，这是很危险的，所以网站A需要有CSRF的防御机制，下面以Django举例。</p>
 <p>Django内置了CSRF验证机制，Cookie-to-Header Token方法：</p>
 <ol>
@@ -268,7 +268,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> crsf_cookie = postman.getResponseCookie(<span class="string">"csrftoken"</span>);</div><div class="line">postman.setEnvironmentVariable(<span class="string">"csrf_token"</span>, crsf_cookie.value);</div></pre></td></tr></table></figure>
 </li>
 <li><p>新建要测试的POST请求，添加CRSF token header，比如django：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X-CSRFToken : &#123;&#123;csrf_token&#125;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">X-CSRFToken : &#123;&#123;csrf_token&#125;&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>先发送login请求，然后发送要测试的POST请求</p>
 </li>
