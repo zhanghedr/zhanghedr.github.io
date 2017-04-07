@@ -15,9 +15,11 @@ CSRF (Cross-site request forgery)、XSS (Cross-site scripting)和SQL注入是几
 - Web server采用反向代理服务器如Nginx，这样JS的请求都通过反向代理分发到了后台多个服务器了
 - 使用**Cross-origin resource sharing** (**CORS**)规定，服务器响应添加头`Access-Control-Allow-Origin`和其他相关的方法设置，允许指定的domain跨站访问，比如说主站，但如果为`*`则是公开资源
 
-比如facebook的POST请求https://www.facebook.com/ajax/bz返回的响应头限制了只有主站的JS可以访问，不能跨域访问：
+比如facebook的POST请求https://www.facebook.com/ajax/bz 返回的响应头限制了只有主站的JS可以访问，不能跨域访问：
 
-`access-control-allow-origin: https://www.facebook.com`
+````http
+access-control-allow-origin: https://www.facebook.com
+````
 
 ## CSRF攻击
 
@@ -58,7 +60,7 @@ SQL注入和XSS理论上类似，也是通过给恶意输入，让server执行�
 
 4. 新建要测试的POST请求，添加CRSF token header，比如django：
 
-   ```sh
+   ```http
    X-CSRFToken : {{csrf_token}}
    ```
 
