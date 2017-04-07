@@ -39,7 +39,7 @@
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。">
 <meta property="og:image" content="http://www.zhanghedr.com/img/session_and_cookie/facebook.jpg">
-<meta property="og:updated_time" content="2017-03-31T02:57:16.000Z">
+<meta property="og:updated_time" content="2017-04-07T01:26:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Session 和 Cookie">
 <meta name="twitter:description" content="Session是抽象概念，而cookie是实现会话最常用的方式，cookie保存在客户端而session保存在服务端，因为HTTP的无状态性，可以用cookie来记录前后请求的状态，session就是典型的例子，又或者如购物车，也可以用来记录用户偏好、行为分析等。">
@@ -267,7 +267,15 @@
 <li><code>HttpOnly cookie</code> 不能被前端JS访问，即上图属性<code>HTTP</code>打钩的cookie。</li>
 <li><code>SameSite cookie</code> 只能在same site的情况下发送，即上图属性<code>SameSite</code>打钩的cookie。</li>
 </ul>
-<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>HTTP是无状态协议，也就是说在用户登录后的HTTP请求不知道之前登录过没有，在登录时可以在cookie中保存一个server产生的无规律字符串session_id，同时把session_id=session保存在服务端，可以是内存或数据库，session对象包含了用户信息，如user_id、expire_time、last_activity等，这样每次请求server都可以用中间件或装饰器，通过cookie中的session_id得到session从而验证用户身份和信息。比如可以在某站登录后手动删除浏览器cookie，再刷新页面会被logout。</p>
+<h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>HTTP是无状态协议，也就是说在用户登录后的HTTP请求不知道之前登录过没有，在登录时可以在cookie中保存一个server产生的无规律字符串session_id，同时把session对象保存在服务端，然后根据session_id=session这种key-value获取会话，在服务端有下面几种保存方式：</p>
+<ul>
+<li>本地内存</li>
+<li>数据库</li>
+<li>文件</li>
+<li>缓存服务器 (Redis)</li>
+</ul>
+<p>一般默认采用本地内存或数据库保存，常理来说本地内存肯定访问最快，但是在集群情况下session就不能共享了，而数据库和文件虽然可以持久化不丢失并且可以让服务器共享，但I/O效率较低；Redis缓存服务器则既满足了session共享同时效率也高，不过基于内存也存在数据丢失问题。可以考虑在DAL用MySQL和Redis，在登录时同步两者的session，redis设置过期时间，然后后面的请求只用redis，最终登出同步清除session。</p>
+<p>Session对象包含了用户信息，如user_id、expire_time、last_activity等，这样每次请求server都可以用中间件或装饰器，通过cookie中的session_id得到session从而验证用户身份和信息。比如可以在某站登录后手动删除浏览器cookie，再刷新页面会被logout。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://en.wikipedia.org/wiki/HTTP_cookie" target="_blank" rel="external">https://en.wikipedia.org/wiki/HTTP_cookie</a></p>
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies</a></p>
 
