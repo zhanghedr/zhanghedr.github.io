@@ -48,7 +48,16 @@ Cookie通过Server返回HTTP响应头设置比如：
 
 ## Session
 
-HTTP是无状态协议，也就是说在用户登录后的HTTP请求不知道之前登录过没有，在登录时可以在cookie中保存一个server产生的无规律字符串session_id，同时把session_id=session保存在服务端，可以是内存或数据库，session对象包含了用户信息，如user_id、expire_time、last_activity等，这样每次请求server都可以用中间件或装饰器，通过cookie中的session_id得到session从而验证用户身份和信息。比如可以在某站登录后手动删除浏览器cookie，再刷新页面会被logout。
+HTTP是无状态协议，也就是说在用户登录后的HTTP请求不知道之前登录过没有，在登录时可以在cookie中保存一个server产生的无规律字符串session_id，同时把session对象保存在服务端，然后根据session_id=session这种key-value获取会话，在服务端有下面几种保存方式：
+
+- 本地内存
+- 数据库
+- 文件
+- 缓存服务器 (Redis)
+
+一般默认采用本地内存或数据库保存，常理来说本地内存肯定访问最快，但是在集群情况下session就不能共享了，而数据库和文件虽然可以持久化不丢失并且可以让服务器共享，但I/O效率较低；Redis缓存服务器则既满足了session共享同时效率也高，不过基于内存也存在数据丢失问题。可以考虑在DAL用MySQL和Redis，在登录时同步两者的session，redis设置过期时间，然后后面的请求只用redis，最终登出同步清除session。
+
+Session对象包含了用户信息，如user_id、expire_time、last_activity等，这样每次请求server都可以用中间件或装饰器，通过cookie中的session_id得到session从而验证用户身份和信息。比如可以在某站登录后手动删除浏览器cookie，再刷新页面会被logout。
 
 ## 参考资料
 

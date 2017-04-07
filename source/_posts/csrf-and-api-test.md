@@ -1,5 +1,5 @@
 ---
-title: CSRF和API测试
+title: 网络安全浅谈
 date: 2017-02-08 01:53:03
 categories: Tech
 ---
@@ -7,6 +7,17 @@ categories: Tech
 CSRF (Cross-site request forgery)、XSS (Cross-site scripting)和SQL注入是几个最著名的网络攻击，这里主要讲一下CSRF原理和如何在API测试中实现CSRF验证，也简单说明下XSS和SQL注入。
 
 <!-- more -->
+
+## Same-origin policy
+
+首先得说说互联网安全基础`Same-origin policy`，指不同的origin不能通过script访问，这里的origin包括了protocol、domain和port，这个规则保护了用户不会被未知网站的script攻击，比如说CSRF如下。但JS需要访问不同server有这两个方法：
+
+- Web server采用反向代理服务器如Nginx，这样JS的请求都通过反向代理分发到了后台多个服务器了
+- 使用**Cross-origin resource sharing** (**CORS**)规定，服务器响应添加头`Access-Control-Allow-Origin`和其他相关的方法设置，允许指定的domain跨站访问，比如说主站，但如果为`*`则是公开资源
+
+比如facebook的POST请求https://www.facebook.com/ajax/bz返回的响应头限制了只有主站的JS可以访问，不能跨域访问：
+
+`access-control-allow-origin: https://www.facebook.com`
 
 ## CSRF攻击
 
