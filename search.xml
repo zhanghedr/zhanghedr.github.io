@@ -4,6 +4,89 @@
   
     
     <entry>
+      <title><![CDATA[AWS EC2和RDS搭建基础环境]]></title>
+      <url>http://www.zhanghedr.com/2017/04/10/aws-ec2-rds/</url>
+      <content type="html"><![CDATA[<p>本文用EC2和RDS搭建简单的服务器环境，就当是Linux笔记了。</p>
+<a id="more"></a>
+<h3 id="创建EC2实例"><a href="#创建EC2实例" class="headerlink" title="创建EC2实例"></a>创建EC2实例</h3><p>首先在AWS上创建一个EC2实例，选用Ubuntu 16.04，测试的话可以选免费的t2.micro类型，在创建时注意选择或创建security group，同时在最后选择或创建一个key pair(public key+private key)，用来SSH登录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -i <span class="string">"/path/to/pem"</span> ubuntu@&#123;domain&#125;</div></pre></td></tr></table></figure>
+<h3 id="创建RDS实例"><a href="#创建RDS实例" class="headerlink" title="创建RDS实例"></a>创建RDS实例</h3><p>创建MySQL RDS实例很简单，主要就是根据需求选类型、磁盘SSD、大小、Multi-AZ等，可以根据AWS提供的计算器根据使用量计算每个月价格。会给一个超级管理员用户，然后创建自定义DB用户。</p>
+<h3 id="配置Security-Group"><a href="#配置Security-Group" class="headerlink" title="配置Security Group"></a>配置Security Group</h3><p>EC2需要配置inbound规则，也就是访问允许的协议、端口和IP，最基本几个配置举例：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Protocol</th>
+<th style="text-align:left">Port Range</th>
+<th style="text-align:left">Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">HTTP</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">80</td>
+<td style="text-align:left">0.0.0.0/0</td>
+</tr>
+<tr>
+<td style="text-align:left">HTTPS</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">443</td>
+<td style="text-align:left">0.0.0.0/0</td>
+</tr>
+<tr>
+<td style="text-align:left">SSH</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">22</td>
+<td style="text-align:left">0.0.0.0/0</td>
+</tr>
+<tr>
+<td style="text-align:left">Custom TCP Rule</td>
+<td style="text-align:left">TCP</td>
+<td style="text-align:left">8080 (customized)</td>
+<td style="text-align:left">0.0.0.0/0</td>
+</tr>
+<tr>
+<td style="text-align:left">Custom UDP Rule</td>
+<td style="text-align:left">UDP</td>
+<td style="text-align:left">8081 (customized)</td>
+<td style="text-align:left">0.0.0.0/0</td>
+</tr>
+</tbody>
+</table>
+<p><code>0.0.0.0/0</code>表示任意IP地址，source可以是唯一的IP也可以是一个security group下的所有实例。RDS实例也需要设置inbound规则，首先是允许EC2所在的security group访问，然后可以是指定custom的IP地址。</p>
+<h3 id="创建Elastic-IP"><a href="#创建Elastic-IP" class="headerlink" title="创建Elastic IP"></a>创建Elastic IP</h3><p>EC2实例的IPv4公共IP是动态的，每次重启都会改变，这里需要创建一个固定的Elastic IP，然后分配给EC2实例：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">AWS -&gt; Elastic IPs -&gt; Allocate New Address -&gt; Associate Address</div></pre></td></tr></table></figure>
+<h3 id="Route-53"><a href="#Route-53" class="headerlink" title="Route 53"></a>Route 53</h3><p>AWS同时提供domain代理服务，可以通过route 53注册域名，方便在上面配置DNS A/CNAME记录等，已有域名的忽略。</p>
+<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><p>OpenJDK Java 7：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:openjdk-r/ppa <span class="comment"># if in Ubuntu 16.04</span></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install openjdk-7-jdk</div></pre></td></tr></table></figure>
+<p>Oracle Java 8:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:webbupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div></pre></td></tr></table></figure>
+<p>Java版本选择：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo update-alternatives --config java</div></pre></td></tr></table></figure>
+<p>Tomcat 7:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install tomcat7</div><div class="line">sudo apt-get install tomcat7-docs tomcat7-admin tomcat7-examples <span class="comment"># 如果需要</span></div></pre></td></tr></table></figure>
+<p>Nginx 1.10.0:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install nginx</div></pre></td></tr></table></figure>
+<p>Tomcat配置文件在<code>/var/lib/tomcat7/conf</code>下，在server.xml里可以配置端口、HTTP相关；Nginx配置文件在<code>/etc/nginx</code>下，nginx.conf可以配置反向代理、负载均衡、动静分离等，这篇文章不讨论具体服务器配置问题。</p>
+<h3 id="系统时区"><a href="#系统时区" class="headerlink" title="系统时区"></a>系统时区</h3><p>阿里云默认没记错应该是中国标准时间CST，AWS是UTC，Cron任务是根据系统时间走的，通过下面配置系统时区：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo dpkg-reconfigure tzdata</div><div class="line">date</div></pre></td></tr></table></figure>
+<h3 id="系统监控"><a href="#系统监控" class="headerlink" title="系统监控"></a>系统监控</h3><p>AWS提供UI监控各项指标，还可以设定监控报警，自己也可以在Ubuntu下安装htop实时监控：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install htop</div><div class="line">htop</div></pre></td></tr></table></figure>
+<p>htop包括了对多核CPU的百分比使用，内存百分比占用，和各进程的占用比。</p>
+<h3 id="系统扩展"><a href="#系统扩展" class="headerlink" title="系统扩展"></a>系统扩展</h3><p>t2.micro肯定不够用的，EC2可以直接垂直升级到功能更好的机器，当然单机永远有局限，创建多个实例水平扩展又是一个大内容了。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[网络传输协议]]></title>
       <url>http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/</url>
       <content type="html"><![CDATA[<p>Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：</p>
