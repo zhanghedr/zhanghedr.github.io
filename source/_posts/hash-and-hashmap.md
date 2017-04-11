@@ -4,7 +4,7 @@ date: 2017-03-18 21:26:47
 categories: Tech
 ---
 
-Hash函数在软件领域有非常多的应用， 最熟悉的莫过于HashMap，这里主要讲一下hash函数特性和Java中HashMap原理。
+Hash函数在软件领域有非常多的应用， 最熟悉的莫过于HashMap，这里主要讲一下hash函数特性和Java中HashMap原理，同时比较下HashMap和Hashtable区别。
 
 <!-- more -->
 
@@ -169,9 +169,25 @@ final Entry<K,V> removeEntryForKey(Object key) {
 
 可以看出如果一个类如果作为HashMap的key，那么其hashCode()的实现防碰撞和速度就很重要了。并且key最好是不可变的对象，要不然修改了某个属性后可能就找不到了。注意如果在iterator创建后改变了collection结构，那么iterator会抛出`ConcurrentModificationException`异常。下面是其他几种常见map实现：
 
-- **ConcurrentHashMap**: 用于多线程的HashMap，HashMap本身线程不安全
+- **ConcurrentHashMap**: 用于多线程的HashMap
 - **EnumMap**: 用enum作为key的Map
 - **LinkedHashMap**: 可预知迭代顺序的HashMap (可以用来实现LRU)
 - **TreeMap**: 基于SortedMap接口，使用key的Comparable或者提供的Comparator排序
 
 如果对Java 8的HashMap优化感兴趣，可以参考美团的[文章](https://zhuanlan.zhihu.com/p/21673805)。
+
+### HashMap vs Hashtable
+
+不同点：
+
+1. HashMap不是synchronized，而HashTable是synchronized的，HashMap非线程安全，但在单线程程序有更好性能
+2. HashMap允许1个null key和多个null value，而Hashtable都不允许
+3. Hashtable继承Dictionary是遗留类不再使用，单线程用HashMap，如果多线程可以用ConcurrentHashMap
+4. HashMap迭代器iterator是fail-fast，而Hashtable迭代器enumerator不是
+
+相同点：
+
+1. 都基于hash实现
+2. 都实现了Map接口
+3. 都是无序
+4. 时间复杂度都是常数
