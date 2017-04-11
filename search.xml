@@ -4,6 +4,64 @@
   
     
     <entry>
+      <title><![CDATA[AWS S3托管静态网站]]></title>
+      <url>http://www.zhanghedr.com/2017/04/11/aws-s3-static-site/</url>
+      <content type="html"><![CDATA[<p>AWS S3云存储不但可以放文件，还可以托管静态网站，当然GitHub是个不错的选择，这里讲下简单几步将静态网站部署到S3上。</p>
+<a id="more"></a>
+<p>假设域名是www.example.com，步骤如下：</p>
+<ol>
+<li>创建一个<strong>S3 bucket</strong>，名字必须和域名一样</li>
+<li>上传静态网站内容到<strong>bucket</strong></li>
+<li>设置里开启静态网站hosting</li>
+<li>设置<strong>index</strong>页面</li>
+<li>添加公共访问许可<strong>bucket policy</strong>，以JSON格式如下</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"Version"</span>: <span class="string">"2012-10-17"</span>,</div><div class="line">  <span class="attr">"Statement"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"Sid"</span>: <span class="string">"PublicReadGetObject"</span>,</div><div class="line">      <span class="attr">"Effect"</span>: <span class="string">"Allow"</span>,</div><div class="line">      <span class="attr">"Principal"</span>: <span class="string">"*"</span>,</div><div class="line">      <span class="attr">"Action"</span>: [</div><div class="line">        <span class="string">"s3:GetObject"</span></div><div class="line">      ],</div><div class="line">      <span class="attr">"Resource"</span>: [</div><div class="line">        <span class="string">"arn:aws:s3:::www.example.com/*"</span></div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[搭建FTP]]></title>
+      <url>http://www.zhanghedr.com/2017/04/11/ftp-setup/</url>
+      <content type="html"><![CDATA[<p>FTP应用协议可以用于服务器文件的上传和下载，这里讲下如何在Ubuntu下搭建FTP。</p>
+<a id="more"></a>
+<p>FTP服务器工具有很多，这里选用<strong>vsftpd</strong>，安装如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install vsftpd</div></pre></td></tr></table></figure>
+<p>然后修改配置并重启服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/vsftpd.conf</div><div class="line"></div><div class="line">write_enable=YES</div><div class="line">chroot_local_user=YES</div><div class="line">pasv_enable=YES</div><div class="line">pasv_min_port=1024</div><div class="line">pasv_max_port=1048</div><div class="line">pasv_address=&#123;Elastic IP&#125;</div><div class="line">allow_writeable_chroot=YES</div><div class="line"></div><div class="line">sudo service vsftpd restart</div></pre></td></tr></table></figure>
+<p>创建FTP用户，adduser会配置好/home/ftp_user和user group：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo adduser ftp_user</div></pre></td></tr></table></figure>
+<p>修改FTP用户home目录：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo usermod ftp_user <span class="_">-d</span> /home/ftp_user/</div></pre></td></tr></table></figure>
+<p>查看user和group：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">compgen –u</div><div class="line">compgen –g</div></pre></td></tr></table></figure>
+<p>查看group包含哪些users：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getent group ftp_user</div></pre></td></tr></table></figure>
+<p>看user属于哪些group：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groups ftp_user</div></pre></td></tr></table></figure>
+<p>登录FTP：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ftp &#123;domain&#125;</div></pre></td></tr></table></figure>
+<p><code>/etc/vsftpd/ftpusers</code>列举了被禁止的FTP用户。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[AWS EC2和RDS搭建基础环境]]></title>
       <url>http://www.zhanghedr.com/2017/04/10/aws-ec2-rds/</url>
       <content type="html"><![CDATA[<p>本文用EC2和RDS搭建简单的服务器环境，就当是Linux笔记了。</p>
