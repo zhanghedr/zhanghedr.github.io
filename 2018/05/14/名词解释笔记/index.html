@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="搭建 Hexo 博客常见方案"/>
+  <meta name="description" content="名词解释笔记"/>
 
 
 
@@ -29,19 +29,19 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2018/05/14/名词解释笔记/"/>
 
 
-<meta name="description" content="这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。">
+<meta name="description" content="如题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建 Hexo 博客常见方案">
-<meta property="og:url" content="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/index.html">
+<meta property="og:title" content="名词解释笔记">
+<meta property="og:url" content="http://www.zhanghedr.com/2018/05/14/名词解释笔记/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。">
-<meta property="og:updated_time" content="2017-01-23T06:50:22.000Z">
+<meta property="og:description" content="如题">
+<meta property="og:updated_time" content="2018-05-13T17:35:53.837Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建 Hexo 博客常见方案">
-<meta name="twitter:description" content="这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。">
+<meta name="twitter:title" content="名词解释笔记">
+<meta name="twitter:description" content="如题">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -90,7 +90,7 @@
 
 
 
-    <title> 搭建 Hexo 博客常见方案 · To The Moon </title>
+    <title> 名词解释笔记 · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,62 +215,162 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          搭建 Hexo 博客常见方案
+          名词解释笔记
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2016年12月7日
+          2018年5月14日
         </span>
       </div>
     </header>
 
     
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#空间"><span class="toc-text">空间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#架构"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题"><span class="toc-text">主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#部署"><span class="toc-text">部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#域名"><span class="toc-text">域名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS解析服务器"><span class="toc-text">DNS解析服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见配置"><span class="toc-text">常见配置</span></a></li></ol>
-    </div>
-  </div>
-
 
     <div class="post-content">
       
-        <p>这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。</p>
+        <p>如题</p>
 <a id="more"></a>
-<h2 id="空间"><a href="#空间" class="headerlink" title="空间"></a>空间</h2><p>首先先考虑把博客托管到哪里，可以购买VPS，也可以放在云服务上如AWS和阿里云，我选择放在Github Pages。因为考虑到只是静态页面，通过Pages可以非常简单的把静态博客publish到username.github.io上，而且Github上的username.github.io repo还能作为codebase进行版本控制，非常方便。虽然已经有很多教程，但是推荐大家还是直接去<a href="https://pages.github.com/" target="_blank" rel="external">官网</a>看教程，非常简单就几步。</p>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><p>大家推荐不错的有hexo, pelican, typecho, farbox, ghost等，我觉得都挺好的，毕竟博客的关键还是在于内容吧。但在选择博客架构时，有人会因为不熟悉Node.js而没有选择Hexo，我想说安装hexo是非常简单的过程，完全不知道Node.js也能用。只需要你安装Node.js和Git就能用npm来安装hexo了，这里不讨论过多细节，还是推荐大家去看<a href="https://hexo.io/docs/index.html" target="_blank" rel="external">官方文档</a>，非常快就能在本地安装好hexo。</p>
-<h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>对于主题可能大家选择上很纠结，我用了next，虽然已经烂大街了，但是真的非常简洁漂亮，而且有3种样式可供选择，查看所有hexo官方主题点<a href="https://hexo.io/themes/" target="_blank" rel="external">这里</a>。对于主题配置，看过<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next官方文档</a>基本上就能满足你80%需求了。</p>
-<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>hexo已经提供内置的部署配置，只需要配置好repo就能一键部署。当然如果你需要更灵活的方式，可以自己写个script来部署。</p>
-<h2 id="域名"><a href="#域名" class="headerlink" title="域名"></a>域名</h2><p>至此你应该就能在username.github.io看到自己的博客online了，现在可以给你的博客注册一个域名。因为听说国内的域名要备案所以我就没考虑，对于域名商看了很多推荐，大家普遍推荐的有NameSilo, GANDI, uniregistry，普遍不推荐的有Godaddy, 1&amp;1(这家虽然便宜但千万别用，血的教训)。我选了推荐最多的NameSilo，续费的价格也不会坑，注意用$1 OFF的折扣，网上一搜就有。</p>
-<h2 id="DNS解析服务器"><a href="#DNS解析服务器" class="headerlink" title="DNS解析服务器"></a>DNS解析服务器</h2><p>注册域名时唯一要注意的就是在注册过程中就选你的NameServers，因为用国外的DNS解析很慢，大家普遍推荐用国内的<a href="https://www.dnspod.cn/" target="_blank" rel="external">DNSPod</a>，只需要填下面两个地址在NameServers里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">F1G1NS1.DNSPOD.NET</div><div class="line">F1G1NS2.DNSPOD.NET</div></pre></td></tr></table></figure></p>
-<p>注册完成后再回到DNSPod添加你的域名，并添加CNAME记录。我这里选择www子域名作为主站，所以让顶级域名zhanghedr.com跳转到www.zhanghedr.com，然后用CNAME解析www.zhanghedr.com到username.github.io。DNSPod对于每个选项有详细解释，感觉比AWS Route 53清楚很多，至此你只需要等待一会就能看到DNS设置生效，我只等了几分钟。</p>
-<h2 id="常见配置"><a href="#常见配置" class="headerlink" title="常见配置"></a>常见配置</h2><p>这里列出一些常见的主站_config.yml配置key</p>
-<ul>
-<li>title</li>
-<li>description</li>
-<li>author</li>
-<li>language</li>
-<li>theme</li>
-<li>deploy</li>
-</ul>
-<p>常见主题_config.yml配置key</p>
-<ul>
-<li>favicon</li>
-<li>menu</li>
-<li>scheme</li>
-<li>social</li>
-<li>avatar</li>
-<li>sidebar</li>
-<li>highlight_theme</li>
-<li>baidu_analytics</li>
-<li>google_analytics</li>
-<li>duoshuo_shortname</li>
-<li>disqus_shortname</li>
-<li>busuanzi_count</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名词</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SPU</td>
+<td style="text-align:left">Standard Product Unit，标准产品单位，如iPhone X</td>
+</tr>
+<tr>
+<td style="text-align:left">SKU</td>
+<td style="text-align:left">Stock Keeping Unit，库存量单位，如iPhone X 金色</td>
+</tr>
+<tr>
+<td style="text-align:left">DAU</td>
+<td style="text-align:left">Daily Active User，日活</td>
+</tr>
+<tr>
+<td style="text-align:left">MAU</td>
+<td style="text-align:left">Monthly Active User，月活</td>
+</tr>
+<tr>
+<td style="text-align:left">PV</td>
+<td style="text-align:left">Page View，页面浏览量</td>
+</tr>
+<tr>
+<td style="text-align:left">UV</td>
+<td style="text-align:left">Unique Visitor在一定时间内独立IP访问用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">CTR</td>
+<td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">购买转化率 / 访购率</td>
+<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">跳出率</td>
+<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
+</tr>
+<tr>
+<td style="text-align:left">GMV</td>
+<td style="text-align:left">Gross Merchandise Volume，成交总金额，指下单金额，含付款和未付款</td>
+</tr>
+<tr>
+<td style="text-align:left">KA</td>
+<td style="text-align:left">Key Account，重要或者关键客户</td>
+</tr>
+<tr>
+<td style="text-align:left">UUID</td>
+<td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
+</tr>
+<tr>
+<td style="text-align:left">———</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">B端</td>
+<td style="text-align:left">Business，商家端</td>
+</tr>
+<tr>
+<td style="text-align:left">C端</td>
+<td style="text-align:left">Consumer，消费者端</td>
+</tr>
+<tr>
+<td style="text-align:left">BD</td>
+<td style="text-align:left">Business Development，公司业务拓展、商务开发的一线市场推广人员</td>
+</tr>
+<tr>
+<td style="text-align:left">BDM</td>
+<td style="text-align:left">Business Development Manager，BD经理，联络点负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">CM</td>
+<td style="text-align:left">City Manager，城市经理，城市负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">DM</td>
+<td style="text-align:left">District Manager，区域经理，区域负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">SRE</td>
+<td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
+</tr>
+<tr>
+<td style="text-align:left">PM</td>
+<td style="text-align:left">Product Manager，产品经理</td>
+</tr>
+<tr>
+<td style="text-align:left">UI</td>
+<td style="text-align:left">User Interface， 偏向视觉设计</td>
+</tr>
+<tr>
+<td style="text-align:left">UX / UE</td>
+<td style="text-align:left">User Experience，偏向交互设计</td>
+</tr>
+<tr>
+<td style="text-align:left">PRD</td>
+<td style="text-align:left">Product Requirement Document，产品需求文档</td>
+</tr>
+<tr>
+<td style="text-align:left">POI</td>
+<td style="text-align:left">Point of Interest，产生利益的点，比如商家</td>
+</tr>
+<tr>
+<td style="text-align:left">KPI</td>
+<td style="text-align:left">Key Performance Indicator，关键绩效指标法，考核指标围绕关键成果领域进行选取</td>
+</tr>
+<tr>
+<td style="text-align:left">IP</td>
+<td style="text-align:left">Intellectual Property，知识产权</td>
+</tr>
+<tr>
+<td style="text-align:left">SEO</td>
+<td style="text-align:left">Search Engine Optimization，搜索引擎优化，指的是利用搜索引擎的规则来提高目前网站在搜索引擎内的排名</td>
+</tr>
+<tr>
+<td style="text-align:left">SMART原则</td>
+<td style="text-align:left">制定目标原则，S=Specific(具体)、M=Measurable(可衡量)、A=Attainable(可实现)、R=Relevant(相关性)、T=Time-Bound(有期限)</td>
+</tr>
+<tr>
+<td style="text-align:left">STAR原则</td>
+<td style="text-align:left">描述工作原则，Situation（情景）、Task（任务）、Action（行动）、Result（结果）</td>
+</tr>
+<tr>
+<td style="text-align:left">SOP</td>
+<td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
+</tr>
+<tr>
+<td style="text-align:left">埋点</td>
+<td style="text-align:left">为了采集业务数据做的技术工作</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -283,7 +383,7 @@
     
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/">http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/</a>
+      <a href="http://www.zhanghedr.com/2018/05/14/名词解释笔记/">http://www.zhanghedr.com/2018/05/14/名词解释笔记/</a>
     </p>
 
     <p class="copyright-item">
@@ -305,15 +405,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/10/git-cheat-sheet/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">常见 Git 命令清单与使用</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/2016/12/06/Java-JDBC-PreparedStatement/">
-        <span class="next-text nav-default">Java JDBC PreparedStatement 用法</span>
+      <a class="next" href="/2017/04/11/aws-s3-static-site/">
+        <span class="next-text nav-default">AWS S3托管静态网站</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
@@ -344,7 +438,7 @@
     
       
         
-          <a href="mailto:hezhang0929@gmail.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:zhanghedr@126.com" class="iconfont icon-email" title="email"></a>
         
       
     

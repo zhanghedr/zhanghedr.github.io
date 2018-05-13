@@ -4,17 +4,153 @@
   
     
     <entry>
-      <title><![CDATA[有关电子货币]]></title>
-      <url>http://www.zhanghedr.com/2017/12/13/bitcoin/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<h3 id="创建EC2实例"><a href="#创建EC2实例" class="headerlink" title="创建EC2实例"></a>创建EC2实例</h3><p><img src="/img/bitcoin/summary.jpg" alt=""></p>
-<p>主流币：BTC, ETH, BCH, LTC, ETC</p>
-<p>其他等山寨币：XRP, IOTA, DASH, EOS, NEO, QTUM, ZEC, ADDR/NXT, HRS, BTS, DOGE, MANA </p>
+      <title><![CDATA[名词解释笔记]]></title>
+      <url>http://www.zhanghedr.com/2018/05/14/%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<p>如题</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名词</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SPU</td>
+<td style="text-align:left">Standard Product Unit，标准产品单位，如iPhone X</td>
+</tr>
+<tr>
+<td style="text-align:left">SKU</td>
+<td style="text-align:left">Stock Keeping Unit，库存量单位，如iPhone X 金色</td>
+</tr>
+<tr>
+<td style="text-align:left">DAU</td>
+<td style="text-align:left">Daily Active User，日活</td>
+</tr>
+<tr>
+<td style="text-align:left">MAU</td>
+<td style="text-align:left">Monthly Active User，月活</td>
+</tr>
+<tr>
+<td style="text-align:left">PV</td>
+<td style="text-align:left">Page View，页面浏览量</td>
+</tr>
+<tr>
+<td style="text-align:left">UV</td>
+<td style="text-align:left">Unique Visitor在一定时间内独立IP访问用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">CTR</td>
+<td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">购买转化率 / 访购率</td>
+<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">跳出率</td>
+<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
+</tr>
+<tr>
+<td style="text-align:left">GMV</td>
+<td style="text-align:left">Gross Merchandise Volume，成交总金额，指下单金额，含付款和未付款</td>
+</tr>
+<tr>
+<td style="text-align:left">KA</td>
+<td style="text-align:left">Key Account，重要或者关键客户</td>
+</tr>
+<tr>
+<td style="text-align:left">UUID</td>
+<td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
+</tr>
+<tr>
+<td style="text-align:left">———</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">B端</td>
+<td style="text-align:left">Business，商家端</td>
+</tr>
+<tr>
+<td style="text-align:left">C端</td>
+<td style="text-align:left">Consumer，消费者端</td>
+</tr>
+<tr>
+<td style="text-align:left">BD</td>
+<td style="text-align:left">Business Development，公司业务拓展、商务开发的一线市场推广人员</td>
+</tr>
+<tr>
+<td style="text-align:left">BDM</td>
+<td style="text-align:left">Business Development Manager，BD经理，联络点负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">CM</td>
+<td style="text-align:left">City Manager，城市经理，城市负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">DM</td>
+<td style="text-align:left">District Manager，区域经理，区域负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">SRE</td>
+<td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
+</tr>
+<tr>
+<td style="text-align:left">PM</td>
+<td style="text-align:left">Product Manager，产品经理</td>
+</tr>
+<tr>
+<td style="text-align:left">UI</td>
+<td style="text-align:left">User Interface， 偏向视觉设计</td>
+</tr>
+<tr>
+<td style="text-align:left">UX / UE</td>
+<td style="text-align:left">User Experience，偏向交互设计</td>
+</tr>
+<tr>
+<td style="text-align:left">PRD</td>
+<td style="text-align:left">Product Requirement Document，产品需求文档</td>
+</tr>
+<tr>
+<td style="text-align:left">POI</td>
+<td style="text-align:left">Point of Interest，产生利益的点，比如商家</td>
+</tr>
+<tr>
+<td style="text-align:left">KPI</td>
+<td style="text-align:left">Key Performance Indicator，关键绩效指标法，考核指标围绕关键成果领域进行选取</td>
+</tr>
+<tr>
+<td style="text-align:left">IP</td>
+<td style="text-align:left">Intellectual Property，知识产权</td>
+</tr>
+<tr>
+<td style="text-align:left">SEO</td>
+<td style="text-align:left">Search Engine Optimization，搜索引擎优化，指的是利用搜索引擎的规则来提高目前网站在搜索引擎内的排名</td>
+</tr>
+<tr>
+<td style="text-align:left">SMART原则</td>
+<td style="text-align:left">制定目标原则，S=Specific(具体)、M=Measurable(可衡量)、A=Attainable(可实现)、R=Relevant(相关性)、T=Time-Bound(有期限)</td>
+</tr>
+<tr>
+<td style="text-align:left">STAR原则</td>
+<td style="text-align:left">描述工作原则，Situation（情景）、Task（任务）、Action（行动）、Result（结果）</td>
+</tr>
+<tr>
+<td style="text-align:left">SOP</td>
+<td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
+</tr>
+<tr>
+<td style="text-align:left">埋点</td>
+<td style="text-align:left">为了采集业务数据做的技术工作</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       
         <categories>
             
-            <category> Finance </category>
+            <category> Tech </category>
             
         </categories>
         
@@ -459,159 +595,6 @@
 <p>另外一种就是用JOIN了：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> t.title, u.username <span class="keyword">FROM</span> <span class="keyword">thread</span> t</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">user</span> u <span class="keyword">ON</span> t.user_id = u.id</div><div class="line"><span class="keyword">WHERE</span> ...</div></pre></td></tr></table></figure>
 <p>这样只有一条SQL，甚至可以JOIN更多的表，当然JOIN能不用尽量不用，会影响到性能。</p>
-]]></content>
-      
-        <categories>
-            
-            <category> Tech </category>
-            
-        </categories>
-        
-        
-    </entry>
-    
-    <entry>
-      <title><![CDATA[名词解释笔记]]></title>
-      <url>http://www.zhanghedr.com/2017/03/13/%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<a id="more"></a>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">名词</th>
-<th style="text-align:left">解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">SPU</td>
-<td style="text-align:left">Standard Product Unit，标准产品单位，如iPhone X</td>
-</tr>
-<tr>
-<td style="text-align:left">SKU</td>
-<td style="text-align:left">Stock Keeping Unit，库存量单位，如iPhone X 金色</td>
-</tr>
-<tr>
-<td style="text-align:left">DAU</td>
-<td style="text-align:left">Daily Active User，日活</td>
-</tr>
-<tr>
-<td style="text-align:left">MAU</td>
-<td style="text-align:left">Monthly Active User，月活</td>
-</tr>
-<tr>
-<td style="text-align:left">PV</td>
-<td style="text-align:left">Page View，页面浏览量</td>
-</tr>
-<tr>
-<td style="text-align:left">UV</td>
-<td style="text-align:left">Unique Visitor在一定时间内独立IP访问用户数</td>
-</tr>
-<tr>
-<td style="text-align:left">CTR</td>
-<td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
-</tr>
-<tr>
-<td style="text-align:left">购买转化率 / 访购率</td>
-<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
-</tr>
-<tr>
-<td style="text-align:left">跳出率</td>
-<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
-</tr>
-<tr>
-<td style="text-align:left">GMV</td>
-<td style="text-align:left">Gross Merchandise Volume，成交总金额，指下单金额，含付款和未付款</td>
-</tr>
-<tr>
-<td style="text-align:left">KA</td>
-<td style="text-align:left">Key Account，重要或者关键客户</td>
-</tr>
-<tr>
-<td style="text-align:left">UUID</td>
-<td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left">B端</td>
-<td style="text-align:left">Business，商家端</td>
-</tr>
-<tr>
-<td style="text-align:left">C端</td>
-<td style="text-align:left">Consumer，消费者端</td>
-</tr>
-<tr>
-<td style="text-align:left">BD</td>
-<td style="text-align:left">Business Development，公司业务拓展、商务开发的一线市场推广人员</td>
-</tr>
-<tr>
-<td style="text-align:left">BDM</td>
-<td style="text-align:left">Business Development Manager，BD经理，联络点负责人</td>
-</tr>
-<tr>
-<td style="text-align:left">CM</td>
-<td style="text-align:left">City Manager，城市经理，城市负责人</td>
-</tr>
-<tr>
-<td style="text-align:left">DM</td>
-<td style="text-align:left">District Manager，区域经理，区域负责人</td>
-</tr>
-<tr>
-<td style="text-align:left">SRE</td>
-<td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
-</tr>
-<tr>
-<td style="text-align:left">PM</td>
-<td style="text-align:left">Product Manager，产品经理</td>
-</tr>
-<tr>
-<td style="text-align:left">UI</td>
-<td style="text-align:left">User Interface， 偏向视觉设计</td>
-</tr>
-<tr>
-<td style="text-align:left">UX / UE</td>
-<td style="text-align:left">User Experience，偏向交互设计</td>
-</tr>
-<tr>
-<td style="text-align:left">PRD</td>
-<td style="text-align:left">Product Requirement Document，产品需求文档</td>
-</tr>
-<tr>
-<td style="text-align:left">POI</td>
-<td style="text-align:left">Point of Interest，产生利益的点，比如商家</td>
-</tr>
-<tr>
-<td style="text-align:left">KPI</td>
-<td style="text-align:left">Key Performance Indicator，关键绩效指标法，考核指标围绕关键成果领域进行选取</td>
-</tr>
-<tr>
-<td style="text-align:left">IP</td>
-<td style="text-align:left">Intellectual Property，知识产权</td>
-</tr>
-<tr>
-<td style="text-align:left">SEO</td>
-<td style="text-align:left">Search Engine Optimization，搜索引擎优化，指的是利用搜索引擎的规则来提高目前网站在搜索引擎内的排名</td>
-</tr>
-<tr>
-<td style="text-align:left">SMART原则</td>
-<td style="text-align:left">制定目标原则，S=Specific(具体)、M=Measurable(可衡量)、A=Attainable(可实现)、R=Relevant(相关性)、T=Time-Bound(有期限)</td>
-</tr>
-<tr>
-<td style="text-align:left">STAR原则</td>
-<td style="text-align:left">描述工作原则，Situation（情景）、Task（任务）、Action（行动）、Result（结果）</td>
-</tr>
-<tr>
-<td style="text-align:left">SOP</td>
-<td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
-</tr>
-<tr>
-<td style="text-align:left">埋点</td>
-<td style="text-align:left">为了采集业务数据做的技术工作</td>
-</tr>
-</tbody>
-</table>
 ]]></content>
       
         <categories>
@@ -1200,8 +1183,8 @@
     </entry>
     
     <entry>
-      <title><![CDATA[搭建 Hexo 博客常见方案]]></title>
-      <url>http://www.zhanghedr.com/2016/12/07/hexo-blog-common-solution/</url>
+      <title><![CDATA[搭建一个Hexo博客]]></title>
+      <url>http://www.zhanghedr.com/2016/12/07/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAHexo%E5%8D%9A%E5%AE%A2/</url>
       <content type="html"><![CDATA[<p>这几天弄了一个自己的博客，对于每一步的选择搜索了大量帖子，这里列出我觉得还不错的方案，NameSilo + DNSPod + Github Pages + Hexo。</p>
 <a id="more"></a>
 <h2 id="空间"><a href="#空间" class="headerlink" title="空间"></a>空间</h2><p>首先先考虑把博客托管到哪里，可以购买VPS，也可以放在云服务上如AWS和阿里云，我选择放在Github Pages。因为考虑到只是静态页面，通过Pages可以非常简单的把静态博客publish到username.github.io上，而且Github上的username.github.io repo还能作为codebase进行版本控制，非常方便。虽然已经有很多教程，但是推荐大家还是直接去<a href="https://pages.github.com/" target="_blank" rel="external">官网</a>看教程，非常简单就几步。</p>
@@ -1235,6 +1218,24 @@
 <li>disqus_shortname</li>
 <li>busuanzi_count</li>
 </ul>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><p>hexo new “blog name”</p>
+<p>hexo generate</p>
+<p>hexo server</p>
+<p>hexo clean</p>
+<p>hexo deploy</p>
+<h2 id="添加版权信息"><a href="#添加版权信息" class="headerlink" title="添加版权信息"></a>添加版权信息</h2><ol>
+<li>创建<code>/scripts/tail.js</code></li>
+<li>创建<code>/tail.md</code> </li>
+<li>更新<code>_config.yml</code></li>
+</ol>
+<h2 id="Even主题个性化"><a href="#Even主题个性化" class="headerlink" title="Even主题个性化"></a>Even主题个性化</h2><ul>
+<li>更换<code>/even/source/favicon.ico</code></li>
+<li>Optional: 安装本地搜索模块<code>npm install hexo-generator-search --save</code></li>
+<li>Optional: 更新padding - <code>/even/source/css/_custom/_custom.scss</code></li>
+<li>Optional: 更新<code>/even/layout/_partial/_post/copyright.swig</code></li>
+</ul>
+<h2 id="新设备设置"><a href="#新设备设置" class="headerlink" title="新设备设置"></a>新设备设置</h2><p>在另一台设备设置环境，<code>npm install</code>即可</p>
+<p>下载主题而不是clone，从而commit主题文件</p>
 ]]></content>
       
         <categories>
