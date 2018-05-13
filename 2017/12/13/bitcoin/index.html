@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="Java JDBC PreparedStatement 用法"/>
+  <meta name="description" content="有关电子货币"/>
 
 
 
@@ -29,19 +29,27 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/12/13/bitcoin/"/>
 
 
-<meta name="description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta name="description" content="创建EC2实例
+主流币：BTC, ETH, BCH, LTC, ETC
+其他等山寨币：XRP, IOTA, DASH, EOS, NEO, QTUM, ZEC, ADDR/NXT, HRS, BTS, DOGE, MANA">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java JDBC PreparedStatement 用法">
-<meta property="og:url" content="http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/index.html">
+<meta property="og:title" content="有关电子货币">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/12/13/bitcoin/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
-<meta property="og:updated_time" content="2016-12-29T08:00:12.000Z">
+<meta property="og:description" content="创建EC2实例
+主流币：BTC, ETH, BCH, LTC, ETC
+其他等山寨币：XRP, IOTA, DASH, EOS, NEO, QTUM, ZEC, ADDR/NXT, HRS, BTS, DOGE, MANA">
+<meta property="og:image" content="http://www.zhanghedr.com/img/bitcoin/summary.jpg">
+<meta property="og:updated_time" content="2017-12-13T15:41:07.637Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java JDBC PreparedStatement 用法">
-<meta name="twitter:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta name="twitter:title" content="有关电子货币">
+<meta name="twitter:description" content="创建EC2实例
+主流币：BTC, ETH, BCH, LTC, ETC
+其他等山寨币：XRP, IOTA, DASH, EOS, NEO, QTUM, ZEC, ADDR/NXT, HRS, BTS, DOGE, MANA">
+<meta name="twitter:image" content="http://www.zhanghedr.com/img/bitcoin/summary.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -90,7 +98,7 @@
 
 
 
-    <title> Java JDBC PreparedStatement 用法 · To The Moon </title>
+    <title> 有关电子货币 · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,13 +223,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Java JDBC PreparedStatement 用法
+          有关电子货币
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2016年12月6日
+          2017年12月13日
         </span>
       </div>
     </header>
@@ -231,26 +239,17 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#General"><span class="toc-text">General</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-Update"><span class="toc-text">Batch Update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建EC2实例"><span class="toc-text">创建EC2实例</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
-<a id="more"></a>
-<h2 id="General"><a href="#General" class="headerlink" title="General"></a>General</h2><p>这里列出几点通常要注意的地方</p>
-<ul>
-<li>在循环执行PreparedStatement时，注意将只建一个instance在循环外，重复设置SQL中的变量，避免OutOfMemoryError错误</li>
-<li>合理commit transactions，在需要的情况下使用conn.setAutoCommit(false)来手动commit，它的default是true，避免在每次execute时候就自动commit</li>
-<li>在setAutoCommit(false)的情况下，如果抓到SQLException使用conn.rollback()来撤销当前的transaction</li>
-<li>用close()关闭相关的resource，分别有ResultSet, PreparedStatement和Connection。Java 7+版本可以使用try-with-resources方式自动close</li>
-</ul>
-<p>简单的代码example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String sql = <span class="string">"..."</span>;</div><div class="line"><span class="keyword">try</span> (Connection conn = getDbConnection()) &#123;</div><div class="line">    conn.setAutoCommit(<span class="keyword">false</span>);</div><div class="line">    <span class="keyword">try</span> (PreparedStatement ps = conn.prepareStatement(sql)) &#123;</div><div class="line">        <span class="comment">// ps.setString();</span></div><div class="line">        <span class="comment">// ps.execute();</span></div><div class="line">        conn.commit();</div><div class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">        conn.rollback();</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">    &#125;</div><div class="line">&#125; <span class="keyword">catch</span>(SQLException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Batch-Update"><a href="#Batch-Update" class="headerlink" title="Batch Update"></a>Batch Update</h2><p>在执行大量数据的写入时，比如上百万条记录，这时简单的用executeUpdate()进行逐条update会变得非常慢。这里需要用PreparedStatement.executeBatch()来进行批量写入，从而减少数据库的访问次数，极大的增加速度。注意对于大量数据要批量执行batch，否则会导致OutOfMemoryError，代码如下。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="keyword">int</span> batchSize = <span class="number">1000</span>;</div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> (String s : names) &#123;</div><div class="line">    ps.setString(<span class="number">1</span>, s);</div><div class="line">    ps.addBatch();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (++count % batchSize == <span class="number">0</span>) &#123;</div><div class="line">        ps.executeBatch();</div><div class="line">        ps.clearBatch();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">ps.executeBatch();</div></pre></td></tr></table></figure></p>
-<p>注意executeBatch只能对于insert/update/delete使用，select不能使用。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文只是简单介绍了PreparedStatement用法，提高数据库速度还要看数据库本身的优化和SQL等。Java的PreparedStatement在设置变量时还是不怎么方便，还要注意?对应的顺序，但是有一些工具可以简化这个操作，大家可以搜一下。</p>
+        <a id="more"></a>
+<h3 id="创建EC2实例"><a href="#创建EC2实例" class="headerlink" title="创建EC2实例"></a>创建EC2实例</h3><p><img src="/img/bitcoin/summary.jpg" alt=""></p>
+<p>主流币：BTC, ETH, BCH, LTC, ETC</p>
+<p>其他等山寨币：XRP, IOTA, DASH, EOS, NEO, QTUM, ZEC, ADDR/NXT, HRS, BTS, DOGE, MANA </p>
 
       
     </div>
@@ -263,7 +262,7 @@
     
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/">http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/</a>
+      <a href="http://www.zhanghedr.com/2017/12/13/bitcoin/">http://www.zhanghedr.com/2017/12/13/bitcoin/</a>
     </p>
 
     <p class="copyright-item">
@@ -285,15 +284,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/07/hexo-blog-common-solution/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">搭建 Hexo 博客常见方案</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/2016/12/04/2016-Thanksgiving/">
-        <span class="next-text nav-default">2016 Thanksgiving</span>
+      <a class="next" href="/2017/04/11/aws-s3-static-site/">
+        <span class="next-text nav-default">AWS S3托管静态网站</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

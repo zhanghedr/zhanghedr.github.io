@@ -216,6 +216,224 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/03/13/n-1-problem/">N + 1 问题</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年3月13日
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在数据库中经常会碰到不同表之间关联的问题，为了防止单表过大字段过多，通常会通过表id将两个表联系起来，可以是一对一或者一对多的关系。API中也经常需要调用到多个表的信息，用惯了ORM简洁的调用方式后，代码中可能会出现N + 1问题。</p>
+          <div class="read-more">
+            <a href="/2017/03/13/n-1-problem/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/03/13/名词解释笔记/">名词解释笔记</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017年3月13日
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+
+        
+          <a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名词</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SPU</td>
+<td style="text-align:left">Standard Product Unit，标准产品单位，如iPhone X</td>
+</tr>
+<tr>
+<td style="text-align:left">SKU</td>
+<td style="text-align:left">Stock Keeping Unit，库存量单位，如iPhone X 金色</td>
+</tr>
+<tr>
+<td style="text-align:left">DAU</td>
+<td style="text-align:left">Daily Active User，日活</td>
+</tr>
+<tr>
+<td style="text-align:left">MAU</td>
+<td style="text-align:left">Monthly Active User，月活</td>
+</tr>
+<tr>
+<td style="text-align:left">PV</td>
+<td style="text-align:left">Page View，页面浏览量</td>
+</tr>
+<tr>
+<td style="text-align:left">UV</td>
+<td style="text-align:left">Unique Visitor在一定时间内独立IP访问用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">CTR</td>
+<td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">购买转化率 / 访购率</td>
+<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">跳出率</td>
+<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
+</tr>
+<tr>
+<td style="text-align:left">GMV</td>
+<td style="text-align:left">Gross Merchandise Volume，成交总金额，指下单金额，含付款和未付款</td>
+</tr>
+<tr>
+<td style="text-align:left">KA</td>
+<td style="text-align:left">Key Account，重要或者关键客户</td>
+</tr>
+<tr>
+<td style="text-align:left">UUID</td>
+<td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">B端</td>
+<td style="text-align:left">Business，商家端</td>
+</tr>
+<tr>
+<td style="text-align:left">C端</td>
+<td style="text-align:left">Consumer，消费者端</td>
+</tr>
+<tr>
+<td style="text-align:left">BD</td>
+<td style="text-align:left">Business Development，公司业务拓展、商务开发的一线市场推广人员</td>
+</tr>
+<tr>
+<td style="text-align:left">BDM</td>
+<td style="text-align:left">Business Development Manager，BD经理，联络点负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">CM</td>
+<td style="text-align:left">City Manager，城市经理，城市负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">DM</td>
+<td style="text-align:left">District Manager，区域经理，区域负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">SRE</td>
+<td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
+</tr>
+<tr>
+<td style="text-align:left">PM</td>
+<td style="text-align:left">Product Manager，产品经理</td>
+</tr>
+<tr>
+<td style="text-align:left">UI</td>
+<td style="text-align:left">User Interface， 偏向视觉设计</td>
+</tr>
+<tr>
+<td style="text-align:left">UX / UE</td>
+<td style="text-align:left">User Experience，偏向交互设计</td>
+</tr>
+<tr>
+<td style="text-align:left">PRD</td>
+<td style="text-align:left">Product Requirement Document，产品需求文档</td>
+</tr>
+<tr>
+<td style="text-align:left">POI</td>
+<td style="text-align:left">Point of Interest，产生利益的点，比如商家</td>
+</tr>
+<tr>
+<td style="text-align:left">KPI</td>
+<td style="text-align:left">Key Performance Indicator，关键绩效指标法，考核指标围绕关键成果领域进行选取</td>
+</tr>
+<tr>
+<td style="text-align:left">IP</td>
+<td style="text-align:left">Intellectual Property，知识产权</td>
+</tr>
+<tr>
+<td style="text-align:left">SEO</td>
+<td style="text-align:left">Search Engine Optimization，搜索引擎优化，指的是利用搜索引擎的规则来提高目前网站在搜索引擎内的排名</td>
+</tr>
+<tr>
+<td style="text-align:left">SMART原则</td>
+<td style="text-align:left">制定目标原则，S=Specific(具体)、M=Measurable(可衡量)、A=Attainable(可实现)、R=Relevant(相关性)、T=Time-Bound(有期限)</td>
+</tr>
+<tr>
+<td style="text-align:left">STAR原则</td>
+<td style="text-align:left">描述工作原则，Situation（情景）、Task（任务）、Action（行动）、Result（结果）</td>
+</tr>
+<tr>
+<td style="text-align:left">SOP</td>
+<td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
+</tr>
+<tr>
+<td style="text-align:left">埋点</td>
+<td style="text-align:left">为了采集业务数据做的技术工作</td>
+</tr>
+</tbody>
+</table>
+
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/03/12/rest-and-soap/">REST 与 SOAP</a>
         
       </h1>
@@ -547,90 +765,6 @@
   </article>
 
     
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/01/22/iCloud-sync/">iCloud同步</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017年1月22日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>一直以来都觉得iCloud和iTunes就是apple生态系统里的两个坑，用了这么多年了始终没太搞明白这两个怎么用，特别在照片同步上感觉很不方便。由于无法忍受iCloud最近在mac和iphone上反复提醒我5GB空间满了，目前又不想花钱升级，就清理下照片和设置同步。</p>
-          <div class="read-more">
-            <a href="/2017/01/22/iCloud-sync/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/01/16/lambda-expression/">Lambda表达式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017年1月16日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>Lambda表达式指的是<strong>匿名函数</strong>，当你只需要运行一次或若干次一个不是很复杂的函数时，可以考虑使用lambda，它不需要名字还能减少代码量，并且可以作为一个变量传入到另一个函数中。这种函数源自functional programming languages，每种语言对于lambda的支持不尽相同，本文讲一下lambda在Java 8和Python 3中的基本用法。</p>
-          <div class="read-more">
-            <a href="/2017/01/16/lambda-expression/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
   </section>
 
   
@@ -713,7 +847,7 @@
      
       2016 - 
     
-    2017
+    2018
 
     <span class="heart">
       <i class="iconfont icon-heart"></i>

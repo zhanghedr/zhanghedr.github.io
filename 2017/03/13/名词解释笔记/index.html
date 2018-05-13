@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="Java JDBC PreparedStatement 用法"/>
+  <meta name="description" content="名词解释笔记"/>
 
 
 
@@ -29,19 +29,100 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2017/03/13/名词解释笔记/"/>
 
 
-<meta name="description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta name="description" content="名词
+解释
+
+
+
+
+SPU
+Standard Product Unit，标准产品单位，如iPhone X
+
+
+SKU
+Stock Keeping Unit，库存量单位，如iPhone X 金色
+
+
+DAU
+Daily Active User，日活
+
+
+MAU
+Monthly Active User，月活
+
+
+PV
+Page View，页面浏览量
+
+
+UV
+Unique Visitor在一定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java JDBC PreparedStatement 用法">
-<meta property="og:url" content="http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/index.html">
+<meta property="og:title" content="名词解释笔记">
+<meta property="og:url" content="http://www.zhanghedr.com/2017/03/13/名词解释笔记/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
-<meta property="og:updated_time" content="2016-12-29T08:00:12.000Z">
+<meta property="og:description" content="名词
+解释
+
+
+
+
+SPU
+Standard Product Unit，标准产品单位，如iPhone X
+
+
+SKU
+Stock Keeping Unit，库存量单位，如iPhone X 金色
+
+
+DAU
+Daily Active User，日活
+
+
+MAU
+Monthly Active User，月活
+
+
+PV
+Page View，页面浏览量
+
+
+UV
+Unique Visitor在一定">
+<meta property="og:updated_time" content="2018-05-13T16:52:36.759Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java JDBC PreparedStatement 用法">
-<meta name="twitter:description" content="在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。">
+<meta name="twitter:title" content="名词解释笔记">
+<meta name="twitter:description" content="名词
+解释
+
+
+
+
+SPU
+Standard Product Unit，标准产品单位，如iPhone X
+
+
+SKU
+Stock Keeping Unit，库存量单位，如iPhone X 金色
+
+
+DAU
+Daily Active User，日活
+
+
+MAU
+Monthly Active User，月活
+
+
+PV
+Page View，页面浏览量
+
+
+UV
+Unique Visitor在一定">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -90,7 +171,7 @@
 
 
 
-    <title> Java JDBC PreparedStatement 用法 · To The Moon </title>
+    <title> 名词解释笔记 · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,42 +296,161 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Java JDBC PreparedStatement 用法
+          名词解释笔记
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2016年12月6日
+          2017年3月13日
         </span>
       </div>
     </header>
 
     
     
-  <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">文章目录</h2>
-    <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#General"><span class="toc-text">General</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Batch-Update"><span class="toc-text">Batch Update</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conclusion"><span class="toc-text">Conclusion</span></a></li></ol>
-    </div>
-  </div>
-
 
     <div class="post-content">
       
-        <p>在不需要ORM的场景下，用Java对MySQL进行操作时会用到PreparedStatement，它可以预载SQL语句然后再动态设置其中变量。这篇文章讲一下通常需要注意的问题和在处理大量数据时的优化。</p>
-<a id="more"></a>
-<h2 id="General"><a href="#General" class="headerlink" title="General"></a>General</h2><p>这里列出几点通常要注意的地方</p>
-<ul>
-<li>在循环执行PreparedStatement时，注意将只建一个instance在循环外，重复设置SQL中的变量，避免OutOfMemoryError错误</li>
-<li>合理commit transactions，在需要的情况下使用conn.setAutoCommit(false)来手动commit，它的default是true，避免在每次execute时候就自动commit</li>
-<li>在setAutoCommit(false)的情况下，如果抓到SQLException使用conn.rollback()来撤销当前的transaction</li>
-<li>用close()关闭相关的resource，分别有ResultSet, PreparedStatement和Connection。Java 7+版本可以使用try-with-resources方式自动close</li>
-</ul>
-<p>简单的代码example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">String sql = <span class="string">"..."</span>;</div><div class="line"><span class="keyword">try</span> (Connection conn = getDbConnection()) &#123;</div><div class="line">    conn.setAutoCommit(<span class="keyword">false</span>);</div><div class="line">    <span class="keyword">try</span> (PreparedStatement ps = conn.prepareStatement(sql)) &#123;</div><div class="line">        <span class="comment">// ps.setString();</span></div><div class="line">        <span class="comment">// ps.execute();</span></div><div class="line">        conn.commit();</div><div class="line">    &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">        conn.rollback();</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">    &#125;</div><div class="line">&#125; <span class="keyword">catch</span>(SQLException e) &#123;</div><div class="line">    e.printStackTrace();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="Batch-Update"><a href="#Batch-Update" class="headerlink" title="Batch Update"></a>Batch Update</h2><p>在执行大量数据的写入时，比如上百万条记录，这时简单的用executeUpdate()进行逐条update会变得非常慢。这里需要用PreparedStatement.executeBatch()来进行批量写入，从而减少数据库的访问次数，极大的增加速度。注意对于大量数据要批量执行batch，否则会导致OutOfMemoryError，代码如下。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">final</span> <span class="keyword">int</span> batchSize = <span class="number">1000</span>;</div><div class="line"><span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> (String s : names) &#123;</div><div class="line">    ps.setString(<span class="number">1</span>, s);</div><div class="line">    ps.addBatch();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (++count % batchSize == <span class="number">0</span>) &#123;</div><div class="line">        ps.executeBatch();</div><div class="line">        ps.clearBatch();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">ps.executeBatch();</div></pre></td></tr></table></figure></p>
-<p>注意executeBatch只能对于insert/update/delete使用，select不能使用。</p>
-<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文只是简单介绍了PreparedStatement用法，提高数据库速度还要看数据库本身的优化和SQL等。Java的PreparedStatement在设置变量时还是不怎么方便，还要注意?对应的顺序，但是有一些工具可以简化这个操作，大家可以搜一下。</p>
+        <a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名词</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SPU</td>
+<td style="text-align:left">Standard Product Unit，标准产品单位，如iPhone X</td>
+</tr>
+<tr>
+<td style="text-align:left">SKU</td>
+<td style="text-align:left">Stock Keeping Unit，库存量单位，如iPhone X 金色</td>
+</tr>
+<tr>
+<td style="text-align:left">DAU</td>
+<td style="text-align:left">Daily Active User，日活</td>
+</tr>
+<tr>
+<td style="text-align:left">MAU</td>
+<td style="text-align:left">Monthly Active User，月活</td>
+</tr>
+<tr>
+<td style="text-align:left">PV</td>
+<td style="text-align:left">Page View，页面浏览量</td>
+</tr>
+<tr>
+<td style="text-align:left">UV</td>
+<td style="text-align:left">Unique Visitor在一定时间内独立IP访问用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">CTR</td>
+<td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">购买转化率 / 访购率</td>
+<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">跳出率</td>
+<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
+</tr>
+<tr>
+<td style="text-align:left">GMV</td>
+<td style="text-align:left">Gross Merchandise Volume，成交总金额，指下单金额，含付款和未付款</td>
+</tr>
+<tr>
+<td style="text-align:left">KA</td>
+<td style="text-align:left">Key Account，重要或者关键客户</td>
+</tr>
+<tr>
+<td style="text-align:left">UUID</td>
+<td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">B端</td>
+<td style="text-align:left">Business，商家端</td>
+</tr>
+<tr>
+<td style="text-align:left">C端</td>
+<td style="text-align:left">Consumer，消费者端</td>
+</tr>
+<tr>
+<td style="text-align:left">BD</td>
+<td style="text-align:left">Business Development，公司业务拓展、商务开发的一线市场推广人员</td>
+</tr>
+<tr>
+<td style="text-align:left">BDM</td>
+<td style="text-align:left">Business Development Manager，BD经理，联络点负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">CM</td>
+<td style="text-align:left">City Manager，城市经理，城市负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">DM</td>
+<td style="text-align:left">District Manager，区域经理，区域负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">SRE</td>
+<td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
+</tr>
+<tr>
+<td style="text-align:left">PM</td>
+<td style="text-align:left">Product Manager，产品经理</td>
+</tr>
+<tr>
+<td style="text-align:left">UI</td>
+<td style="text-align:left">User Interface， 偏向视觉设计</td>
+</tr>
+<tr>
+<td style="text-align:left">UX / UE</td>
+<td style="text-align:left">User Experience，偏向交互设计</td>
+</tr>
+<tr>
+<td style="text-align:left">PRD</td>
+<td style="text-align:left">Product Requirement Document，产品需求文档</td>
+</tr>
+<tr>
+<td style="text-align:left">POI</td>
+<td style="text-align:left">Point of Interest，产生利益的点，比如商家</td>
+</tr>
+<tr>
+<td style="text-align:left">KPI</td>
+<td style="text-align:left">Key Performance Indicator，关键绩效指标法，考核指标围绕关键成果领域进行选取</td>
+</tr>
+<tr>
+<td style="text-align:left">IP</td>
+<td style="text-align:left">Intellectual Property，知识产权</td>
+</tr>
+<tr>
+<td style="text-align:left">SEO</td>
+<td style="text-align:left">Search Engine Optimization，搜索引擎优化，指的是利用搜索引擎的规则来提高目前网站在搜索引擎内的排名</td>
+</tr>
+<tr>
+<td style="text-align:left">SMART原则</td>
+<td style="text-align:left">制定目标原则，S=Specific(具体)、M=Measurable(可衡量)、A=Attainable(可实现)、R=Relevant(相关性)、T=Time-Bound(有期限)</td>
+</tr>
+<tr>
+<td style="text-align:left">STAR原则</td>
+<td style="text-align:left">描述工作原则，Situation（情景）、Task（任务）、Action（行动）、Result（结果）</td>
+</tr>
+<tr>
+<td style="text-align:left">SOP</td>
+<td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
+</tr>
+<tr>
+<td style="text-align:left">埋点</td>
+<td style="text-align:left">为了采集业务数据做的技术工作</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>
@@ -263,7 +463,7 @@
     
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/">http://www.zhanghedr.com/2016/12/06/Java-JDBC-PreparedStatement/</a>
+      <a href="http://www.zhanghedr.com/2017/03/13/名词解释笔记/">http://www.zhanghedr.com/2017/03/13/名词解释笔记/</a>
     </p>
 
     <p class="copyright-item">
@@ -285,15 +485,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2016/12/07/hexo-blog-common-solution/">
+      <a class="prev" href="/2017/03/13/n-1-problem/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">搭建 Hexo 博客常见方案</span>
+        <span class="prev-text nav-default">N + 1 问题</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2016/12/04/2016-Thanksgiving/">
-        <span class="next-text nav-default">2016 Thanksgiving</span>
+      <a class="next" href="/2017/03/12/rest-and-soap/">
+        <span class="next-text nav-default">REST 与 SOAP</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

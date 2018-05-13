@@ -4,6 +4,24 @@
   
     
     <entry>
+      <title><![CDATA[有关电子货币]]></title>
+      <url>http://www.zhanghedr.com/2017/12/13/bitcoin/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<h3 id="创建EC2实例"><a href="#创建EC2实例" class="headerlink" title="创建EC2实例"></a>创建EC2实例</h3><p><img src="/img/bitcoin/summary.jpg" alt=""></p>
+<p>主流币：BTC, ETH, BCH, LTC, ETC</p>
+<p>其他等山寨币：XRP, IOTA, DASH, EOS, NEO, QTUM, ZEC, ADDR/NXT, HRS, BTS, DOGE, MANA </p>
+]]></content>
+      
+        <categories>
+            
+            <category> Finance </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[AWS S3托管静态网站]]></title>
       <url>http://www.zhanghedr.com/2017/04/11/aws-s3-static-site/</url>
       <content type="html"><![CDATA[<p>AWS S3云存储不但可以放文件，还可以托管静态网站，当然GitHub是个不错的选择，这里讲下简单几步将静态网站部署到S3上。</p>
@@ -441,6 +459,159 @@
 <p>另外一种就是用JOIN了：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> t.title, u.username <span class="keyword">FROM</span> <span class="keyword">thread</span> t</div><div class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> <span class="keyword">user</span> u <span class="keyword">ON</span> t.user_id = u.id</div><div class="line"><span class="keyword">WHERE</span> ...</div></pre></td></tr></table></figure>
 <p>这样只有一条SQL，甚至可以JOIN更多的表，当然JOIN能不用尽量不用，会影响到性能。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[名词解释笔记]]></title>
+      <url>http://www.zhanghedr.com/2017/03/13/%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名词</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SPU</td>
+<td style="text-align:left">Standard Product Unit，标准产品单位，如iPhone X</td>
+</tr>
+<tr>
+<td style="text-align:left">SKU</td>
+<td style="text-align:left">Stock Keeping Unit，库存量单位，如iPhone X 金色</td>
+</tr>
+<tr>
+<td style="text-align:left">DAU</td>
+<td style="text-align:left">Daily Active User，日活</td>
+</tr>
+<tr>
+<td style="text-align:left">MAU</td>
+<td style="text-align:left">Monthly Active User，月活</td>
+</tr>
+<tr>
+<td style="text-align:left">PV</td>
+<td style="text-align:left">Page View，页面浏览量</td>
+</tr>
+<tr>
+<td style="text-align:left">UV</td>
+<td style="text-align:left">Unique Visitor在一定时间内独立IP访问用户数</td>
+</tr>
+<tr>
+<td style="text-align:left">CTR</td>
+<td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">购买转化率 / 访购率</td>
+<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
+</tr>
+<tr>
+<td style="text-align:left">跳出率</td>
+<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
+</tr>
+<tr>
+<td style="text-align:left">GMV</td>
+<td style="text-align:left">Gross Merchandise Volume，成交总金额，指下单金额，含付款和未付款</td>
+</tr>
+<tr>
+<td style="text-align:left">KA</td>
+<td style="text-align:left">Key Account，重要或者关键客户</td>
+</tr>
+<tr>
+<td style="text-align:left">UUID</td>
+<td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">B端</td>
+<td style="text-align:left">Business，商家端</td>
+</tr>
+<tr>
+<td style="text-align:left">C端</td>
+<td style="text-align:left">Consumer，消费者端</td>
+</tr>
+<tr>
+<td style="text-align:left">BD</td>
+<td style="text-align:left">Business Development，公司业务拓展、商务开发的一线市场推广人员</td>
+</tr>
+<tr>
+<td style="text-align:left">BDM</td>
+<td style="text-align:left">Business Development Manager，BD经理，联络点负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">CM</td>
+<td style="text-align:left">City Manager，城市经理，城市负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">DM</td>
+<td style="text-align:left">District Manager，区域经理，区域负责人</td>
+</tr>
+<tr>
+<td style="text-align:left">SRE</td>
+<td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
+</tr>
+<tr>
+<td style="text-align:left">PM</td>
+<td style="text-align:left">Product Manager，产品经理</td>
+</tr>
+<tr>
+<td style="text-align:left">UI</td>
+<td style="text-align:left">User Interface， 偏向视觉设计</td>
+</tr>
+<tr>
+<td style="text-align:left">UX / UE</td>
+<td style="text-align:left">User Experience，偏向交互设计</td>
+</tr>
+<tr>
+<td style="text-align:left">PRD</td>
+<td style="text-align:left">Product Requirement Document，产品需求文档</td>
+</tr>
+<tr>
+<td style="text-align:left">POI</td>
+<td style="text-align:left">Point of Interest，产生利益的点，比如商家</td>
+</tr>
+<tr>
+<td style="text-align:left">KPI</td>
+<td style="text-align:left">Key Performance Indicator，关键绩效指标法，考核指标围绕关键成果领域进行选取</td>
+</tr>
+<tr>
+<td style="text-align:left">IP</td>
+<td style="text-align:left">Intellectual Property，知识产权</td>
+</tr>
+<tr>
+<td style="text-align:left">SEO</td>
+<td style="text-align:left">Search Engine Optimization，搜索引擎优化，指的是利用搜索引擎的规则来提高目前网站在搜索引擎内的排名</td>
+</tr>
+<tr>
+<td style="text-align:left">SMART原则</td>
+<td style="text-align:left">制定目标原则，S=Specific(具体)、M=Measurable(可衡量)、A=Attainable(可实现)、R=Relevant(相关性)、T=Time-Bound(有期限)</td>
+</tr>
+<tr>
+<td style="text-align:left">STAR原则</td>
+<td style="text-align:left">描述工作原则，Situation（情景）、Task（任务）、Action（行动）、Result（结果）</td>
+</tr>
+<tr>
+<td style="text-align:left">SOP</td>
+<td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
+</tr>
+<tr>
+<td style="text-align:left">埋点</td>
+<td style="text-align:left">为了采集业务数据做的技术工作</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       
         <categories>
@@ -980,7 +1151,7 @@
     <entry>
       <title><![CDATA[常见 Git 命令清单与使用]]></title>
       <url>http://www.zhanghedr.com/2016/12/10/git-cheat-sheet/</url>
-      <content type="html"><![CDATA[<p>Git的指令很多，每次都上stackoverflow搜答案，不如把常用的命令都记录下来。下图很好的解释了git的原理，结合本文的常用指令能在1小时内搞明白git的大致用法，当然这些还是要结合实际使用才会熟练。</p>
+      <content type="html"><![CDATA[<p>Git的指令很多，每次都上stackoverflow搜答案，不如把常用的命令都记录下来。下图很好的解释了git的原理。</p>
 <p><img src="/img/git_cheat_sheet/git.png" alt=""></p>
 <a id="more"></a>
 <p>首先解释一下这几个名词：</p>
@@ -1004,7 +1175,7 @@
 <h4 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">git branch                                 <span class="comment"># 列出所有local branch</span></div><div class="line">git branch -r                              <span class="comment"># 列出所有remote branch</span></div><div class="line">git branch <span class="_">-a</span>                              <span class="comment"># 列出所有local和remote branch</span></div><div class="line">git branch --merged                        <span class="comment"># 显示所有已合并到当前分支的分支</span></div><div class="line">git checkout [branch]                      <span class="comment"># working dir切换到branch </span></div><div class="line">git checkout -b [branch]                   <span class="comment"># 基于当前branch新建并切换到新branch</span></div><div class="line">git branch [branch]                        <span class="comment"># 新建branch但不切换到新branch</span></div><div class="line">git merge [branch]                         <span class="comment"># 合并branch到当前分支</span></div><div class="line">git branch <span class="_">-d</span> [branch]                     <span class="comment"># 删除branch</span></div><div class="line">git push origin --delete [branch]          <span class="comment"># 删除remote branch</span></div></pre></td></tr></table></figure>
 <h4 id="远程同步"><a href="#远程同步" class="headerlink" title="远程同步"></a>远程同步</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git remote                     <span class="comment"># 显示当前所有remote</span></div><div class="line">git remote show [remote]       <span class="comment"># 显示remote信息</span></div><div class="line">git remote add [remote] [URL]  <span class="comment"># 为本地添加一个新的remote</span></div><div class="line">git fetch                      <span class="comment"># 获取所有origin分支到origin/master，working dir不变</span></div><div class="line">git merge                      <span class="comment"># 合并origin/master到master，working dir改变</span></div><div class="line">git pull [remote] [branch]     <span class="comment"># 获取远程分支且合并到当前分支. git pull = git fetch + git merge</span></div><div class="line">git rebase [remote]/[branch]   <span class="comment"># 更新最新改动且重新apply本地commits到其之上</span></div></pre></td></tr></table></figure>
 <h4 id="日志"><a href="#日志" class="headerlink" title="日志"></a>日志</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span>                                  <span class="comment"># 显示本地提交日志，git pull后更新远程日志</span></div><div class="line">git <span class="built_in">log</span> --stat                           <span class="comment"># 显示提交日志及相关变动文件</span></div><div class="line">git <span class="built_in">log</span> --pretty=format:<span class="string">'%h %s'</span> --graph  <span class="comment"># 图示提交日志</span></div><div class="line">git <span class="built_in">log</span> --follow [file]                  <span class="comment"># 显示文件提交日志</span></div><div class="line">git show [commit]                        <span class="comment"># 显示commit日志by commitid(缩写也可以)</span></div><div class="line">git show HEAD                            <span class="comment"># 显示HEAD commit日志</span></div><div class="line">git show origin/master                   <span class="comment"># 显示origin/master commit日志</span></div></pre></td></tr></table></figure>
-<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git status                       <span class="comment"># 显示working dir所有修改过的文件</span></div><div class="line">git diff                         <span class="comment"># 显示working dir和index差异</span></div><div class="line">git diff --cached                <span class="comment"># 显示index和HEAD的差异</span></div><div class="line">git diff HEAD                    <span class="comment"># 显示working dir和HEAD差异</span></div></pre></td></tr></table></figure>
+<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git status                       <span class="comment"># 显示working dir所有修改过的文件</span></div><div class="line">git diff                         <span class="comment"># 显示working dir和index差异</span></div><div class="line">git diff --cached                <span class="comment"># 显示index和HEAD的差异</span></div><div class="line">git diff HEAD                    <span class="comment"># 显示working dir和HEAD差异</span></div><div class="line">git diff branch1 branch2         <span class="comment"># 显示两个分支区别</span></div></pre></td></tr></table></figure>
 <h4 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">git checkout [commit]           <span class="comment"># 切换working dir到某个commit</span></div><div class="line">git checkout [commit] [file]    <span class="comment"># 恢复working dir的文件到某个commit</span></div><div class="line">git checkout [file]             <span class="comment"># 恢复index文件到working dir</span></div><div class="line">git checkout .                  <span class="comment"># 恢复所有index文件到working dir</span></div><div class="line">git reset [file]                <span class="comment"># 重置index和local repo里的文件，working dir不变</span></div><div class="line">git reset HEAD~1                <span class="comment"># 重置index和local repo到上一个commit，working dir不变</span></div><div class="line">git reset [commit]              <span class="comment"># 重置index和local repo到某个commit，working dir不变</span></div><div class="line">git reset --hard HEAD~1         <span class="comment"># 重置index, local repo和working dir到上一个commit，本地改变丢失</span></div><div class="line">git reset --hard [commit]       <span class="comment"># 重置index, local repo和working dir到某个commit，本地改变丢失</span></div><div class="line">git reset --hard origin/master  <span class="comment"># 重置index, local repo和working dir到master，本地改变丢失</span></div></pre></td></tr></table></figure>
 <h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git stash                        <span class="comment"># 暂存当前修改，将working dir至为HEAD状态</span></div><div class="line">git stash list                   <span class="comment"># 查看所有暂存</span></div><div class="line">git stash pop                    <span class="comment"># 提取暂存到working dir，如有冲突需手动merge</span></div></pre></td></tr></table></figure>
 <p>​                  </p>
@@ -1013,9 +1184,11 @@
 <h4 id="修改上次commit的message和add新改动"><a href="#修改上次commit的message和add新改动" class="headerlink" title="修改上次commit的message和add新改动"></a>修改上次commit的message和add新改动</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git reset; </div><div class="line">git commit --amend -m [message]  <span class="comment"># 注意会把working dir最新改动也加进去</span></div></pre></td></tr></table></figure>
 <h4 id="显示本地和远程origin的区别"><a href="#显示本地和远程origin的区别" class="headerlink" title="显示本地和远程origin的区别"></a>显示本地和远程origin的区别</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch</div><div class="line">git diff ..origin</div></pre></td></tr></table></figure>
 <h4 id="重置本地working-dir、index、local-repo到远程最新commit，抛弃本地改动"><a href="#重置本地working-dir、index、local-repo到远程最新commit，抛弃本地改动" class="headerlink" title="重置本地working dir、index、local repo到远程最新commit，抛弃本地改动"></a>重置本地working dir、index、local repo到远程最新commit，抛弃本地改动</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git fetch origin  <span class="comment"># 抓到本地</span></div><div class="line">git reset --hard origin/master  <span class="comment"># 重置到本地</span></div></pre></td></tr></table></figure>
+<h4 id="回滚git-merge-branch"><a href="#回滚git-merge-branch" class="headerlink" title="回滚git merge branch"></a>回滚git merge branch</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">log</span></div><div class="line">git reset --hard [commit]</div></pre></td></tr></table></figure>
 <h4 id="删除本地和remote分支"><a href="#删除本地和remote分支" class="headerlink" title="删除本地和remote分支"></a>删除本地和remote分支</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git branch <span class="_">-d</span> [branch]  <span class="comment"># delete local, use -D to force delete</span></div><div class="line">git push origin --delete [branch]  <span class="comment"># delete remote</span></div></pre></td></tr></table></figure>
 <h4 id="Pull-Request流程"><a href="#Pull-Request流程" class="headerlink" title="Pull Request流程"></a>Pull Request流程</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># fork原始仓库</span></div><div class="line">git <span class="built_in">clone</span> [URL]  <span class="comment"># 抓取fork的仓库</span></div><div class="line">git remote add upstream [URL]  <span class="comment"># 添加原仓库remote URL，如命名upstream</span></div><div class="line">git checkout -b patch  <span class="comment"># 基于当前分支新建patch分支</span></div><div class="line"><span class="comment"># 在patch下开发</span></div><div class="line">git add . &amp;&amp; git commit -m <span class="string">"update"</span> &amp;&amp; git push origin patch</div><div class="line"><span class="comment"># 如果upstream仓库有了新的改动，需要更新到我们仓库而且rebase我们的commits</span></div><div class="line">git checkout patch</div><div class="line">git fetch upstream</div><div class="line">git rebase upstream/master  <span class="comment"># 抓取upstream最新commits并且将自己patch下的commits在其之上重新apply上去</span></div><div class="line">git push <span class="_">-f</span> origin patch  <span class="comment"># 因为commit tree已经改变，需要force push</span></div><div class="line">compare and pull request patch branch <span class="keyword">in</span> github</div><div class="line"><span class="built_in">wait</span> <span class="keyword">for</span> accept/deny/request change  <span class="comment"># 注意此时如果发现有错的话依然可以继续commit，会更新到PR中</span></div><div class="line"><span class="comment"># 如果PR被接受并且merged，删除local和origin的patch分支，因为commit tree已经不同了</span></div><div class="line">git checkout master &amp;&amp; git pull upstream master</div><div class="line">git checkout -b patch-1  <span class="comment"># 基于upstream merged后的最新code开始一个新的branch</span></div></pre></td></tr></table></figure>
-]]></content>
+<h4 id="git-pull每次都提示Enter-passphrase-for-key-‘-Users-zhanghe-ssh-id-rsa’"><a href="#git-pull每次都提示Enter-passphrase-for-key-‘-Users-zhanghe-ssh-id-rsa’" class="headerlink" title="git pull每次都提示Enter passphrase for key ‘/Users/zhanghe/.ssh/id_rsa’"></a>git pull每次都提示Enter passphrase for key ‘/Users/zhanghe/.ssh/id_rsa’</h4><p>MacOS解决方法：编辑/创建~/.ssh/config，加入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Host *</div><div class="line">    UseKeychain yes</div></pre></td></tr></table></figure>]]></content>
       
         <categories>
             
