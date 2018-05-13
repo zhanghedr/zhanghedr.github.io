@@ -3,7 +3,7 @@ title: 常见 Git 命令清单与使用
 date: 2016-12-10 00:27:47
 categories: Tech
 ---
-Git的指令很多，每次都上stackoverflow搜答案，不如把常用的命令都记录下来。下图很好的解释了git的原理，结合本文的常用指令能在1小时内搞明白git的大致用法，当然这些还是要结合实际使用才会熟练。
+Git的指令很多，每次都上stackoverflow搜答案，不如把常用的命令都记录下来。下图很好的解释了git的原理。
 
 ![](/img/git_cheat_sheet/git.png)
 
@@ -105,6 +105,7 @@ git status                       # 显示working dir所有修改过的文件
 git diff                         # 显示working dir和index差异
 git diff --cached                # 显示index和HEAD的差异
 git diff HEAD                    # 显示working dir和HEAD差异
+git diff branch1 branch2         # 显示两个分支区别
 ```
 
 #### 撤销
@@ -162,9 +163,16 @@ git diff ..origin
 ```
 
 #### 重置本地working dir、index、local repo到远程最新commit，抛弃本地改动
-``` sh
+``` Sh
 git fetch origin  # 抓到本地
 git reset --hard origin/master  # 重置到本地
+```
+
+#### 回滚git merge branch
+
+```Sh
+git log
+git reset --hard [commit]
 ```
 
 #### 删除本地和remote分支
@@ -195,3 +203,11 @@ git checkout master && git pull upstream master
 git checkout -b patch-1  # 基于upstream merged后的最新code开始一个新的branch
 ```
 
+#### git pull每次都提示Enter passphrase for key '/Users/zhanghe/.ssh/id_rsa'
+
+MacOS解决方法：编辑/创建~/.ssh/config，加入
+
+```
+Host *
+    UseKeychain yes
+```
