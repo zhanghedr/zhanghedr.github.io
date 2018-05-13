@@ -1,5 +1,5 @@
 ---
-title: 搭建 Hexo 博客常见方案
+title: 搭建一个Hexo博客
 date: 2016-12-07 23:15:03
 categories: Tech
 ---
@@ -53,3 +53,33 @@ F1G1NS2.DNSPOD.NET
 - disqus_shortname
 - busuanzi_count
 
+## 常用指令
+
+hexo new "blog name"
+
+hexo generate
+
+hexo server
+
+hexo clean
+
+hexo deploy
+
+## 添加版权信息
+
+1. 创建`/scripts/tail.js`
+2. 创建`/tail.md` 
+3. 更新`_config.yml`
+
+## Even主题个性化
+
+- 更换`/even/source/favicon.ico`
+- Optional: 安装本地搜索模块`npm install hexo-generator-search --save`
+- Optional: 更新padding - `/even/source/css/_custom/_custom.scss`
+- Optional: 更新`/even/layout/_partial/_post/copyright.swig`
+
+## 新设备设置
+
+在另一台设备设置环境，`npm install`即可
+
+下载主题而不是clone，从而commit主题文件
