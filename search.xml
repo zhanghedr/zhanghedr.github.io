@@ -46,11 +46,11 @@
 </tr>
 <tr>
 <td style="text-align:left">购买转化率 / 访购率</td>
-<td style="text-align:left">访问到购买转化率 = 下单UV / 曝光UV</td>
+<td style="text-align:left">访问到购买转化率 = 下单用户数 / 曝光意向UV</td>
 </tr>
 <tr>
 <td style="text-align:left">跳出率</td>
-<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站PV / 总PV</td>
+<td style="text-align:left">Bounce Rate = 访问一个页面后就离开网站UV / 总UV</td>
 </tr>
 <tr>
 <td style="text-align:left">GMV</td>
@@ -63,6 +63,14 @@
 <tr>
 <td style="text-align:left">UUID</td>
 <td style="text-align:left">Universally Unique Identifier，唯一识别码</td>
+</tr>
+<tr>
+<td style="text-align:left">MOM</td>
+<td style="text-align:left">Month-on-Month Ratio，环比， 环比增长率 = (今年5月 - 今年4月) / 今年4月</td>
+</tr>
+<tr>
+<td style="text-align:left">YOY</td>
+<td style="text-align:left">Year-on-Year Ratio，同比，同比增长率 = (今年5月 - 去年5月) / 去年5月</td>
 </tr>
 <tr>
 <td style="text-align:left">———</td>
@@ -1218,6 +1226,8 @@
 <li>disqus_shortname</li>
 <li>busuanzi_count</li>
 </ul>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>现在Github自定义域名也支持HTTPS了，所以可以很方便的在设置中添加，如果按钮是灰色，可以尝试把域名移除再重新添加，1天后certificate还没OK的话联系Github客服可以帮忙搞定。</p>
+<p><img src="/img/github.png" alt="github"></p>
 <h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><p>hexo new “blog name”</p>
 <p>hexo generate</p>
 <p>hexo server</p>
