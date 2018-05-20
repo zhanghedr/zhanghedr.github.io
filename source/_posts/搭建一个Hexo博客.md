@@ -53,6 +53,12 @@ F1G1NS2.DNSPOD.NET
 - disqus_shortname
 - busuanzi_count
 
+## HTTPS
+
+现在Github自定义域名也支持HTTPS了，所以可以很方便的在设置中添加，如果按钮是灰色，可以尝试把域名移除再重新添加，1天后certificate还没OK的话联系Github客服可以帮忙搞定。
+
+![github](/img/github.png)
+
 ## 常用指令
 
 hexo new "blog name"
