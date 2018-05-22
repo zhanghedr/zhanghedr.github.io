@@ -52,11 +52,11 @@ POM文件主要元素：
 
 ```Xml
 <project>
-   	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.zhanghedr.project</groupId>
-	<artifactId>webserver-parent</artifactId>
-	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.zhanghedr.project</groupId>
+    <artifactId>webserver-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
     
     <modules>
        <module>webserver-service</module>
