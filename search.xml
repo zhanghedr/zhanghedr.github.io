@@ -4,6 +4,112 @@
   
     
     <entry>
+      <title><![CDATA[Maven小结]]></title>
+      <url>http://www.zhanghedr.com/2018/05/21/Maven%E5%B0%8F%E7%BB%93/</url>
+      <content type="html"><![CDATA[<p>Apache Maven基于POM(Project Object Model)文件，主要用于Java工程管理，极大简化了工程的构建过程，并标准化。</p>
+<a id="more"></a>
+<h1 id="POM"><a href="#POM" class="headerlink" title="POM"></a>POM</h1><p>POM文件主要元素：</p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>project</td>
+<td>根元素</td>
+</tr>
+<tr>
+<td>modelVersion</td>
+<td>POM对象模型版本</td>
+</tr>
+<tr>
+<td>groupId</td>
+<td>组织或部门的项目</td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>项目下的maven项目，唯一标识</td>
+</tr>
+<tr>
+<td>version</td>
+<td>maven项目版本</td>
+</tr>
+<tr>
+<td>packaging</td>
+<td>打包方式，jar、war、 pom等</td>
+</tr>
+<tr>
+<td>name</td>
+<td>maven项目名称</td>
+</tr>
+<tr>
+<td>description</td>
+<td>maven项目描述</td>
+</tr>
+</tbody>
+</table>
+<h1 id="依赖机制"><a href="#依赖机制" class="headerlink" title="依赖机制"></a>依赖机制</h1><h3 id="传递性依赖"><a href="#传递性依赖" class="headerlink" title="传递性依赖"></a>传递性依赖</h3><p>项目中直接依赖的jar包，一般也会依赖很多其他的jar包，那么maven会把这种间接依赖引入，作为传递性依赖。</p>
+<h3 id="依赖优先级"><a href="#依赖优先级" class="headerlink" title="依赖优先级"></a>依赖优先级</h3><p>多层级依赖情况下，很可能出现依赖冲突，maven会保证只有一个版本在存在，这时maven会依次按照2个原则引入依赖：</p>
+<ol>
+<li>最短路径原则：依赖层级路径最短的jar包会被引入到项目中</li>
+<li>第一声明者优先：如果路径长短一样，那么看其本身或上级依赖的声明顺序，也就是从上到下的代码顺序</li>
+</ol>
+<h3 id="优化依赖"><a href="#优化依赖" class="headerlink" title="优化依赖"></a>优化依赖</h3><ul>
+<li><code>mvn dependency:list</code>，可以查看项目中已解析依赖</li>
+<li><code>mvn dependency:tree</code>，形成树状依赖结构，更直观，比如使用<code>mvn dependency:tree | grep SNAPSHOT</code>来查看所有快照版本</li>
+<li><code>mvn dependency:analyze</code>，用于分析项目中依赖存在的问题<ul>
+<li>Used undeclared dependencies found，未声明但使用的依赖，未显示声明而使用的传递性依赖，如果某个传递性依赖被删除则使用版本可能变化，有潜在风险，最好显示声明保证第一优先级</li>
+<li>Unused declared dependencies found，声明但未使用的依赖，这种依赖大概率可以删除，但需要进一步看该依赖被其他依赖使用到，以及删除带来的风险</li>
+</ul>
+</li>
+</ul>
+<h1 id="聚合和继承"><a href="#聚合和继承" class="headerlink" title="聚合和继承"></a>聚合和继承</h1><h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><p>一个项目经常会有多个模块，而根目录也经常会有parent模块的pom文件，聚合了module1、module2、module3等，同时每个子模块声明parent模块，这样就可以一次构建多个模块，比如：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">project</span>&gt;</span></div><div class="line">   	<span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.zhanghedr.project<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>webserver-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line">    </div><div class="line">    <span class="tag">&lt;<span class="name">modules</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">module</span>&gt;</span>webserver-service<span class="tag">&lt;/<span class="name">module</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">module</span>&gt;</span>webserver-api<span class="tag">&lt;/<span class="name">module</span>&gt;</span>  </div><div class="line">       <span class="tag">&lt;<span class="name">module</span>&gt;</span>webserver-dao<span class="tag">&lt;/<span class="name">module</span>&gt;</span></div><div class="line">       <span class="tag">&lt;<span class="name">module</span>&gt;</span>webserver-util<span class="tag">&lt;/<span class="name">module</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">modules</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>多个模块可以继承parent模块的依赖配置，通过<code>&lt;dependencies&gt;</code>和<code>&lt;dependencyManagement&gt;</code>元素实现，<code>&lt;dependencies&gt;</code>会使所有子模块都继承jar包，而<code>&lt;dependencyManagement&gt;</code>更加灵活，子模块不需要指定版本来引入依赖管理元素中指定好的依赖，子模块通过声明来选择继承自己需要的哪些依赖。</p>
+<h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p>Maven分为本地仓库和远程仓库，Maven会先在本地仓库查找依赖，如果本地没有或更新版本，会去远程仓库下载到本地使用。</p>
+<ul>
+<li>本地仓库是项目本地jar包仓库</li>
+<li>远程仓库包括多个公开和私有的仓库</li>
+</ul>
+<h1 id="构件版本"><a href="#构件版本" class="headerlink" title="构件版本"></a>构件版本</h1><ul>
+<li>RELEASE，稳定发布版本，不可覆盖，用于发布时</li>
+<li>SNAPSHOT，快照版本，可以覆盖，也可以引用其中某个日期发布的快照版本，只应用于内部或开发时</li>
+</ul>
+<h1 id="Maven执行"><a href="#Maven执行" class="headerlink" title="Maven执行"></a>Maven执行</h1><ul>
+<li><code>mvn clean</code>，清除target</li>
+<li><code>mvn compile</code>，编译至target</li>
+<li><code>mvn test</code>，执行test目录下的单元测试</li>
+<li><code>mvn package</code>，按照打包方式打包，输出对应的包至target</li>
+<li><code>mvn install</code>，按照打好的包安装至本地库中使用</li>
+<li><code>mvn -U clean install</code>，强制更新依赖，比如SNAPSHOT</li>
+<li><code>mvn deploy</code>，上传至私服</li>
+</ul>
+<h1 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h1><p>现在各种IDE有很多针对POM分析的工具可以使用，比如IDEA的Maven -&gt; Show Dependencies，可以看到依赖关系节点图，搜索要找的依赖。</p>
+<ul>
+<li>依赖冲突，<code>mvn dependency:tree</code>或IDEA等工具找到冲突依赖exclude掉，保留下想要的版本</li>
+<li>升级依赖，存在一定风险，有可能依赖方删减了代码直接报错；依赖修改了实现；依赖Java版本升级发布环境低不支持调用报错，得经过充分测试</li>
+<li>删减依赖，如果项目和各依赖都没有使用到，可以删除；如果项目未使用但有依赖使用到了，导致该已解析依赖版本变化，带来风险</li>
+</ul>
+<p>applicationContext.xml引入依赖包配置文件，有时需要引入jar包里的bean配置来完成调用，因为这些文件不会被自动加载到spring中，需要手动通过<code>&lt;import resource=&quot;classpath*:spring/*.xml&quot;/&gt;</code>加载，classpath后加*代表加载所有匹配的文件，不加则加载遇到的第一个文件，这样会带来风险：</p>
+<ul>
+<li>bean重名问题，可以将依赖配置bean名字根据项目取</li>
+<li>可能载入多个同路径同名文件，导致更多bean重名问题</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Java </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[名词解释笔记]]></title>
       <url>http://www.zhanghedr.com/2018/05/14/%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E7%AC%94%E8%AE%B0/</url>
       <content type="html"><![CDATA[<p>如题</p>
