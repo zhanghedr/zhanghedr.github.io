@@ -4,14 +4,32 @@ date: 2017-04-01 17:36:07
 categories: Tech
 ---
 
-Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：
-
-- **应用层 (Application)**：HTTP、TLS/SSL、SSH、FTP
-- **传输层 (Transport)**：TCP、UDP
-- **网络层 (Internet)**：IP (IPv4, IPv6)
-- **链接层 (Link)**：IEEE 802.11‎ 
+![tcp](/img/osi_tcp.jpeg)
 
 <!-- more -->
+
+### TCP/IP模型
+
+TCP/IP(Transmission Control Protocol/Internet Protocol)模型：
+
+- **应用层 **：HTTP、TLS/SSL、SSH、FTP
+- **传输层 **：TCP、UDP
+- **网络层 **：IP (IPv4, IPv6)
+- **网络接口层**：对实际的网络媒体的管理
+
+### 四层、七层负载均衡
+
+根据负载均衡作用在OSI(Open Systems Interconnection)模型的位置不同，可以分为四层、七层：
+
+- 四层(TCP)：基于IP+PORT进行请求转发
+- 七层(HTTP)：通过虚拟的URL或IP接收请求，然后再分配到真实的服务器
+
+负载均衡器又分为软件和硬件：
+
+- 软件：Nginx(七层)、LVS(四层)、HAProxy，价格低配置简单
+- 硬件：F5、Array，缺点是价格和维护成本高
+
+早期流量不大直接用Nginx的HTTP七层负载均衡即可，配置简单成本低；后期可以逐步使用Array、LVS等性能更高的负载均衡器，如LVS+Keepalived双机热备方案。
 
 ### IP
 
@@ -19,7 +37,7 @@ IP主要负责寻址和数据包的传输
 
 ### TCP
 
-TCP实现了在IP层之上可靠、有序、准确的传输数据包，因为太广泛的应用也常说TCP/IP，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：
+TCP实现了在IP层之上可靠、有序、准确的传输数据包，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：
 
 ![tcp](/img/internet_communication_protocol/tcp.jpg)
 
@@ -40,3 +58,7 @@ HTTP是基于TCP传输通信的，首先TCP打开一个连接，然后HTTP在其
 ### 长轮询
 
 对于时间敏感的通讯应用，在访问不高的情况下简单用JS写一个Ajax循环轮询请求即可，但其实很多请求是无效浪费的。对于访问量大的应用，可以用长轮询方式，客户端向服务器发送Ajax请求，server会挂起请求监测是否有消息，有新消息或超时才返回响应关闭连接，这样减少了无用的请求。
+
+### 参考
+
+[四层、七层负载均衡的区别](https://www.jianshu.com/p/fa937b8e6712)
