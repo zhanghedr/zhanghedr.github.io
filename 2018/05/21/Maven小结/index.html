@@ -38,7 +38,7 @@
 <meta property="og:url" content="http://www.zhanghedr.com/2018/05/21/Maven小结/index.html">
 <meta property="og:site_name" content="To The Moon">
 <meta property="og:description" content="Apache Maven基于POM(Project Object Model)文件，主要用于Java工程管理，极大简化了工程的构建过程，并标准化。">
-<meta property="og:updated_time" content="2018-05-22T16:53:55.961Z">
+<meta property="og:updated_time" content="2018-06-02T10:00:05.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maven小结">
 <meta name="twitter:description" content="Apache Maven基于POM(Project Object Model)文件，主要用于Java工程管理，极大简化了工程的构建过程，并标准化。">
@@ -324,6 +324,7 @@
 <li>依赖冲突，<code>mvn dependency:tree</code>或IDEA等工具找到冲突依赖exclude掉，保留下想要的版本</li>
 <li>升级依赖，存在一定风险，有可能依赖方删减了代码直接报错；依赖修改了实现；依赖Java版本升级发布环境低不支持调用报错，得经过充分测试</li>
 <li>删减依赖，如果项目和各依赖都没有使用到，可以删除；如果项目未使用但有依赖使用到了，导致该已解析依赖版本变化，带来风险</li>
+<li>传递性依赖JDK版本高于线上环境JDK，导致tomcat启动失败</li>
 </ul>
 <p>applicationContext.xml引入依赖包配置文件，有时需要引入jar包里的bean配置来完成调用，因为这些文件不会被自动加载到spring中，需要手动通过<code>&lt;import resource=&quot;classpath*:spring/*.xml&quot;/&gt;</code>加载，classpath后加*代表加载所有匹配的文件，不加则加载遇到的第一个文件，这样会带来风险：</p>
 <ul>
@@ -363,6 +364,12 @@
         
         
   <nav class="post-nav">
+    
+      <a class="prev" href="/2018/06/02/docker/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Docker初识</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
     
     
       <a class="next" href="/2018/05/14/名词解释笔记/">

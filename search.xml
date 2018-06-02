@@ -4,6 +4,49 @@
   
     
     <entry>
+      <title><![CDATA[Docker初识]]></title>
+      <url>http://www.zhanghedr.com/2018/06/02/docker/</url>
+      <content type="html"><![CDATA[<p>Docker是一个开源的容器框架，可以打包、发布、运行任何的应用，相比虚拟机更为轻量，虚拟机启动分钟级，而Docker启动秒级。</p>
+<a id="more"></a>
+<h2 id="两个基本概念"><a href="#两个基本概念" class="headerlink" title="两个基本概念"></a>两个基本概念</h2><h3 id="镜像（Image）"><a href="#镜像（Image）" class="headerlink" title="镜像（Image）"></a>镜像（Image）</h3><p>Docker镜像核心是OS文件系统，如linux的root文件系统，还包括了运行参数，如环境变量、JDK，镜像是静态文件数据。</p>
+<h3 id="容器（Container）"><a href="#容器（Container）" class="headerlink" title="容器（Container）"></a>容器（Container）</h3><p><strong>镜像和容器的关系，就像是Java中的类和实例</strong>，容器是镜像的实例，可以被创建、启动、停止、删除等。</p>
+<h2 id="Docker-vs-虚拟机"><a href="#Docker-vs-虚拟机" class="headerlink" title="Docker vs 虚拟机"></a>Docker vs 虚拟机</h2><ul>
+<li><strong>虚拟机</strong>：硬件虚拟，通过物理机来管理和共享硬件，实现了多个虚拟机隔离，每个虚拟机包括一个操作系统的完整副本，一台机器上可以运行多个虚拟机，启动慢但隔离性更好</li>
+<li><strong>Docker</strong>：采用容器方式，共享了宿主机同一个操作系统内核，一个物理机或一个虚拟机上可以运行多个容器，启动快但隔离性更差</li>
+</ul>
+<p>Docker的优势：</p>
+<ul>
+<li><strong>资源利用率更高</strong>：因为共享了一个操作系统内核，在执行速度、内存更高效，因此一台物理机能运行更多应用</li>
+<li><strong>启动更快</strong>：因为运行于宿主机操作系统内核，启动时间达到了秒级</li>
+<li><strong>环境一致性</strong>：docker提供了除内核外完整的运行环境，镜像保证了在开发、测试、线上等多个环境一致</li>
+<li><strong>维护成本低</strong>：镜像使容器复用更为容易，也使维护更加简单</li>
+<li><strong>弹性扩缩容</strong>：在高峰低估明显的项目中，容器可以快速扩展和回收，应对短期高流量，低谷时缩容提高资源利用率</li>
+<li><strong>持续集成/测试/发布</strong>：在多个测试环境并行的应用中，需要支持快速的扩缩容、构建和发布，docker满足了这种场景要求</li>
+</ul>
+<h2 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h2><h4 id="List-all-docker-local-images"><a href="#List-all-docker-local-images" class="headerlink" title="List all docker local images"></a>List all docker local images</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker images</div></pre></td></tr></table></figure>
+<h4 id="Pull-and-tag-image"><a href="#Pull-and-tag-image" class="headerlink" title="Pull and tag image"></a>Pull and tag image</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker pull registry.aliyuncs.com/v-image/redis  <span class="comment"># default latest tag</span></div><div class="line">docker tag registry.aliyuncs.com/v-image/redis redis  <span class="comment"># tagging</span></div></pre></td></tr></table></figure>
+<h4 id="Run-a-container-by-image-name-or-id"><a href="#Run-a-container-by-image-name-or-id" class="headerlink" title="Run a container by image name or id"></a>Run a container by image name or id</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run 0c95b8a497f3</div></pre></td></tr></table></figure>
+<h4 id="Remove-container-by-name"><a href="#Remove-container-by-name" class="headerlink" title="Remove container by name"></a>Remove container by name</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rm <span class="_">-f</span> webserver</div></pre></td></tr></table></figure>
+<h4 id="Remove-image-by-name-or-id"><a href="#Remove-image-by-name-or-id" class="headerlink" title="Remove image by name or id"></a>Remove image by name or id</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker rmi nginx</div></pre></td></tr></table></figure>
+<h4 id="Docker-container-logs"><a href="#Docker-container-logs" class="headerlink" title="Docker container logs"></a>Docker container logs</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker logs name/id</div></pre></td></tr></table></figure>
+<h4 id="Create-and-run-container-by-yml-files"><a href="#Create-and-run-container-by-yml-files" class="headerlink" title="Create and run container by yml files"></a>Create and run container by yml files</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker-compose up <span class="_">-d</span>  <span class="comment"># by docker-compose.yml in current dir</span></div><div class="line">docker-compose <span class="_">-f</span> docker-compose.yml <span class="_">-f</span> docker-compose-nginx.yml up <span class="_">-d</span></div></pre></td></tr></table></figure>
+<h4 id="Docker-execute-command-for-container-by-id"><a href="#Docker-execute-command-for-container-by-id" class="headerlink" title="Docker execute command for container by id"></a>Docker execute command for container by id</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker <span class="built_in">exec</span> -i -t &#123;CONTAINER ID&#125; /bin/bash</div></pre></td></tr></table></figure>
+<h4 id="Docker-container-restart-by-name-or-id"><a href="#Docker-container-restart-by-name-or-id" class="headerlink" title="Docker container restart by name or id"></a>Docker container restart by name or id</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start/stop/restart 1626246cc473</div></pre></td></tr></table></figure>
+<h4 id="Inspect-container"><a href="#Inspect-container" class="headerlink" title="Inspect container"></a>Inspect container</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker inspect 0b0d02212e12</div></pre></td></tr></table></figure>
+<h4 id="Start-containers-by-links-dependencies-order"><a href="#Start-containers-by-links-dependencies-order" class="headerlink" title="Start containers by links dependencies order"></a>Start containers by links dependencies order</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker start redis mysql nginx web</div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.jianshu.com/p/cf6e7248b6c7" target="_blank" rel="external">从零开始学习 Docker</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Maven小结]]></title>
       <url>http://www.zhanghedr.com/2018/05/21/Maven%E5%B0%8F%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>Apache Maven基于POM(Project Object Model)文件，主要用于Java工程管理，极大简化了工程的构建过程，并标准化。</p>
@@ -92,6 +135,7 @@
 <li>依赖冲突，<code>mvn dependency:tree</code>或IDEA等工具找到冲突依赖exclude掉，保留下想要的版本</li>
 <li>升级依赖，存在一定风险，有可能依赖方删减了代码直接报错；依赖修改了实现；依赖Java版本升级发布环境低不支持调用报错，得经过充分测试</li>
 <li>删减依赖，如果项目和各依赖都没有使用到，可以删除；如果项目未使用但有依赖使用到了，导致该已解析依赖版本变化，带来风险</li>
+<li>传递性依赖JDK版本高于线上环境JDK，导致tomcat启动失败</li>
 </ul>
 <p>applicationContext.xml引入依赖包配置文件，有时需要引入jar包里的bean配置来完成调用，因为这些文件不会被自动加载到spring中，需要手动通过<code>&lt;import resource=&quot;classpath*:spring/*.xml&quot;/&gt;</code>加载，classpath后加*代表加载所有匹配的文件，不加则加载遇到的第一个文件，这样会带来风险：</p>
 <ul>
@@ -415,22 +459,35 @@
     <entry>
       <title><![CDATA[网络传输协议]]></title>
       <url>http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/</url>
-      <content type="html"><![CDATA[<p>Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：</p>
-<ul>
-<li><strong>应用层 (Application)</strong>：HTTP、TLS/SSL、SSH、FTP</li>
-<li><strong>传输层 (Transport)</strong>：TCP、UDP</li>
-<li><strong>网络层 (Internet)</strong>：IP (IPv4, IPv6)</li>
-<li><strong>链接层 (Link)</strong>：IEEE 802.11‎ </li>
-</ul>
+      <content type="html"><![CDATA[<p><img src="/img/osi_tcp.jpeg" alt="tcp"></p>
 <a id="more"></a>
+<h3 id="TCP-IP模型"><a href="#TCP-IP模型" class="headerlink" title="TCP/IP模型"></a>TCP/IP模型</h3><p>TCP/IP(Transmission Control Protocol/Internet Protocol)模型：</p>
+<ul>
+<li><strong>应用层 </strong>：HTTP、TLS/SSL、SSH、FTP</li>
+<li><strong>传输层 </strong>：TCP、UDP</li>
+<li><strong>网络层 </strong>：IP (IPv4, IPv6)</li>
+<li><strong>网络接口层</strong>：对实际的网络媒体的管理</li>
+</ul>
+<h3 id="四层、七层负载均衡"><a href="#四层、七层负载均衡" class="headerlink" title="四层、七层负载均衡"></a>四层、七层负载均衡</h3><p>根据负载均衡作用在OSI(Open Systems Interconnection)模型的位置不同，可以分为四层、七层：</p>
+<ul>
+<li>四层(TCP)：基于IP+PORT进行请求转发</li>
+<li>七层(HTTP)：通过虚拟的URL或IP接收请求，然后再分配到真实的服务器</li>
+</ul>
+<p>负载均衡器又分为软件和硬件：</p>
+<ul>
+<li>软件：Nginx(七层)、LVS(四层)、HAProxy，价格低配置简单</li>
+<li>硬件：F5、Array，缺点是价格和维护成本高</li>
+</ul>
+<p>早期流量不大直接用Nginx的HTTP七层负载均衡即可，配置简单成本低；后期可以逐步使用Array、LVS等性能更高的负载均衡器，如LVS+Keepalived双机热备方案。</p>
 <h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p>IP主要负责寻址和数据包的传输</p>
-<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP实现了在IP层之上可靠、有序、准确的传输数据包，因为太广泛的应用也常说TCP/IP，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP实现了在IP层之上可靠、有序、准确的传输数据包，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：</p>
 <p><img src="/img/internet_communication_protocol/tcp.jpg" alt="tcp"></p>
 <h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>HTTP经过多年已经有多个版本了1.0, 1.1, 2.0，包含HTTP方法、URI、HTTP版本、header、body、status code等。HTTP是无状态的，通过request和response交互，必须是客户端请求服务端，而不能反过来，服务端是被动的。新的Websocket协议解决这个问题，服务端可以主动的响应客户端了。</p>
 <p>而HTTPS是基于TLS/SSL协议的HTTP，数据经过了加密且传输的两方身份经过了验证，大大提高了HTTP的安全性。</p>
 <h3 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h3><p>Socket本身不是协议，而是TCP/UDP传输协议的实现接口API，用于两个节点建立和关闭连接、发送和接收数据。</p>
 <h3 id="TCP长连接"><a href="#TCP长连接" class="headerlink" title="TCP长连接"></a>TCP长连接</h3><p>HTTP是基于TCP传输通信的，首先TCP打开一个连接，然后HTTP在其中发送请求和接收响应，结束后TCP关闭连接，这是一个TCP短连接。一个页面有很多动态和静态资源请求，每次建立和关闭会消耗很多资源和时间，HTTP 1.0通过在响应头的<code>Connection: keep-alive</code>建立长连接，但HTTP 1.1已经默认所有连接都是长连接了，在一个HTTP请求完成后连接不会关闭，后续的请求可以继续用这个连接直到timeout，这样不会产生过多连接减少负担，当然长连接也需要消耗服务器一定资源去管理和维持。</p>
 <h3 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h3><p>对于时间敏感的通讯应用，在访问不高的情况下简单用JS写一个Ajax循环轮询请求即可，但其实很多请求是无效浪费的。对于访问量大的应用，可以用长轮询方式，客户端向服务器发送Ajax请求，server会挂起请求监测是否有消息，有新消息或超时才返回响应关闭连接，这样减少了无用的请求。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/fa937b8e6712" target="_blank" rel="external">四层、七层负载均衡的区别</a></p>
 ]]></content>
       
         <categories>

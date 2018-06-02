@@ -32,33 +32,16 @@
 <link rel="canonical" href="http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/"/>
 
 
-<meta name="description" content="Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：
-
-应用层 (Application)：HTTP、TLS/SSL、SSH、FTP
-传输层 (Transport)：TCP、UDP
-网络层 (Internet)：IP (IPv4, IPv6)
-链接层 (Link)：IEEE 802.11‎">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络传输协议">
 <meta property="og:url" content="http://www.zhanghedr.com/2017/04/01/internet-communication-protocol/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：
-
-应用层 (Application)：HTTP、TLS/SSL、SSH、FTP
-传输层 (Transport)：TCP、UDP
-网络层 (Internet)：IP (IPv4, IPv6)
-链接层 (Link)：IEEE 802.11‎">
+<meta property="og:image" content="http://www.zhanghedr.com/img/osi_tcp.jpeg">
 <meta property="og:image" content="http://www.zhanghedr.com/img/internet_communication_protocol/tcp.jpg">
-<meta property="og:updated_time" content="2018-05-20T15:42:47.843Z">
+<meta property="og:updated_time" content="2018-06-02T09:52:03.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络传输协议">
-<meta name="twitter:description" content="Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：
-
-应用层 (Application)：HTTP、TLS/SSL、SSH、FTP
-传输层 (Transport)：TCP、UDP
-网络层 (Internet)：IP (IPv4, IPv6)
-链接层 (Link)：IEEE 802.11‎">
-<meta name="twitter:image" content="http://www.zhanghedr.com/img/internet_communication_protocol/tcp.jpg">
+<meta name="twitter:image" content="http://www.zhanghedr.com/img/osi_tcp.jpeg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -248,29 +231,42 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#IP"><span class="toc-text">IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket"><span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP长连接"><span class="toc-text">TCP长连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长轮询"><span class="toc-text">长轮询</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP模型"><span class="toc-text">TCP/IP模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四层、七层负载均衡"><span class="toc-text">四层、七层负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP"><span class="toc-text">IP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP"><span class="toc-text">TCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP"><span class="toc-text">HTTP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Socket"><span class="toc-text">Socket</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP长连接"><span class="toc-text">TCP长连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长轮询"><span class="toc-text">长轮询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>Web中接触最多的就是HTTP协议，但还有一些底层协议，按层高到低排列举例：</p>
-<ul>
-<li><strong>应用层 (Application)</strong>：HTTP、TLS/SSL、SSH、FTP</li>
-<li><strong>传输层 (Transport)</strong>：TCP、UDP</li>
-<li><strong>网络层 (Internet)</strong>：IP (IPv4, IPv6)</li>
-<li><strong>链接层 (Link)</strong>：IEEE 802.11‎ </li>
-</ul>
+        <p><img src="/img/osi_tcp.jpeg" alt="tcp"></p>
 <a id="more"></a>
+<h3 id="TCP-IP模型"><a href="#TCP-IP模型" class="headerlink" title="TCP/IP模型"></a>TCP/IP模型</h3><p>TCP/IP(Transmission Control Protocol/Internet Protocol)模型：</p>
+<ul>
+<li><strong>应用层 </strong>：HTTP、TLS/SSL、SSH、FTP</li>
+<li><strong>传输层 </strong>：TCP、UDP</li>
+<li><strong>网络层 </strong>：IP (IPv4, IPv6)</li>
+<li><strong>网络接口层</strong>：对实际的网络媒体的管理</li>
+</ul>
+<h3 id="四层、七层负载均衡"><a href="#四层、七层负载均衡" class="headerlink" title="四层、七层负载均衡"></a>四层、七层负载均衡</h3><p>根据负载均衡作用在OSI(Open Systems Interconnection)模型的位置不同，可以分为四层、七层：</p>
+<ul>
+<li>四层(TCP)：基于IP+PORT进行请求转发</li>
+<li>七层(HTTP)：通过虚拟的URL或IP接收请求，然后再分配到真实的服务器</li>
+</ul>
+<p>负载均衡器又分为软件和硬件：</p>
+<ul>
+<li>软件：Nginx(七层)、LVS(四层)、HAProxy，价格低配置简单</li>
+<li>硬件：F5、Array，缺点是价格和维护成本高</li>
+</ul>
+<p>早期流量不大直接用Nginx的HTTP七层负载均衡即可，配置简单成本低；后期可以逐步使用Array、LVS等性能更高的负载均衡器，如LVS+Keepalived双机热备方案。</p>
 <h3 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h3><p>IP主要负责寻址和数据包的传输</p>
-<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP实现了在IP层之上可靠、有序、准确的传输数据包，因为太广泛的应用也常说TCP/IP，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP实现了在IP层之上可靠、有序、准确的传输数据包，相反UDP不可靠但速度快。TCP传输建立需要三次握手，关闭需要四次握手，如下图所示：</p>
 <p><img src="/img/internet_communication_protocol/tcp.jpg" alt="tcp"></p>
 <h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p>HTTP经过多年已经有多个版本了1.0, 1.1, 2.0，包含HTTP方法、URI、HTTP版本、header、body、status code等。HTTP是无状态的，通过request和response交互，必须是客户端请求服务端，而不能反过来，服务端是被动的。新的Websocket协议解决这个问题，服务端可以主动的响应客户端了。</p>
 <p>而HTTPS是基于TLS/SSL协议的HTTP，数据经过了加密且传输的两方身份经过了验证，大大提高了HTTP的安全性。</p>
 <h3 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h3><p>Socket本身不是协议，而是TCP/UDP传输协议的实现接口API，用于两个节点建立和关闭连接、发送和接收数据。</p>
 <h3 id="TCP长连接"><a href="#TCP长连接" class="headerlink" title="TCP长连接"></a>TCP长连接</h3><p>HTTP是基于TCP传输通信的，首先TCP打开一个连接，然后HTTP在其中发送请求和接收响应，结束后TCP关闭连接，这是一个TCP短连接。一个页面有很多动态和静态资源请求，每次建立和关闭会消耗很多资源和时间，HTTP 1.0通过在响应头的<code>Connection: keep-alive</code>建立长连接，但HTTP 1.1已经默认所有连接都是长连接了，在一个HTTP请求完成后连接不会关闭，后续的请求可以继续用这个连接直到timeout，这样不会产生过多连接减少负担，当然长连接也需要消耗服务器一定资源去管理和维持。</p>
 <h3 id="长轮询"><a href="#长轮询" class="headerlink" title="长轮询"></a>长轮询</h3><p>对于时间敏感的通讯应用，在访问不高的情况下简单用JS写一个Ajax循环轮询请求即可，但其实很多请求是无效浪费的。对于访问量大的应用，可以用长轮询方式，客户端向服务器发送Ajax请求，server会挂起请求监测是否有消息，有新消息或超时才返回响应关闭连接，这样减少了无用的请求。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.jianshu.com/p/fa937b8e6712" target="_blank" rel="external">四层、七层负载均衡的区别</a></p>
 
       
     </div>
