@@ -4,6 +4,88 @@
   
     
     <entry>
+      <title><![CDATA[开发流程]]></title>
+      <url>http://www.zhanghedr.com/2018/06/05/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<p>日常总结</p>
+<a id="more"></a>
+<table>
+<thead>
+<tr>
+<th>流程阶段</th>
+<th>参与人员</th>
+<th>工作内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求设计</td>
+<td>PM、UED</td>
+<td>需求调研，竞品/市场调研，输出PRD(背景/目标/方案)</td>
+</tr>
+<tr>
+<td>需求评审</td>
+<td>PM、UED、RD、QA</td>
+<td>业务/技术需求，功能/UI/数据需求等，评估需求可行性和需要变更</td>
+</tr>
+<tr>
+<td>技术评审</td>
+<td>RD</td>
+<td>设计实现方案、接口，输出技术文档、接口文档，确定估时/排期</td>
+</tr>
+<tr>
+<td>测试用例评审</td>
+<td>PM、UED、RD、QA</td>
+<td>确认Test Cases，达成一致</td>
+</tr>
+<tr>
+<td>开发</td>
+<td>RD</td>
+<td>开发、自测、联调</td>
+</tr>
+<tr>
+<td>第一轮测试</td>
+<td>PM、RD、QA</td>
+<td>后端部署测试环境，RD修复BUG；冒烟测试，QA线下执行测试用例；PM/UED验收</td>
+</tr>
+<tr>
+<td>第二轮测试</td>
+<td>PM、RD、QA</td>
+<td>后端部署线上环境，RD修复BUG；冒烟测试，QA线上执行测试用例，回归测试</td>
+</tr>
+<tr>
+<td>第三轮测试</td>
+<td>PM、RD、QA</td>
+<td>RD修复BUG，进入其他需求开发；QA对之前修复的BUG测试验证</td>
+</tr>
+<tr>
+<td>灰度发布</td>
+<td>PM、RD、QA</td>
+<td>如有BUG修BUG，进入其他需求开发</td>
+</tr>
+<tr>
+<td>全量发布</td>
+<td>PM、RD、QA</td>
+<td>如有BUG修BUG，进入其他需求开发</td>
+</tr>
+<tr>
+<td>版本总结</td>
+<td>PM、UED、RD、QA</td>
+<td>开发质量总结、业务/技术收益结果总结</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Linux常用命令]]></title>
       <url>http://www.zhanghedr.com/2018/06/03/linux/</url>
       <content type="html"><![CDATA[<p>Linux文件权限分为三种：所有者、群组、其他用户和组，r=4(读)、w=2(写)、x=1(执行)，+ 为增加权限、- 为取消权限。</p>
@@ -184,7 +266,7 @@
     <entry>
       <title><![CDATA[名词解释笔记]]></title>
       <url>http://www.zhanghedr.com/2018/05/14/%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A%E7%AC%94%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<p>如题</p>
+      <content type="html"><![CDATA[<p>日常总结</p>
 <a id="more"></a>
 <table>
 <thead>
@@ -279,6 +361,10 @@
 <td style="text-align:left">District Manager，区域经理，区域负责人</td>
 </tr>
 <tr>
+<td style="text-align:left">RD</td>
+<td style="text-align:left">Research and Development，研发</td>
+</tr>
+<tr>
 <td style="text-align:left">SRE</td>
 <td style="text-align:left">Site Reliability Engineer，网站可靠性工程师，运维 + 部分架构</td>
 </tr>
@@ -293,6 +379,10 @@
 <tr>
 <td style="text-align:left">UX / UE</td>
 <td style="text-align:left">User Experience，偏向交互设计</td>
+</tr>
+<tr>
+<td style="text-align:left">UED</td>
+<td style="text-align:left">User Experience Designer，设计师统称</td>
 </tr>
 <tr>
 <td style="text-align:left">PRD</td>
@@ -325,6 +415,18 @@
 <tr>
 <td style="text-align:left">SOP</td>
 <td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
+</tr>
+<tr>
+<td style="text-align:left">冒烟测试</td>
+<td style="text-align:left">在短时间内(1天)，执行测试用例，确保软件基本功能正常，新需求流程能跑通。早期发现问题，确保OK才进行后面的测试</td>
+</tr>
+<tr>
+<td style="text-align:left">测试用例</td>
+<td style="text-align:left">Test Case，一组测试输入、执行条件以及预期结果，用来测试需求</td>
+</tr>
+<tr>
+<td style="text-align:left">回归测试</td>
+<td style="text-align:left">修改了旧代码后，重新测试以确认修改没有引入新的错误或导致其他代码产生错误</td>
 </tr>
 <tr>
 <td style="text-align:left">埋点</td>
