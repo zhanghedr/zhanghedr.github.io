@@ -4,6 +4,51 @@
   
     
     <entry>
+      <title><![CDATA[测试浅谈]]></title>
+      <url>http://www.zhanghedr.com/2018/06/10/%E6%B5%8B%E8%AF%95/</url>
+      <content type="html"><![CDATA[<p>测试驱动开发TDD(Test-Driven Development)是敏捷开发(Agile Development)中的一项方法论，TDD的原理是在开发代码之前，先编写单元测试代码，虽然我理解大部分场景是做不到这一点的，但是自测还是很有必要。它的优点是保证代码质量减少BUG，同时明确了需求并想好了代码的设计思路，缺点是时间成本太高。</p>
+<a id="more"></a>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>指对系统中的最小单元进行测试，如方法和类，保证每个模块和预期一致，并能在前期就发现问题。常用的框架是JUnit，分为setUp、@Test、@tearDown三步，有下面几个原则：</p>
+<ul>
+<li>测试方法独立</li>
+<li>依赖数据用Mock构造，常见框架有Mockito</li>
+<li>监控测试指标代码覆盖率，常见框架有JaCoCo</li>
+<li>Assert断言测试结果</li>
+<li>覆盖主干链路和边界条件</li>
+<li>测试代码尽可能简洁，维护成本低</li>
+</ul>
+<p>根据常见的层级，可以分为：</p>
+<ul>
+<li>DAO层：准备库测试数据，测试完成后删除测试数据</li>
+<li>Service层：Mock依赖服务接口数据，验证自己服务结果</li>
+<li>Controller层：Mock依赖服务接口数据，验证入参和返回值</li>
+</ul>
+<h2 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h2><p>借助于如Jenkins平台进行持续集成测试，在执行多个单元测试的基础上，进行系统构建。</p>
+<h2 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h2><p>修改了旧代码后，重新测试以确认修改没有引入新的错误或导致其他代码产生错误。</p>
+<h2 id="冒烟测试"><a href="#冒烟测试" class="headerlink" title="冒烟测试"></a>冒烟测试</h2><p>在短时间内(1天)，执行测试用例(Test Case)，确保软件基本功能正常，新需求流程能跑通。早期发现问题，确保OK才进行后面的测试。</p>
+<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>主要有负载测试(测试系统在设计负载下的性能)和压力测试(测试系统在极限负载下的性能)。</p>
+<h2 id="测试痛点"><a href="#测试痛点" class="headerlink" title="测试痛点"></a>测试痛点</h2><ul>
+<li>环境对齐，保证上下游服务在同一个预期的环境上可用</li>
+<li>测试数据，保证自身和依赖有足够的测试数据可用</li>
+<li>并行测试，保证在多个需求同时开发和测试时，能提供每个需求独立隔离的测试环境，不会互相干扰影响</li>
+</ul>
+<h2 id="代码质量"><a href="#代码质量" class="headerlink" title="代码质量"></a>代码质量</h2><ul>
+<li><strong>原则：开发前充分理解需求做好技术方案，开发中保持良好Code Style，开发后做好自测，上线前做好CodeReview</strong></li>
+<li><strong>工具：Alibaba Java Coding Guidelines(IDEA代码扫描插件) + Jenkins(持续集成) + JUnit(单元测试) + JaCoCo(代码覆盖率) + SonarQube(静态代码扫描)</strong></li>
+<li><strong>进阶：进行性能测试，寻找潜在BUG和可优化点</strong></li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[开发流程]]></title>
       <url>http://www.zhanghedr.com/2018/06/05/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</url>
       <content type="html"><![CDATA[<p>日常总结</p>
@@ -305,8 +350,8 @@
 <td style="text-align:left">Click-Through Rate，点击率 = 点击UV / 曝光UV</td>
 </tr>
 <tr>
-<td style="text-align:left">购买转化率 / 访购率</td>
-<td style="text-align:left">访问到购买转化率 = 下单用户数 / 曝光意向UV</td>
+<td style="text-align:left">CVR</td>
+<td style="text-align:left">Conversion Rate，购买转化率 / 访购率 = 访问到购买转化率 = 下单用户数 / 曝光意向UV</td>
 </tr>
 <tr>
 <td style="text-align:left">跳出率</td>
@@ -415,18 +460,6 @@
 <tr>
 <td style="text-align:left">SOP</td>
 <td style="text-align:left">Standard Operating Procedure，标准作业程序， 基于实践总结将某一事件的标准操作步骤以统一的格式描述出来，用来指导和规范日常工作。比如上线规范、事故处理规范、开发流程规范</td>
-</tr>
-<tr>
-<td style="text-align:left">冒烟测试</td>
-<td style="text-align:left">在短时间内(1天)，执行测试用例，确保软件基本功能正常，新需求流程能跑通。早期发现问题，确保OK才进行后面的测试</td>
-</tr>
-<tr>
-<td style="text-align:left">测试用例</td>
-<td style="text-align:left">Test Case，一组测试输入、执行条件以及预期结果，用来测试需求</td>
-</tr>
-<tr>
-<td style="text-align:left">回归测试</td>
-<td style="text-align:left">修改了旧代码后，重新测试以确认修改没有引入新的错误或导致其他代码产生错误</td>
 </tr>
 <tr>
 <td style="text-align:left">埋点</td>

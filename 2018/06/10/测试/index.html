@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="开发流程"/>
+  <meta name="description" content="测试浅谈"/>
 
 
 
@@ -29,19 +29,19 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2018/06/05/开发流程/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2018/06/10/测试/"/>
 
 
-<meta name="description" content="日常总结">
+<meta name="description" content="测试驱动开发TDD(Test-Driven Development)是敏捷开发(Agile Development)中的一项方法论，TDD的原理是在开发代码之前，先编写单元测试代码，虽然我理解大部分场景是做不到这一点的，但是自测还是很有必要。它的优点是保证代码质量减少BUG，同时明确了需求并想好了代码的设计思路，缺点是时间成本太高。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发流程">
-<meta property="og:url" content="http://www.zhanghedr.com/2018/06/05/开发流程/index.html">
+<meta property="og:title" content="测试浅谈">
+<meta property="og:url" content="http://www.zhanghedr.com/2018/06/10/测试/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="日常总结">
-<meta property="og:updated_time" content="2018-06-05T18:35:58.155Z">
+<meta property="og:description" content="测试驱动开发TDD(Test-Driven Development)是敏捷开发(Agile Development)中的一项方法论，TDD的原理是在开发代码之前，先编写单元测试代码，虽然我理解大部分场景是做不到这一点的，但是自测还是很有必要。它的优点是保证代码质量减少BUG，同时明确了需求并想好了代码的设计思路，缺点是时间成本太高。">
+<meta property="og:updated_time" content="2018-06-09T18:11:37.732Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="开发流程">
-<meta name="twitter:description" content="日常总结">
+<meta name="twitter:title" content="测试浅谈">
+<meta name="twitter:description" content="测试驱动开发TDD(Test-Driven Development)是敏捷开发(Agile Development)中的一项方法论，TDD的原理是在开发代码之前，先编写单元测试代码，虽然我理解大部分场景是做不到这一点的，但是自测还是很有必要。它的优点是保证代码质量减少BUG，同时明确了需求并想好了代码的设计思路，缺点是时间成本太高。">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -90,7 +90,7 @@
 
 
 
-    <title> 开发流程 · To The Moon </title>
+    <title> 测试浅谈 · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,90 +215,60 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          开发流程
+          测试浅谈
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2018年6月5日
+          2018年6月10日
         </span>
       </div>
     </header>
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单元测试"><span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#集成测试"><span class="toc-text">集成测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回归测试"><span class="toc-text">回归测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒烟测试"><span class="toc-text">冒烟测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#性能测试"><span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试痛点"><span class="toc-text">测试痛点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码质量"><span class="toc-text">代码质量</span></a></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>日常总结</p>
+        <p>测试驱动开发TDD(Test-Driven Development)是敏捷开发(Agile Development)中的一项方法论，TDD的原理是在开发代码之前，先编写单元测试代码，虽然我理解大部分场景是做不到这一点的，但是自测还是很有必要。它的优点是保证代码质量减少BUG，同时明确了需求并想好了代码的设计思路，缺点是时间成本太高。</p>
 <a id="more"></a>
-<table>
-<thead>
-<tr>
-<th>流程阶段</th>
-<th>参与人员</th>
-<th>工作内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>需求设计</td>
-<td>PM、UED</td>
-<td>需求调研，竞品/市场调研，输出PRD(背景/目标/方案)</td>
-</tr>
-<tr>
-<td>需求评审</td>
-<td>PM、UED、RD、QA</td>
-<td>业务/技术需求，功能/UI/数据需求等，评估需求可行性和需要变更</td>
-</tr>
-<tr>
-<td>技术评审</td>
-<td>RD</td>
-<td>设计实现方案、接口，输出技术文档、接口文档，确定估时/排期</td>
-</tr>
-<tr>
-<td>测试用例评审</td>
-<td>PM、UED、RD、QA</td>
-<td>确认Test Cases，达成一致</td>
-</tr>
-<tr>
-<td>开发</td>
-<td>RD</td>
-<td>开发、自测、联调</td>
-</tr>
-<tr>
-<td>第一轮测试</td>
-<td>PM、RD、QA</td>
-<td>后端部署测试环境，RD修复BUG；冒烟测试，QA线下执行测试用例；PM/UED验收</td>
-</tr>
-<tr>
-<td>第二轮测试</td>
-<td>PM、RD、QA</td>
-<td>后端部署线上环境，RD修复BUG；冒烟测试，QA线上执行测试用例，回归测试</td>
-</tr>
-<tr>
-<td>第三轮测试</td>
-<td>PM、RD、QA</td>
-<td>RD修复BUG，进入其他需求开发；QA对之前修复的BUG测试验证</td>
-</tr>
-<tr>
-<td>灰度发布</td>
-<td>PM、RD、QA</td>
-<td>如有BUG修BUG，进入其他需求开发</td>
-</tr>
-<tr>
-<td>全量发布</td>
-<td>PM、RD、QA</td>
-<td>如有BUG修BUG，进入其他需求开发</td>
-</tr>
-<tr>
-<td>版本总结</td>
-<td>PM、UED、RD、QA</td>
-<td>开发质量总结、业务/技术收益结果总结</td>
-</tr>
-</tbody>
-</table>
+<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>指对系统中的最小单元进行测试，如方法和类，保证每个模块和预期一致，并能在前期就发现问题。常用的框架是JUnit，分为setUp、@Test、@tearDown三步，有下面几个原则：</p>
+<ul>
+<li>测试方法独立</li>
+<li>依赖数据用Mock构造，常见框架有Mockito</li>
+<li>监控测试指标代码覆盖率，常见框架有JaCoCo</li>
+<li>Assert断言测试结果</li>
+<li>覆盖主干链路和边界条件</li>
+<li>测试代码尽可能简洁，维护成本低</li>
+</ul>
+<p>根据常见的层级，可以分为：</p>
+<ul>
+<li>DAO层：准备库测试数据，测试完成后删除测试数据</li>
+<li>Service层：Mock依赖服务接口数据，验证自己服务结果</li>
+<li>Controller层：Mock依赖服务接口数据，验证入参和返回值</li>
+</ul>
+<h2 id="集成测试"><a href="#集成测试" class="headerlink" title="集成测试"></a>集成测试</h2><p>借助于如Jenkins平台进行持续集成测试，在执行多个单元测试的基础上，进行系统构建。</p>
+<h2 id="回归测试"><a href="#回归测试" class="headerlink" title="回归测试"></a>回归测试</h2><p>修改了旧代码后，重新测试以确认修改没有引入新的错误或导致其他代码产生错误。</p>
+<h2 id="冒烟测试"><a href="#冒烟测试" class="headerlink" title="冒烟测试"></a>冒烟测试</h2><p>在短时间内(1天)，执行测试用例(Test Case)，确保软件基本功能正常，新需求流程能跑通。早期发现问题，确保OK才进行后面的测试。</p>
+<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>主要有负载测试(测试系统在设计负载下的性能)和压力测试(测试系统在极限负载下的性能)。</p>
+<h2 id="测试痛点"><a href="#测试痛点" class="headerlink" title="测试痛点"></a>测试痛点</h2><ul>
+<li>环境对齐，保证上下游服务在同一个预期的环境上可用</li>
+<li>测试数据，保证自身和依赖有足够的测试数据可用</li>
+<li>并行测试，保证在多个需求同时开发和测试时，能提供每个需求独立隔离的测试环境，不会互相干扰影响</li>
+</ul>
+<h2 id="代码质量"><a href="#代码质量" class="headerlink" title="代码质量"></a>代码质量</h2><ul>
+<li><strong>原则：开发前充分理解需求做好技术方案，开发中保持良好Code Style，开发后做好自测，上线前做好CodeReview</strong></li>
+<li><strong>工具：Alibaba Java Coding Guidelines(IDEA代码扫描插件) + Jenkins(持续集成) + JUnit(单元测试) + JaCoCo(代码覆盖率) + SonarQube(静态代码扫描)</strong></li>
+<li><strong>进阶：进行性能测试，寻找潜在BUG和可优化点</strong></li>
+</ul>
 
       
     </div>
@@ -311,7 +281,7 @@
     
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://www.zhanghedr.com/2018/06/05/开发流程/">http://www.zhanghedr.com/2018/06/05/开发流程/</a>
+      <a href="http://www.zhanghedr.com/2018/06/10/测试/">http://www.zhanghedr.com/2018/06/10/测试/</a>
     </p>
 
     <p class="copyright-item">
@@ -333,15 +303,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/10/测试/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">测试浅谈</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/2018/06/03/linux/">
-        <span class="next-text nav-default">Linux常用命令</span>
+      <a class="next" href="/2018/06/05/开发流程/">
+        <span class="next-text nav-default">开发流程</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
