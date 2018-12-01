@@ -176,7 +176,7 @@
 <h3 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">sudo <span class="comment"># 以系统管理者root身份执行命令，需要先输入密码</span></div><div class="line">su root <span class="comment"># 切换当前用户身份到其他用户身份，不输默认切root</span></div><div class="line">sudo su <span class="comment"># 以sudoer密码切换到root</span></div><div class="line">chgrp root file <span class="comment"># 更改文件所属群组</span></div><div class="line">chown user file <span class="comment"># 更改文件所属用户或群组</span></div><div class="line">chmod 755 file <span class="comment"># 赋予文件rwxr-xr-x权限，3个数字分别表示User、Group、Other权限</span></div><div class="line">chmod 777 folder <span class="comment"># 赋予目录rwxrwxrwx权限，-R进行子目录递归变更</span></div><div class="line">useradd newuser <span class="comment"># 新增用户</span></div><div class="line">usermod newuser <span class="comment"># 更新用户</span></div><div class="line">userdel newuser <span class="comment"># 删除用户</span></div><div class="line">id <span class="comment"># 显示用户的ID，以及所属群组的ID</span></div><div class="line">whoami <span class="comment"># 显示自身用户名称</span></div><div class="line">w <span class="comment"># 显示目前登入系统的用户信息</span></div></pre></td></tr></table></figure>
 <h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">cat file <span class="comment"># 打印文件内容</span></div><div class="line">cat /dev/null &gt; file <span class="comment"># 清空文件内容</span></div><div class="line">touch file <span class="comment"># 修改文件时间为系统时间，若文件不存在，会创建一个新文件</span></div><div class="line">ls -alh <span class="comment"># 列出所有文件，包括文件权限、拥有者、拥有组、大小(不包括子目录)等信息</span></div><div class="line">diff <span class="built_in">log</span>1 <span class="built_in">log</span>2 <span class="comment"># 比较文件的差异</span></div><div class="line">find file <span class="comment"># 在当前目录下查找文件</span></div><div class="line">scp local_file remote_username@remote_ip:remote_folder <span class="comment"># 基于ssh安全的远程文件拷贝</span></div><div class="line">tree <span class="comment"># 以树状图列出目录的内容</span></div><div class="line">tar -xvfz archive.tar.gz <span class="comment"># 解压一个gzip格式的压缩包 </span></div><div class="line">zip <span class="comment"># 压缩zip格式的压缩包 </span></div><div class="line">unzip file.zip <span class="comment"># 解压一个zip格式压缩包 </span></div><div class="line">gzip <span class="comment"># 压缩gz压缩包</span></div></pre></td></tr></table></figure>
 <h3 id="日志查询"><a href="#日志查询" class="headerlink" title="日志查询"></a>日志查询</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"keyword"</span> app.log <span class="comment"># 查找文件里字符串匹配的行</span></div><div class="line">grep -B 3 -A 3 <span class="string">"keyword"</span> app.log <span class="comment"># 查找匹配行及前后3行</span></div><div class="line">less app.log | grep <span class="string">"keyword"</span> <span class="comment"># 浏览文件，G-移到最后一行，ctrl+F-前移一屏，ctrl+BB-后移一屏</span></div><div class="line">cat app.log | grep <span class="string">"keyword"</span> -m 10 <span class="comment"># 类似less，最多10行</span></div><div class="line">cat app.log | grep <span class="string">"keyword"</span> -c <span class="comment"># 匹配总行数</span></div><div class="line">cat app.log | grep <span class="string">"keyword"</span> &gt; app-new.log <span class="comment"># 日志太多输出到新文件查看</span></div><div class="line">tail <span class="_">-f</span> app.log <span class="comment"># 实时显示文件尾部内容，默认10行</span></div><div class="line">tail <span class="_">-f</span> -n 20 app.log | grep <span class="string">"keyword"</span> <span class="comment"># 实时显示文件尾部内容，20行</span></div></pre></td></tr></table></figure>
-<h3 id="查看资源使用情况"><a href="#查看资源使用情况" class="headerlink" title="查看资源使用情况"></a>查看资源使用情况</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">ps aux | grep java <span class="comment"># 显示BSD格式进程</span></div><div class="line">ps -ef | grep java <span class="comment"># 显示标准格式进程</span></div><div class="line">top <span class="comment"># 实时显示进程动态</span></div><div class="line">htop <span class="comment"># 高级版top</span></div><div class="line">vmstat 5 <span class="comment"># 查看虚拟内存，每5秒刷新一次</span></div><div class="line">free -m <span class="comment"># 以MB为单位显示内存的使用情况</span></div><div class="line"><span class="built_in">kill</span> -9 pid <span class="comment"># 强制杀死进程</span></div><div class="line">df -h <span class="comment"># 显示文件系统的磁盘使用情况</span></div><div class="line">du -h folder <span class="comment"># 显示目录或文件的大小</span></div></pre></td></tr></table></figure>
+<h3 id="查看资源使用情况"><a href="#查看资源使用情况" class="headerlink" title="查看资源使用情况"></a>查看资源使用情况</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">ps aux | grep java <span class="comment"># 显示BSD格式进程</span></div><div class="line">ps -ef | grep java <span class="comment"># 显示标准格式进程</span></div><div class="line">top <span class="comment"># 实时显示进程动态</span></div><div class="line">htop <span class="comment"># 高级版top</span></div><div class="line">vmstat 5 <span class="comment"># 查看虚拟内存，每5秒刷新一次</span></div><div class="line">free -m <span class="comment"># 以MB为单位显示内存的使用情况</span></div><div class="line"><span class="built_in">kill</span> -9 pid <span class="comment"># 强制杀死进程</span></div><div class="line">df -h <span class="comment"># 显示文件系统的磁盘使用情况</span></div><div class="line">du -h folder <span class="comment"># 显示目录或文件的大小</span></div><div class="line">du -hd 1 <span class="comment"># 显示1层文件深度大小</span></div></pre></td></tr></table></figure>
 <h3 id="系统和网络"><a href="#系统和网络" class="headerlink" title="系统和网络"></a>系统和网络</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">uname <span class="_">-a</span> <span class="comment"># 显示系统信息</span></div><div class="line">date <span class="comment"># 系统日期，包括时区</span></div><div class="line">crontab 0 * * * * /bin/ls <span class="comment"># 执行定时任务</span></div><div class="line">setenv VAR abc <span class="comment"># 查询或设置环境变量</span></div><div class="line">ifconfig <span class="comment"># 显示或设置网络设备</span></div><div class="line">ping zhanghedr.com <span class="comment"># 请求检测主机</span></div><div class="line">curl zhanghedr.com <span class="comment"># curl可以用来发送各种HTTP请求、执行下载</span></div></pre></td></tr></table></figure>
 <h3 id="VIM"><a href="#VIM" class="headerlink" title="VIM"></a>VIM</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">:q <span class="comment"># quit</span></div><div class="line">:wq <span class="comment"># write and quit</span></div><div class="line">:x <span class="comment"># write and quit</span></div><div class="line">:G <span class="comment"># to bottom of file</span></div></pre></td></tr></table></figure>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://www.runoob.com/linux/linux-command-manual.html" target="_blank" rel="external">Linux 命令大全</a></p>
@@ -411,6 +411,10 @@
 <td style="text-align:left">Year-on-Year Ratio，同比，同比增长率 = (今年5月 - 去年5月) / 去年5月</td>
 </tr>
 <tr>
+<td style="text-align:left">ROI</td>
+<td style="text-align:left">Return on Investment，投资回报率 = 利润 / 投资，衡量事情是否值得做</td>
+</tr>
+<tr>
 <td style="text-align:left">———</td>
 <td style="text-align:left"></td>
 </tr>
@@ -500,7 +504,7 @@
 </tr>
 <tr>
 <td style="text-align:left">SOA</td>
-<td style="text-align:left">Service-Oriented Architecture，面向服务结构，松耦合、可复用，独立于硬件、操作系统和编程语言，在各种各样的系统中的服务可以以一种统一的方式进行交互</td>
+<td style="text-align:left">Service-Oriented Architecture，面向服务架构，松耦合、可复用，独立于硬件、操作系统和编程语言，在各种系统中的服务可以以一种统一的方式进行交互。提高服务复用减少重复造轮子，减少人力成本，包括服务负责小组、登记、可检索、鉴权等</td>
 </tr>
 <tr>
 <td style="text-align:left">IDC</td>
@@ -513,6 +517,38 @@
 <tr>
 <td style="text-align:left">SLA</td>
 <td style="text-align:left">Service-Level Agreement，服务等级协议，服务供应商和客户的合同，定义了服务类型、服务质量等，如TP99、可用性指标</td>
+</tr>
+<tr>
+<td style="text-align:left">JDBC</td>
+<td style="text-align:left">Java Database Connectivity，Java客户端连接数据库API</td>
+</tr>
+<tr>
+<td style="text-align:left">ORM</td>
+<td style="text-align:left">Object Relational Mapping，对象关系映射，如MyBatis</td>
+</tr>
+<tr>
+<td style="text-align:left">DDD</td>
+<td style="text-align:left">Domain-Driven Design，领域驱动设计</td>
+</tr>
+<tr>
+<td style="text-align:left">POJO/DTO/DO/PO/DAO</td>
+<td style="text-align:left">POJO(Plain Ordinary Java Object，最基本的Java Bean，只有属性和getter/setter)<br>DTO(Data Transfer Object，数据传输对象，接入层API与服务层之间的数据传输对象)<br>DO(Domain Object，领域对象，从现实世界中抽象出来的业务实体，给客户端的业务接口对象)<br>PO(Persistant Object，持久对象，ORM中对应DB数据模型的对象) <br>DAO(Data Access Object，对持久层CRUD操作的接口)</td>
+</tr>
+<tr>
+<td style="text-align:left">IaaS/PaaS/SaaS</td>
+<td style="text-align:left">IaaS，Infrastructure-as-a-Service，基础设施即服务，如AWS EC2，用户自己搭建网络、环境、SLB等<br>PaaS，Platform-as-a-Service，平台即服务，如AWS Elastic Beanstalk、heroku，在IaaS之上实现用户的简易部署和运行<br>SaaS，Software-as-a-Service，软件即服务，如Saleforce的CRM系统、Google Map</td>
+</tr>
+<tr>
+<td style="text-align:left">ETL</td>
+<td style="text-align:left">Extract-Transform-Load，数据仓库用SQL从数据源进行数据抽取、数据清洗、数据载入</td>
+</tr>
+<tr>
+<td style="text-align:left">CDN</td>
+<td style="text-align:left">Content Delivery Network，实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等信息将用户的请求重新导向离用户最近的节点上，提高响应速度。</td>
+</tr>
+<tr>
+<td style="text-align:left">Agile</td>
+<td style="text-align:left">敏捷开发方法</td>
 </tr>
 <tr>
 <td style="text-align:left">TP99</td>
@@ -553,6 +589,10 @@
 <tr>
 <td style="text-align:left">中台战略</td>
 <td style="text-align:left">阿里提出的大中台、小前台架构，各业务线共享的单元聚合在一个服务，比如用户中心、商品中心、门店中心、交易中心、搜索中心、评价中心、营销中心等，高内聚低耦合，要求后台所有业务线接入，支撑公司所有业务前台，增加服务复用，增加效率减少开发成本，并且对于技术工程质量可以统一快速迭代</td>
+</tr>
+<tr>
+<td style="text-align:left">P&amp;L</td>
+<td style="text-align:left">Profit and Loss</td>
 </tr>
 </tbody>
 </table>
