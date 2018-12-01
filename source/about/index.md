@@ -16,4 +16,3 @@ Blog名源自剧情游戏 [To the Moon](http://store.steampowered.com/app/206440
 
 - Email: hezhang0929@gmail.com
 - Github: [@zhanghedr](https://github.com/zhanghedr)
-- Social: [知乎](https://www.zhihu.com/people/howard-72-93)
