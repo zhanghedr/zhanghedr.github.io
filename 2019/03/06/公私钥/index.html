@@ -12,7 +12,7 @@
 
 
 
-  <meta name="description" content="进程和线程的区别"/>
+  <meta name="description" content="非对称加密和HTTPS"/>
 
 
 
@@ -29,31 +29,19 @@
 
 
 
-<link rel="canonical" href="http://www.zhanghedr.com/2017/01/04/difference-between-process-and-thread/"/>
+<link rel="canonical" href="http://www.zhanghedr.com/2019/03/06/公私钥/"/>
 
 
-<meta name="description" content="进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和工作上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。
-
-单进程单线程：一个工人在一个流水线上工作
-单进程多线程：多个工人在一个流水线上工作
-多进程单线程：多个流水线，每个有">
+<meta name="description" content="密钥对中一个公钥对应一个私钥，公钥大家都知道，私钥只有自己知道。如果用其中一个密钥加密数据，则只有对应的那个密钥才可以解密；如果用其中一个密钥可以进行解密数据，则该数据必然是对应的那个密钥进行的加密。由于加密解密使用两个密钥，故为非对称加密，常见算法为RSA，主要应用是内容加密和身份认证。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程和线程的区别">
-<meta property="og:url" content="http://www.zhanghedr.com/2017/01/04/difference-between-process-and-thread/index.html">
+<meta property="og:title" content="非对称加密和HTTPS">
+<meta property="og:url" content="http://www.zhanghedr.com/2019/03/06/公私钥/index.html">
 <meta property="og:site_name" content="To The Moon">
-<meta property="og:description" content="进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和工作上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。
-
-单进程单线程：一个工人在一个流水线上工作
-单进程多线程：多个工人在一个流水线上工作
-多进程单线程：多个流水线，每个有">
-<meta property="og:updated_time" content="2018-05-20T15:42:47.838Z">
+<meta property="og:description" content="密钥对中一个公钥对应一个私钥，公钥大家都知道，私钥只有自己知道。如果用其中一个密钥加密数据，则只有对应的那个密钥才可以解密；如果用其中一个密钥可以进行解密数据，则该数据必然是对应的那个密钥进行的加密。由于加密解密使用两个密钥，故为非对称加密，常见算法为RSA，主要应用是内容加密和身份认证。">
+<meta property="og:updated_time" content="2019-03-06T16:07:28.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="进程和线程的区别">
-<meta name="twitter:description" content="进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和工作上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。
-
-单进程单线程：一个工人在一个流水线上工作
-单进程多线程：多个工人在一个流水线上工作
-多进程单线程：多个流水线，每个有">
+<meta name="twitter:title" content="非对称加密和HTTPS">
+<meta name="twitter:description" content="密钥对中一个公钥对应一个私钥，公钥大家都知道，私钥只有自己知道。如果用其中一个密钥加密数据，则只有对应的那个密钥才可以解密；如果用其中一个密钥可以进行解密数据，则该数据必然是对应的那个密钥进行的加密。由于加密解密使用两个密钥，故为非对称加密，常见算法为RSA，主要应用是内容加密和身份认证。">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.3.x" />
@@ -102,7 +90,7 @@
 
 
 
-    <title> 进程和线程的区别 · To The Moon </title>
+    <title> 非对称加密和HTTPS · To The Moon </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -227,13 +215,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          进程和线程的区别
+          非对称加密和HTTPS
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2017年1月4日
+          2019年3月6日
         </span>
       </div>
     </header>
@@ -243,29 +231,45 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是进程"><span class="toc-text">什么是进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是线程"><span class="toc-text">什么是线程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#进程和线程的区别"><span class="toc-text">进程和线程的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#内容加密"><span class="toc-text">内容加密</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#身份认证"><span class="toc-text">身份认证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字证书"><span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字签名"><span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS-vs-HTTP"><span class="toc-text">HTTPS vs HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>进程(process)和线程(thread)是操作系统里最基本的概念之一，在算法题和工作上碰到这个问题，决定做一个总结。这里打个简单的比方，如果操作系统是一座工厂，CPU是生产机器，工厂里的调度员调度机器去生产某个产品，一个产品流水线是一个进程，每个流水线上的一个工人是一个线程。</p>
-<ul>
-<li>单进程单线程：一个工人在一个流水线上工作</li>
-<li>单进程多线程：多个工人在一个流水线上工作</li>
-<li>多进程单线程：多个流水线，每个有一个工人工作</li>
-<li>多进程多线程：多个流水线，每个有多个工人工作</li>
-</ul>
+        <p>密钥对中一个公钥对应一个私钥，公钥大家都知道，私钥只有自己知道。如果用其中一个密钥加密数据，则只有对应的那个密钥才可以解密；如果用其中一个密钥可以进行解密数据，则该数据必然是对应的那个密钥进行的加密。由于加密解密使用两个密钥，故为<strong>非对称加密</strong>，常见算法为<strong>RSA</strong>，主要应用是<strong>内容加密和身份认证</strong>。</p>
 <a id="more"></a>
-<h2 id="什么是进程"><a href="#什么是进程" class="headerlink" title="什么是进程"></a>什么是进程</h2><p>进程可以理解为一个程序，操作系统会分配CPU、内存等环境给要执行的进程，一个CPU同一时间只能执行一个进程，当这个进程执行完或它被分配的执行时间结束后，CPU就会执行下一个进程，如果它还没有执行完，那么CPU在之后再轮回到它时会从上一次结束的点继续执行。</p>
-<p>现代电脑的CPU都很强大，电脑上不可能同一时间只能运行一个程序，操作系统会调度多进程运行多个程序从而充分利用CPU，比如我们同时打开了QQ、Chrome和Sublime就是三个进程。</p>
-<h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><p>虽然进程实现了操作系统上多个程序的并发，但对于一个程序运行来说，以blocking的形式运行难免会出现问题，如果一个进程在某个点阻塞，如果它的阻塞不会影响后续的代码，那么我们完全可以提前运行后面的程序而不必等其阻塞恢复，我们希望在一个进程里有多个工人并发同时工作以进一步增加效率，这里的工人就是线程。比如Word有多个线程，一个线程负责输入，一个线程负责显示，还有线程负责自动保存，这让我们感觉到输入和显示同时发生。</p>
-<h2 id="进程和线程的区别"><a href="#进程和线程的区别" class="headerlink" title="进程和线程的区别"></a>进程和线程的区别</h2><ul>
-<li>一个操作系统可以包含多个进程，一个进程可以包含多个线程</li>
-<li>多进程分别拥有不同的内存，而同一进程下的多个线程共享同一部分内存，因此线程之间可以读写同样的数据变量</li>
+<h2 id="内容加密"><a href="#内容加密" class="headerlink" title="内容加密"></a>内容加密</h2><p>加密是将数据资料加密，使得非法用户即使取得加密过的资料，也无法获取正确的资料内容，假设A要给B发送一段明文消息并加密：</p>
+<ol>
+<li>B先给A他的公钥</li>
+<li>A用B的公钥加密消息，然后发送给B</li>
+<li>B用自己的私钥解密消息</li>
+</ol>
+<h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>除了保护消息内容外，还有一个重要的点是确认消息来源方是否合法，也就是认证过程，鉴别是否冒充，A要给B发送消息：</p>
+<ol>
+<li>A先给B自己公钥</li>
+<li>A用自己私钥加密消息，从而对内容签名，并将签名同消息一起发送给B</li>
+<li>B用A的公钥解密，从而验证签名</li>
+</ol>
+<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>HTTPS不同网站服务器对浏览器做认证时，每个发送方都有一个公钥，那么接受方要保存非常多的公钥，难以管理，且无法保证公钥未被篡改，故有一个统一的证书管理机构来管理发送方公钥，这个机构就是CA，是负责管理和签发证书的第三方机构，是所有行业都信任的。</p>
+<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>发送方生成数字签名过程：<code>明文 --&gt; hash运算 --&gt; 摘要 --&gt; 私钥加密 --&gt; 数字签名</code></p>
+<p>接收者只有用发送者的公钥才能解密被加密的摘要，从而完成了<strong>身份认证</strong>；然后用hash函数对收到的明文产生一个摘要，与解密的摘要信息对比，如果相同，则说明收到的信息是完整的，在传输过程中没有被修改，验证了<strong>数据完整性</strong>。</p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS是基于TLS/SSL的HTTP，作用：</p>
+<ul>
+<li>内容加密，建立一个安全信息通道，保证数据传输安全</li>
+<li>身份认证，确保网站真实性</li>
+<li>数据完整性，防止内容被第三方冒充或者篡改</li>
 </ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.cnblogs.com/hazir/archive/2011/05/09/2447287.html" target="_blank" rel="external">http://www.cnblogs.com/hazir/archive/2011/05/09/2447287.html</a></p>
+<p>需要进行非对称加密，且需要SSL握手分手，比HTTP稍慢，主要是首次连接</p>
+<p><strong>TLS/SSL在握手阶段首先通过非对称加密交换一个随机会话密匙，然后在传输阶段通过会话密匙和对称加密算法进行数据的加密和解密</strong>，非对称加密速度慢，故在数据传输阶段使用对称加密，但保证了握手阶段安全性。</p>
+<h2 id="HTTPS-vs-HTTP"><a href="#HTTPS-vs-HTTP" class="headerlink" title="HTTPS vs HTTP"></a>HTTPS vs HTTP</h2><ul>
+<li>HTTPS协议需要到CA申请证书，部署到服务器</li>
+<li>HTTPS更安全但稍慢一点，HTTPS = HTTP + SSL</li>
+<li>HTTPS采用443而非80端口</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>既然是加密，那肯定是不希望别人知道我的消息，所以只有我才能解密，所以可得出<strong>公钥负责加密，私钥负责解密</strong>；同理，既然是认证，那肯定是不希望有人冒充我发消息，只有我才能发布这个签名，所以可得出<strong>私钥负责签名，公钥负责签名验证</strong>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.wxtlife.com/2016/03/27/%E8%AF%A6%E8%A7%A3https%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F/" target="_blank" rel="external">http://www.wxtlife.com/2016/03/27/%E8%AF%A6%E8%A7%A3https%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F/</a></p>
 
       
     </div>
@@ -278,7 +282,7 @@
     
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="http://www.zhanghedr.com/2017/01/04/difference-between-process-and-thread/">http://www.zhanghedr.com/2017/01/04/difference-between-process-and-thread/</a>
+      <a href="http://www.zhanghedr.com/2019/03/06/公私钥/">http://www.zhanghedr.com/2019/03/06/公私钥/</a>
     </p>
 
     <p class="copyright-item">
@@ -300,15 +304,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/01/14/funding-ipo-market/">
-        <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">金融概念入门</span>
-        <span class="prev-text nav-mobile">上一篇</span>
-      </a>
     
-    
-      <a class="next" href="/2016/12/20/java-design-patterns/">
-        <span class="next-text nav-default">常见 Java 设计模式</span>
+      <a class="next" href="/2018/06/28/日志/">
+        <span class="next-text nav-default">日志规范</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

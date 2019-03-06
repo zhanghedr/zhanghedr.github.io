@@ -4,6 +4,52 @@
   
     
     <entry>
+      <title><![CDATA[非对称加密和HTTPS]]></title>
+      <url>http://www.zhanghedr.com/2019/03/06/%E5%85%AC%E7%A7%81%E9%92%A5/</url>
+      <content type="html"><![CDATA[<p>密钥对中一个公钥对应一个私钥，公钥大家都知道，私钥只有自己知道。如果用其中一个密钥加密数据，则只有对应的那个密钥才可以解密；如果用其中一个密钥可以进行解密数据，则该数据必然是对应的那个密钥进行的加密。由于加密解密使用两个密钥，故为<strong>非对称加密</strong>，常见算法为<strong>RSA</strong>，主要应用是<strong>内容加密和身份认证</strong>。</p>
+<a id="more"></a>
+<h2 id="内容加密"><a href="#内容加密" class="headerlink" title="内容加密"></a>内容加密</h2><p>加密是将数据资料加密，使得非法用户即使取得加密过的资料，也无法获取正确的资料内容，假设A要给B发送一段明文消息并加密：</p>
+<ol>
+<li>B先给A他的公钥</li>
+<li>A用B的公钥加密消息，然后发送给B</li>
+<li>B用自己的私钥解密消息</li>
+</ol>
+<h2 id="身份认证"><a href="#身份认证" class="headerlink" title="身份认证"></a>身份认证</h2><p>除了保护消息内容外，还有一个重要的点是确认消息来源方是否合法，也就是认证过程，鉴别是否冒充，A要给B发送消息：</p>
+<ol>
+<li>A先给B自己公钥</li>
+<li>A用自己私钥加密消息，从而对内容签名，并将签名同消息一起发送给B</li>
+<li>B用A的公钥解密，从而验证签名</li>
+</ol>
+<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>HTTPS不同网站服务器对浏览器做认证时，每个发送方都有一个公钥，那么接受方要保存非常多的公钥，难以管理，且无法保证公钥未被篡改，故有一个统一的证书管理机构来管理发送方公钥，这个机构就是CA，是负责管理和签发证书的第三方机构，是所有行业都信任的。</p>
+<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>发送方生成数字签名过程：<code>明文 --&gt; hash运算 --&gt; 摘要 --&gt; 私钥加密 --&gt; 数字签名</code></p>
+<p>接收者只有用发送者的公钥才能解密被加密的摘要，从而完成了<strong>身份认证</strong>；然后用hash函数对收到的明文产生一个摘要，与解密的摘要信息对比，如果相同，则说明收到的信息是完整的，在传输过程中没有被修改，验证了<strong>数据完整性</strong>。</p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS是基于TLS/SSL的HTTP，作用：</p>
+<ul>
+<li>内容加密，建立一个安全信息通道，保证数据传输安全</li>
+<li>身份认证，确保网站真实性</li>
+<li>数据完整性，防止内容被第三方冒充或者篡改</li>
+</ul>
+<p>需要进行非对称加密，且需要SSL握手分手，比HTTP稍慢，主要是首次连接</p>
+<p><strong>TLS/SSL在握手阶段首先通过非对称加密交换一个随机会话密匙，然后在传输阶段通过会话密匙和对称加密算法进行数据的加密和解密</strong>，非对称加密速度慢，故在数据传输阶段使用对称加密，但保证了握手阶段安全性。</p>
+<h2 id="HTTPS-vs-HTTP"><a href="#HTTPS-vs-HTTP" class="headerlink" title="HTTPS vs HTTP"></a>HTTPS vs HTTP</h2><ul>
+<li>HTTPS协议需要到CA申请证书，部署到服务器</li>
+<li>HTTPS更安全但稍慢一点，HTTPS = HTTP + SSL</li>
+<li>HTTPS采用443而非80端口</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>既然是加密，那肯定是不希望别人知道我的消息，所以只有我才能解密，所以可得出<strong>公钥负责加密，私钥负责解密</strong>；同理，既然是认证，那肯定是不希望有人冒充我发消息，只有我才能发布这个签名，所以可得出<strong>私钥负责签名，公钥负责签名验证</strong>。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.wxtlife.com/2016/03/27/%E8%AF%A6%E8%A7%A3https%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F/" target="_blank" rel="external">http://www.wxtlife.com/2016/03/27/%E8%AF%A6%E8%A7%A3https%E6%98%AF%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D%E5%AE%89%E5%85%A8%E7%9A%84%EF%BC%9F/</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tech </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[日志规范]]></title>
       <url>http://www.zhanghedr.com/2018/06/28/%E6%97%A5%E5%BF%97/</url>
       <content type="html"><![CDATA[<p><strong>SLF4J</strong>(Simple Logging Facade for Java)作为日志框架的抽象API，独立于任何日志实现，适用于logback、log4j、java.util.logging等，这样在多个项目中就不用维护不同的日志API了，而log4j作为高性能异步日志实现，slf4j+log4j是很多java项目的选择，log4j有两个版本，使用log4j第一版需要3个包：</p>
