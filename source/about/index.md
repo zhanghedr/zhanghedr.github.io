@@ -6,13 +6,9 @@ copyright: false
 
 # About
 
-专注后端Java/Python/Linux，熟悉前端JavaScript/HTML/CSS
+专注后端 Java/Python，熟悉前端 JavaScript/HTML/CSS
 
-喜欢折腾，热爱学习
+Blog名字源自剧情游戏 [To the Moon](https://store.steampowered.com/app/206440/To_the_Moon/)
 
-业余爱好旅游、电影、音乐、NBA
-
-Blog名源自剧情游戏 [To the Moon](http://store.steampowered.com/app/206440/)
-
-- Email: hezhang0929@gmail.com
+- Email: zhanghedr@126.com
 - Github: [@zhanghedr](https://github.com/zhanghedr)
